@@ -1,0 +1,65 @@
+{
+  "layout": "canvas",
+  "title": "Field Diary Rollup",
+  "components": [
+    {
+      "type": "summaryCard",
+      "props": {
+        "title": "Today\u2019s highlights",
+        "bullets": [
+          "3 items flagged for follow-up",
+          "1 safety note requires review",
+          "2 diaries missing \u2014 requests ready"
+        ],
+        "evidenceBadges": [
+          "Evidence-backed"
+        ]
+      }
+    },
+    {
+      "type": "table",
+      "props": {
+        "title": "Diary entries",
+        "columns": [
+          "Team",
+          "Status",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "Team A",
+            "Submitted",
+            "Minor issue logged"
+          ],
+          [
+            "Team B",
+            "Missing",
+            "\u2014"
+          ],
+          [
+            "Team C",
+            "Submitted",
+            "All clear"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "drawerPanel",
+      "props": {
+        "title": "Evidence & photos",
+        "content": "Attach photos / evidence here in production."
+      }
+    },
+    {
+      "type": "actionBar",
+      "props": {
+        "actions": [
+          "Request missing diaries",
+          "Create follow-up tasks",
+          "Export summary"
+        ]
+      }
+    }
+  ]
+}

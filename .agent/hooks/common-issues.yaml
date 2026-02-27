@@ -1,0 +1,493 @@
+# ═══════════════════════════════════════════════════════════════════
+# ALFRED MONOREPO - COMMON ISSUES KNOWLEDGE BASE
+# ═══════════════════════════════════════════════════════════════════
+#
+# Known failure patterns and fixes for agent self-healing.
+# Format: Problem → Solution pairs
+#
+# Agents should:
+# 1. Match error symptoms against patterns
+# 2. Apply the fix command
+# 3. Verify with the verify command
+# 4. If still failing, escalate to human
+#
+# ═══════════════════════════════════════════════════════════════════
+
+version: "1.0"
+updated: "2026-02-05"
+maintainer: "Alfred Platform Team"
+
+issues:
+  # ─────────────────────────────────────────────────────────────────
+  # PREREQUISITES
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: node-version-mismatch
+    category: prerequisites
+    severity: blocking
+    problem: "Node.js version requirement not met"
+    symptoms:
+      - "Node.js 22+ required"
+      - "engine requirements not met"
+      - "Unsupported engine"
+    causes:
+      - Wrong Node.js version installed
+      - nvm not activated
+      - Using system Node instead of nvm
+    fix: |
+      # Option 1: Use nvm (recommended)
+      nvm use 22 || nvm install 22.11.0
+
+      # Option 2: Use the Alfred CLI force script
+      bun run node:force
+
+      # Option 3: Manual install from nodejs.org
+    verify: |
+      node -v | grep -E "^v22\." && echo "✅ Node 22.x confirmed"
+
+  - id: bun-not-installed
+    category: prerequisites
+    severity: blocking
+    problem: "Bun package manager not found"
+    symptoms:
+      - "bun: command not found"
+      - "bun is not recognized"
+    causes:
+      - Bun not installed on the system
+      - Bun not in PATH
+    fix: |
+      # Install Bun
+      curl -fsSL https://bun.sh/install | bash
+
+      # Reload shell
+      source ~/.bashrc  # or ~/.zshrc for zsh users
+    verify: |
+      bun -v && echo "✅ Bun installed"
+
+  # ─────────────────────────────────────────────────────────────────
+  # DEPENDENCIES
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: frozen-lockfile-fail
+    category: dependencies
+    severity: warning
+    problem: "Frozen lockfile installation failed"
+    symptoms:
+      - "lockfile frozen, not updating"
+      - "hash mismatch"
+      - "The lockfile is outdated"
+    causes:
+      - Lockfile out of sync with package.json
+      - Someone updated package.json without running bun install
+    fix: |
+      # Install without frozen lockfile to regenerate
+      bun install
+
+      # Commit the updated lockfile
+      git add bun.lock
+    verify: |
+      test -d node_modules && echo "✅ node_modules exists"
+
+  - id: node-modules-corrupted
+    category: dependencies
+    severity: warning
+    problem: "node_modules directory corrupted or incomplete"
+    symptoms:
+      - "Cannot find module"
+      - "Module not found"
+      - "ENOENT: no such file or directory"
+    causes:
+      - Interrupted installation
+      - Disk space issues
+      - Package manager conflicts
+    fix: |
+      # Clean and reinstall
+      rm -rf node_modules
+      bun install
+    verify: |
+      test -d node_modules && echo "✅ node_modules restored"
+
+  # ─────────────────────────────────────────────────────────────────
+  # ENVIRONMENT
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: missing-env-vars
+    category: environment
+    severity: warning
+    problem: "Required environment variables not set"
+    symptoms:
+      - "Missing required environment variable"
+      - "undefined is not valid"
+      - "Environment variable X is required"
+    causes:
+      - .env file missing or incomplete
+      - Running in wrong environment
+    fix: |
+      # Copy from example and configure
+      cp .env.example .env
+
+      # Then edit .env to set required values
+      # Common required vars: DATABASE_URL, NODE_ENV
+    verify: |
+      test -f .env && echo "✅ .env exists"
+
+  - id: env-file-not-loaded
+    category: environment
+    severity: warning
+    problem: "Environment file not being loaded"
+    symptoms:
+      - "process.env.X is undefined"
+      - Variables not available at runtime
+    causes:
+      - dotenv not loaded
+      - Wrong working directory
+    fix: |
+      # Ensure you're in the repo root
+      cd /Users/cameronrussell/code/alfred
+
+      # Check .env exists
+      cat .env | head -5
+    verify: |
+      node -e "require('dotenv').config(); console.log(process.env.NODE_ENV)"
+
+  # ─────────────────────────────────────────────────────────────────
+  # DATABASE
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: postgres-not-running
+    category: database
+    severity: warning
+    problem: "PostgreSQL connection refused"
+    symptoms:
+      - "ECONNREFUSED"
+      - "connection refused"
+      - "could not connect to server"
+    causes:
+      - Docker not running
+      - PostgreSQL container not started
+      - Wrong connection string
+    fix: |
+      # Start Docker first
+      open -a Docker  # macOS
+
+      # Then start the database container
+      docker compose -f docker-compose.local.yml up -d postgres
+
+      # Wait for it to be ready
+      sleep 5
+    verify: |
+      docker ps | grep postgres && echo "✅ PostgreSQL running"
+
+  - id: database-corrupted
+    category: database
+    severity: warning
+    problem: "Database is corrupted or in bad state"
+    symptoms:
+      - "relation does not exist"
+      - "migration failed"
+      - "database schema mismatch"
+    causes:
+      - Interrupted migration
+      - Manual schema changes
+      - Development database drift
+    fix: |
+      # Reset the database (destructive!)
+      just db-reset
+
+      # Re-run migrations
+      just db-migrate
+
+      # Seed with test data
+      just db-seed
+    verify: |
+      bun run migrate:status
+
+  # ─────────────────────────────────────────────────────────────────
+  # BUILD & TYPE CHECK
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: type-check-failures
+    category: build
+    severity: blocking
+    problem: "TypeScript type check fails"
+    symptoms:
+      - "tsc exited with code 1"
+      - "Type error:"
+      - "TS2xxx:"
+    causes:
+      - Types out of date after dependency update
+      - Missing type dependencies
+      - Generated types not built
+    fix: |
+      # Rebuild all packages to generate types
+      bun run build
+
+      # Then re-run type check
+      bun run type-check
+    verify: |
+      bun run type-check && echo "✅ Type check passed"
+
+  - id: build-cache-stale
+    category: build
+    severity: warning
+    problem: "Build cache is stale causing issues"
+    symptoms:
+      - "Build succeeded but runtime errors"
+      - "Old code still running"
+      - "Changes not reflected"
+    causes:
+      - Turbo cache stale
+      - dist folders outdated
+    fix: |
+      # Clean all build artifacts
+      bun run clean
+
+      # Force rebuild without cache
+      turbo run build --force
+    verify: |
+      bun run build && echo "✅ Fresh build complete"
+
+  # ─────────────────────────────────────────────────────────────────
+  # TESTING
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: playwright-not-installed
+    category: testing
+    severity: warning
+    problem: "Playwright browsers not installed"
+    symptoms:
+      - "Executable doesn't exist"
+      - "browser not found"
+      - "Cannot find browser"
+    causes:
+      - Playwright install not run
+      - Browser binaries missing
+    fix: |
+      bunx playwright install chromium
+    verify: |
+      bunx playwright --version && echo "✅ Playwright installed"
+
+  - id: test-timeout
+    category: testing
+    severity: warning
+    problem: "Tests timing out"
+    symptoms:
+      - "Timeout - Async callback was not invoked"
+      - "exceeded timeout"
+    causes:
+      - Slow machine
+      - Network issues in tests
+      - Missing mocks
+    fix: |
+      # Run tests with extended timeout
+      bun test --testTimeout=30000
+
+      # Or run specific failing test
+      bun test path/to/test.ts
+    verify: |
+      bun test --run && echo "✅ Tests pass"
+
+  # ─────────────────────────────────────────────────────────────────
+  # DEVELOPMENT
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: turbo-cache-corrupted
+    category: development
+    severity: warning
+    problem: "Turbo cache is corrupted or causing issues"
+    symptoms:
+      - "Turbo cache hit but wrong output"
+      - "Build outputs don't match expected"
+      - "Stale files after build"
+    causes:
+      - Cache corruption
+      - Hash collision
+      - Manual file edits during build
+    fix: |
+      # Clear Turbo cache
+      rm -rf .turbo
+
+      # Rebuild without cache
+      turbo run build --force
+    verify: |
+      bun run build && echo "✅ Build complete"
+
+  - id: lint-auto-fix-fails
+    category: development
+    severity: warning
+    problem: "Lint auto-fix creates more errors"
+    symptoms:
+      - "eslint --fix introduces new errors"
+      - "Circular fix attempts"
+      - "Conflicting rules"
+    causes:
+      - Conflicting ESLint rules
+      - Prettier/ESLint conflicts
+      - Plugin version mismatch
+    fix: |
+      # Run lint without auto-fix first
+      bun run lint 2>&1 | head -50
+
+      # Fix manually or update eslint config
+      # Check .eslintrc for conflicting rules
+    verify: |
+      bun run lint && echo "✅ Lint passes"
+
+  - id: git-hooks-failing
+    category: development
+    severity: warning
+    problem: "Git pre-commit hooks failing"
+    symptoms:
+      - "husky - pre-commit script failed"
+      - "lint-staged failed"
+      - "Cannot commit"
+    causes:
+      - Lint errors in staged files
+      - Type errors
+      - Hook script issues
+    fix: |
+      # Check what's failing
+      bun run lint:fast
+
+      # Fix lint issues
+      bun run lint:fix
+
+      # If hooks are broken, reinstall
+      bun run prepare
+    verify: |
+      git status && echo "✅ Ready to commit"
+
+  - id: port-in-use
+    category: development
+    severity: warning
+    problem: "Port already in use"
+    symptoms:
+      - "EADDRINUSE"
+      - "address already in use"
+      - "Port 3000 is already in use"
+    causes:
+      - Previous process still running
+      - Another app using the port
+      - Zombie process
+    fix: |
+      # Find process using port 3000
+      lsof -i :3000
+
+      # Kill the process
+      kill -9 $(lsof -t -i:3000)
+
+      # Or use a different port
+      PORT=3001 bun run dev
+    verify: |
+      lsof -i :3000 || echo "✅ Port 3000 free"
+
+  - id: heap-out-of-memory
+    category: development
+    severity: blocking
+    problem: "JavaScript heap out of memory"
+    symptoms:
+      - "FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed"
+      - "JavaScript heap out of memory"
+      - "Reached heap limit"
+    causes:
+      - Large build with insufficient memory
+      - Memory leak in build process
+      - Too many parallel processes
+    fix: |
+      # Increase Node memory limit
+      export NODE_OPTIONS="--max-old-space-size=8192"
+
+      # Or run with reduced concurrency
+      turbo run build --concurrency=2
+    verify: |
+      bun run build && echo "✅ Build complete"
+
+  - id: redis-not-running
+    category: database
+    severity: warning
+    problem: "Redis connection refused"
+    symptoms:
+      - "ECONNREFUSED 127.0.0.1:6379"
+      - "Redis connection failed"
+      - "Could not connect to Redis"
+    causes:
+      - Redis not started
+      - Docker not running
+      - Wrong Redis URL
+    fix: |
+      # Start Redis via Docker
+      docker compose -f docker-compose.local.yml up -d redis
+
+      # Or install locally (macOS)
+      brew install redis && brew services start redis
+    verify: |
+      redis-cli ping | grep -q "PONG" && echo "✅ Redis running"
+
+  - id: esm-cjs-conflict
+    category: build
+    severity: blocking
+    problem: "ESM/CJS module format conflict"
+    symptoms:
+      - "require() of ES Module"
+      - "Cannot use import statement outside a module"
+      - "ERR_REQUIRE_ESM"
+    causes:
+      - Mixed ESM and CJS in dependencies
+      - Package.json type mismatch
+      - Incorrect tsconfig module settings
+    fix: |
+      # Check package.json type field
+      grep '"type"' package.json
+
+      # Ensure consistent module format in tsconfig
+      # "module": "ESNext" for ESM projects
+
+      # Rebuild with clean state
+      rm -rf dist node_modules/.cache
+      bun run build
+    verify: |
+      bun run type-check && echo "✅ Module format OK"
+
+  - id: circular-dependency
+    category: build
+    severity: warning
+    problem: "Circular dependency detected"
+    symptoms:
+      - "Circular dependency"
+      - "Module graph cycle"
+      - "ReferenceError: Cannot access before initialization"
+    causes:
+      - Import cycles between modules
+      - Barrel file re-exports
+      - Shared state dependencies
+    fix: |
+      # Run dependency analysis
+      bun run analyze:deps
+
+      # Check for cycles
+      npx madge --circular libs/
+
+      # Break the cycle by:
+      # 1. Moving shared types to a separate file
+      # 2. Using dependency injection
+      # 3. Lazy loading modules
+    verify: |
+      bun run build && echo "✅ No blocking cycles"
+
+# ═══════════════════════════════════════════════════════════════════
+# ESCALATION GUIDE
+# ═══════════════════════════════════════════════════════════════════
+#
+# If an issue is not listed here:
+# 1. Search existing issues in the repository
+# 2. Check docs/troubleshooting/ for detailed guides
+# 3. Ask in #dev-help Slack channel
+# 4. Create a new issue in the repository
+#
+# When escalating to human, provide:
+# - Full error message
+# - Steps taken to reproduce
+# - Fixes attempted from this file
+# - System info (OS, Node version, Bun version)
+#
+# ═══════════════════════════════════════════════════════════════════

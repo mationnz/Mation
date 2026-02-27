@@ -1,0 +1,51 @@
+{
+  "layout": "canvas",
+  "title": "Meeting \u2192 Actions",
+  "components": [
+    {
+      "type": "artifactEditor",
+      "props": {
+        "title": "Minutes Draft",
+        "content": "Meeting minutes:\\n- Agenda item 1...\\n- Decisions...\\n- Actions..."
+      }
+    },
+    {
+      "type": "table",
+      "props": {
+        "title": "Actions",
+        "columns": [
+          "Action",
+          "Owner",
+          "Due"
+        ],
+        "rows": [
+          [
+            "Confirm scope",
+            "Ops",
+            "Fri"
+          ],
+          [
+            "Request evidence",
+            "QA",
+            "Wed"
+          ],
+          [
+            "Update stakeholders",
+            "PMO",
+            "Mon"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "actionBar",
+      "props": {
+        "actions": [
+          "Assign actions",
+          "Send minutes",
+          "Create follow-up meeting"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+
+/* Mation Design Tokens — v1
+   Derived from logo mark and gradient palette.
+   Use CSS variables to support light/dark themes cleanly.
+*/
+
+:root {
+  /* Brand */
+  --mation-purple-deep: #310B5E;
+  --mation-purple-primary: #3C1789;
+  --mation-purple-mid: #431B98;
+  --mation-violet: #6142CD;
+  --mation-blue: #6B81DE;
+  --mation-cyan: #91C5F0;
+  --mation-gradient: linear-gradient(90deg, #310B5E 0%, #431B98 35%, #6142CD 65%, #91C5F0 100%);
+
+  /* Neutrals (Light) */
+  --bg: #FFFFFF;
+  --panel: #F7F8FF;
+  --text: #0D0D14;
+  --muted-text: rgba(13,13,20,0.68);
+  --border: rgba(0,0,0,0.10);
+
+  /* Semantic */
+  --success: #2DBE7E;
+  --warning: #F5A623;
+  --danger: #E84A5F;
+  --info: #6B81DE;
+
+  /* Radius */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+
+  /* Shadows */
+  --shadow-sm: 0 6px 18px rgba(0,0,0,0.08);
+  --shadow-md: 0 14px 40px rgba(0,0,0,0.12);
+
+  /* Spacing scale (use in Tailwind or custom) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+}
+
+[data-theme="dark"] {
+  --bg: #0B0B12;
+  --panel: #111126;
+  --text: #F5F6FF;
+  --muted-text: rgba(245,246,255,0.72);
+  --border: rgba(255,255,255,0.10);
+  --shadow-sm: 0 10px 30px rgba(0,0,0,0.55);
+  --shadow-md: 0 18px 60px rgba(0,0,0,0.68);
+}

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="72 110 368 308" fill="none" aria-label="Mation favicon">
+  <defs>
+    <linearGradient id="fav-top-left" x1="72" y1="118" x2="248" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#230557" />
+      <stop offset="1" stop-color="#3F1492" />
+    </linearGradient>
+    <linearGradient id="fav-top-right" x1="248" y1="224" x2="440" y2="126" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#592EDA" />
+      <stop offset="1" stop-color="#57C7FB" />
+    </linearGradient>
+    <linearGradient id="fav-left-leg" x1="72" y1="214" x2="194" y2="418" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4D1DAB" />
+      <stop offset="1" stop-color="#2A0A67" />
+    </linearGradient>
+    <linearGradient id="fav-right-leg" x1="318" y1="287" x2="440" y2="418" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4B1EA8" />
+      <stop offset="1" stop-color="#2C0C69" />
+    </linearGradient>
+    <linearGradient id="fav-center" x1="212" y1="255" x2="303" y2="245" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5228D1" />
+      <stop offset="1" stop-color="#3A1C9A" />
+    </linearGradient>
+  </defs>
+
+  <path d="M72 118L248 224L215 251L72 162V118Z" fill="url(#fav-top-left)" />
+  <path d="M248 224L440 110V162L281 253L248 224Z" fill="url(#fav-top-right)" />
+  <path d="M72 214L194 287V418L72 358V214Z" fill="url(#fav-left-leg)" />
+  <path d="M318 287L440 214V358L318 418V287Z" fill="url(#fav-right-leg)" />
+  <path d="M215 251L248 224L281 253L248 275L215 251Z" fill="url(#fav-center)" />
+</svg>

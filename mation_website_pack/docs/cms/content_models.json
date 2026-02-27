@@ -1,0 +1,85 @@
+{
+  "Post": {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "slug",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "excerpt",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "category",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "author",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "publishedAt",
+        "type": "date",
+        "required": true
+      },
+      {
+        "name": "heroImage",
+        "type": "image",
+        "required": false
+      },
+      {
+        "name": "body",
+        "type": "mdx",
+        "required": true
+      }
+    ]
+  },
+  "CaseStudy": {
+    "fields": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "industry",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "problem",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "approach",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "outcomes",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "metrics",
+        "type": "json",
+        "required": false
+      },
+      {
+        "name": "anonymized",
+        "type": "boolean",
+        "required": true
+      }
+    ]
+  }
+}

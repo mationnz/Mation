@@ -1,0 +1,63 @@
+# Mation
+
+**Business automation and transformation powered by AI.**
+
+Company website for [Mation](https://mation.nz) — we help organisations streamline operations, reduce costs, and accelerate growth with AI-powered solutions.
+
+## Stack
+
+- **TanStack Start** — Full-stack React framework (SSR, server functions, file-based routing)
+- **Vite** — Build tool and dev server
+- **Tailwind CSS v4** — Utility-first styling
+- **Bun** — Runtime and package manager
+- **Node** — Runtime support (>=20)
+
+## Quick Start
+
+```bash
+# Install dependencies
+bun install
+
+# Start dev server
+bun run dev
+```
+
+Open [http://localhost:6969](http://localhost:6969).
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `bun run dev` | Start dev server (port 6969) |
+| `bun run build` | Build for production |
+| `bun run preview` | Preview production build |
+| `bun run start` | Run production server (after build) |
+| `bun run test` | Run tests |
+| `bun run lint` | Lint with Biome |
+| `bun run format` | Format with Biome |
+
+## Project Structure
+
+```
+src/
+├── components/     # Reusable components
+├── routes/         # File-based routes (TanStack Router)
+├── styles.css      # Global styles + Tailwind
+└── router.tsx     # Router configuration
+```
+
+## Deployment
+
+The app uses [Nitro](https://nitro.build/) with the Bun preset. Build outputs to `.output/`. Deploy to any platform that supports Node (Vercel, Netlify, Railway, etc.) or use the custom Bun server for self-hosting.
+
+```bash
+bun run build
+bun run start
+```
+
+## Learn More
+
+- [TanStack Start](https://tanstack.com/start)
+- [TanStack Router](https://tanstack.com/router)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Bun](https://bun.sh)

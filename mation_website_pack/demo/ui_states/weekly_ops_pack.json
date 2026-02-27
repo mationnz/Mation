@@ -1,0 +1,106 @@
+{
+  "layout": "canvas",
+  "title": "Weekly Ops Pack",
+  "components": [
+    {
+      "type": "kpiCard",
+      "props": {
+        "title": "Open Risks",
+        "value": "7",
+        "delta": "+2 this week",
+        "status": "warning"
+      }
+    },
+    {
+      "type": "kpiCard",
+      "props": {
+        "title": "Overdue Actions",
+        "value": "5",
+        "delta": "+1",
+        "status": "danger"
+      }
+    },
+    {
+      "type": "summaryCard",
+      "props": {
+        "title": "Key changes",
+        "bullets": [
+          "Two risks escalated due to supplier delays",
+          "One critical dependency requires approval this week",
+          "Reporting lag reduced in 3 teams using standard workflows"
+        ],
+        "evidenceBadges": [
+          "Evidence-backed",
+          "Audit-ready"
+        ]
+      }
+    },
+    {
+      "type": "table",
+      "props": {
+        "title": "Top risks",
+        "columns": [
+          "Risk",
+          "Owner",
+          "Severity",
+          "Next step"
+        ],
+        "rows": [
+          [
+            "Dependency delay",
+            "Ops",
+            "High",
+            "Confirm ETA + contingency"
+          ],
+          [
+            "Compliance gap",
+            "QA",
+            "Medium",
+            "Request missing evidence"
+          ],
+          [
+            "Handoff backlog",
+            "PMO",
+            "Medium",
+            "Assign owners + due dates"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "chart",
+      "props": {
+        "title": "Incidents (4 weeks)",
+        "chartType": "line",
+        "series": [
+          {
+            "name": "Incidents",
+            "points": [
+              2,
+              1,
+              3,
+              2
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "artifactEditor",
+      "props": {
+        "title": "Weekly Report Draft",
+        "content": "This week\u2019s operations summary:\\n\\n1) Risks\\n- ...\\n\\n2) Actions\\n- ...\\n\\n3) Notes\\n- ..."
+      }
+    },
+    {
+      "type": "actionBar",
+      "props": {
+        "actions": [
+          "Export PDF",
+          "Assign follow-ups",
+          "Request missing data"
+        ]
+      }
+    }
+  ]
+}

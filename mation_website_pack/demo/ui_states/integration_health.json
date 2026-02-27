@@ -1,0 +1,55 @@
+{
+  "layout": "canvas",
+  "title": "Integration Health",
+  "components": [
+    {
+      "type": "table",
+      "props": {
+        "title": "Systems",
+        "columns": [
+          "System",
+          "Status",
+          "Freshness",
+          "Notes"
+        ],
+        "rows": [
+          [
+            "Microsoft 365",
+            "Healthy",
+            "5m",
+            "\u2014"
+          ],
+          [
+            "Project System",
+            "Degraded",
+            "2h",
+            "API rate limit observed"
+          ],
+          [
+            "Docs",
+            "Healthy",
+            "15m",
+            "\u2014"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "banner",
+      "props": {
+        "type": "warning",
+        "message": "One system is degraded. Actions requiring it will be approval-gated or deferred."
+      }
+    },
+    {
+      "type": "actionBar",
+      "props": {
+        "actions": [
+          "View logs",
+          "Retry checks",
+          "Notify admin"
+        ]
+      }
+    }
+  ]
+}

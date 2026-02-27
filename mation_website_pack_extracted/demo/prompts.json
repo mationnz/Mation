@@ -1,0 +1,32 @@
+[
+  {
+    "id": "weekly-ops-pack",
+    "label": "Generate a weekly ops pack with risks and actions",
+    "ui_state": "weekly_ops_pack.json",
+    "description": "Shows KPI cards, risk table, trend chart, and a draft report artifact."
+  },
+  {
+    "id": "compliance-pack",
+    "label": "Build an audit-ready compliance pack with evidence",
+    "ui_state": "compliance_pack.json",
+    "description": "Shows checklist status, evidence table, and export/approval actions."
+  },
+  {
+    "id": "field-diary-rollup",
+    "label": "Summarise today\u2019s field diaries and highlight issues",
+    "ui_state": "field_diary_rollup.json",
+    "description": "Shows issue summary, diary table, photos placeholder, and follow-up actions."
+  },
+  {
+    "id": "meeting-to-actions",
+    "label": "Turn meeting notes into actions and assignments",
+    "ui_state": "meeting_to_actions.json",
+    "description": "Shows action list, owners, due dates, and a generated minutes artifact."
+  },
+  {
+    "id": "integration-health",
+    "label": "Show integration health and data freshness by system",
+    "ui_state": "integration_health.json",
+    "description": "Shows system status table and alerts."
+  }
+]

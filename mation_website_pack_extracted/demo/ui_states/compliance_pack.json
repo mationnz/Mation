@@ -1,0 +1,83 @@
+{
+  "layout": "canvas",
+  "title": "Compliance Pack Builder",
+  "components": [
+    {
+      "type": "summaryCard",
+      "props": {
+        "title": "Pack status",
+        "bullets": [
+          "8 evidence items found",
+          "2 items missing \u2014 requests ready to send",
+          "Approval required before external export"
+        ],
+        "evidenceBadges": [
+          "Traceable",
+          "Approval-gated"
+        ]
+      }
+    },
+    {
+      "type": "table",
+      "props": {
+        "title": "Evidence items",
+        "columns": [
+          "Item",
+          "Status",
+          "Source",
+          "Last updated"
+        ],
+        "rows": [
+          [
+            "Policy Acknowledgement",
+            "Complete",
+            "SharePoint",
+            "Today"
+          ],
+          [
+            "Training Completion",
+            "Missing",
+            "LMS",
+            "\u2014"
+          ],
+          [
+            "Inspection Report",
+            "Complete",
+            "Docs",
+            "Yesterday"
+          ]
+        ]
+      }
+    },
+    {
+      "type": "checklist",
+      "props": {
+        "title": "Pack checklist",
+        "items": [
+          {
+            "label": "Gather evidence",
+            "done": true
+          },
+          {
+            "label": "Review exceptions",
+            "done": false
+          },
+          {
+            "label": "Approve export",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "type": "actionBar",
+      "props": {
+        "actions": [
+          "Request missing evidence",
+          "Preview pack",
+          "Request approval"
+        ]
+      }
+    }
+  ]
+}
