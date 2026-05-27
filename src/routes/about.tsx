@@ -428,7 +428,7 @@ function AboutPage() {
 			<CTASection
 				title="Let’s map the operating system your business should run on."
 				description="Start with a conversation. We’ll learn how you work today and show you what one unified system could change."
-				primaryLabel="Book a discovery call"
+				primaryLabel="Book a free exploration meeting"
 				secondaryLabel="See our approach"
 			/>
 		</>

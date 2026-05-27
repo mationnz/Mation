@@ -22,6 +22,8 @@ import MagneticLink from "../components/MagneticLink";
 import ProcessFlow from "../components/ProcessFlow";
 import SystemMap from "../components/SystemMap";
 import ToolsMarquee from "../components/ToolsMarquee";
+import VelocityTimeline from "../components/VelocityTimeline";
+import { offer } from "../content/site";
 
 export const Route = createFileRoute("/")({
 	component: HomePage,
@@ -328,11 +330,71 @@ function HomePage() {
 				</div>
 			</section>
 
+			{/* Velocity */}
+			<section className="site-wide section-shell pt-4">
+				<div className="reveal-scroll mb-12">
+					<p className="section-index mb-4">
+						<b>04</b> &nbsp;/&nbsp; Velocity
+					</p>
+					<h2 className="max-w-3xl font-heading text-3xl font-semibold text-ink sm:text-[2.5rem] sm:leading-[1.08]">
+						Prototype in days. Launch in weeks. Results in months.{" "}
+						<span className="gradient-ink">Profit for years.</span>
+					</h2>
+				</div>
+				<div className="reveal-scroll">
+					<VelocityTimeline />
+				</div>
+			</section>
+
+			{/* Plans & guarantee */}
+			<section className="site-wide section-shell pt-4">
+				<p className="section-index reveal-scroll mb-4">
+					<b>05</b> &nbsp;/&nbsp; Flexible by design
+				</p>
+				<div className="reveal-stagger grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+					<article className="panel p-7 sm:p-8">
+						<p className="bp-coord">Plans</p>
+						<h3 className="mt-3 font-heading text-2xl font-semibold text-ink sm:text-[1.8rem]">
+							Start small. Scale as it proves out.
+						</h3>
+						<p className="mt-3 text-mute">
+							Custom, pilotable software from{" "}
+							<span className="font-semibold gradient-ink">
+								{offer.priceLow}
+							</span>{" "}
+							to {offer.priceHigh} — on a SaaS, rent-to-buy, or purchase model.
+						</p>
+						<div className="mt-5 flex flex-wrap gap-2">
+							{offer.models.map((m) => (
+								<span key={m.name} className="tag">
+									{m.name}
+								</span>
+							))}
+						</div>
+						<Link to="/plans" className="button-secondary mt-7 inline-flex">
+							See plans & pricing <ArrowRight className="h-4 w-4" />
+						</Link>
+					</article>
+					<article className="panel-line flex flex-col justify-center p-7 sm:p-8">
+						<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-[rgba(166,146,255,0.5)] bg-white/[0.03] text-violet-bright">
+							<ShieldCheck className="h-6 w-6" />
+						</div>
+						<h3 className="mt-5 font-heading text-2xl font-semibold leading-tight text-ink">
+							Double your value in 60 days —{" "}
+							<span className="gradient-ink">or your money back.</span>
+						</h3>
+						<p className="mt-3 text-sm leading-relaxed text-mute">
+							{offer.guarantee}
+						</p>
+					</article>
+				</div>
+			</section>
+
 			{/* Proof — oversized stats */}
 			<section className="glow site-wide section-shell pt-4">
 				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
 					<p className="section-index mb-10">
-						<b>04</b> &nbsp;/&nbsp; What working with us means
+						<b>06</b> &nbsp;/&nbsp; What working with us means
 					</p>
 					<div className="reveal-stagger grid gap-10 sm:grid-cols-3">
 						{metrics.map((m) => (
@@ -362,7 +424,7 @@ function HomePage() {
 			{/* Positioning — we are / we aren't */}
 			<section className="site-wide section-shell pt-4">
 				<p className="section-index reveal-scroll mb-4">
-					<b>05</b> &nbsp;/&nbsp; What we are
+					<b>07</b> &nbsp;/&nbsp; What we are
 				</p>
 				<h2 className="reveal-scroll mb-8 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 					A different kind of software partner.
@@ -425,7 +487,7 @@ function HomePage() {
 			<CTASection
 				title="Let’s map the operating system your business should run on."
 				description="Start with a conversation. We’ll learn how you work today and show you what one unified system could change."
-				primaryLabel="Book a discovery call"
+				primaryLabel="Book a free exploration meeting"
 				secondaryLabel="See our approach"
 			/>
 		</>

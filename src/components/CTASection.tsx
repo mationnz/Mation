@@ -1,4 +1,6 @@
-import { ArrowRight, CalendarClock } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, CalendarClock, ShieldCheck } from "lucide-react";
+import { offer } from "../content/site";
 import MagneticLink from "./MagneticLink";
 
 type CTASectionProps = {
@@ -11,11 +13,11 @@ type CTASectionProps = {
 export default function CTASection({
 	title,
 	description,
-	primaryLabel = "Book a discovery call",
+	primaryLabel = "Book a free exploration meeting",
 	secondaryLabel = "See our approach",
 }: CTASectionProps) {
 	return (
-		<section className="site-shell section-shell">
+		<section className="glow site-shell section-shell">
 			<div className="panel ticked relative overflow-hidden rounded-[22px] p-8 sm:p-12">
 				<div className="pointer-events-none absolute -right-28 -top-28 h-72 w-72 rounded-full bg-[radial-gradient(circle,var(--color-violet),transparent_70%)] opacity-20 blur-3xl" />
 				<p className="kicker">Start here</p>
@@ -40,6 +42,19 @@ export default function CTASection({
 						{secondaryLabel}
 						<ArrowRight className="h-4 w-4" />
 					</MagneticLink>
+				</div>
+				<div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line pt-6 font-mono text-xs uppercase tracking-[0.1em] text-mute">
+					<span className="flex items-center gap-2">
+						<CalendarClock className="h-3.5 w-3.5 text-violet-bright" />
+						{offer.meetingShort}
+					</span>
+					<Link
+						to="/plans"
+						className="link-underline flex items-center gap-2 text-mute hover:text-ink"
+					>
+						<ShieldCheck className="h-3.5 w-3.5 text-violet-bright" />
+						{offer.guaranteeShort}
+					</Link>
 				</div>
 			</div>
 		</section>

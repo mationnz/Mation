@@ -321,7 +321,7 @@ function CaseStudyPage() {
 			<CTASection
 				title="Could your business run on one system like this?"
 				description="Start with a conversation. We'll learn how you work today and show you what one unified system could change."
-				primaryLabel="Book a discovery call"
+				primaryLabel="Book a free exploration meeting"
 				secondaryLabel="See our approach"
 			/>
 		</>

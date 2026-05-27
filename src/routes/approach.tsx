@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
 	ArrowRight,
 	Check,
+	Cloud,
 	Eye,
 	FileText,
 	GitBranch,
@@ -19,9 +20,12 @@ import {
 } from "lucide-react";
 
 import CTASection from "../components/CTASection";
+import GuaranteeBand from "../components/GuaranteeBand";
 import InteractiveAura from "../components/InteractiveAura";
 import MagneticLink from "../components/MagneticLink";
 import ScrollyTransformation from "../components/ScrollyTransformation";
+import VelocityTimeline from "../components/VelocityTimeline";
+import { offer } from "../content/site";
 
 export const Route = createFileRoute("/approach")({
 	component: ApproachPage,
@@ -134,6 +138,9 @@ const archLayers = [
 	{ tag: "DATA", label: "One unified model of your business" },
 	{ tag: "INTEGRATION", label: "Your existing tools, connected" },
 ];
+
+// Commercial models — mirrors the /plans treatment; detail lives there.
+const modelIcons = [Cloud, Repeat, KeyRound];
 
 function ApproachPage() {
 	return (
@@ -266,7 +273,33 @@ function ApproachPage() {
 				<ScrollyTransformation />
 			</section>
 
-			{/* 02 — How we work with your team */}
+			{/* 02 — Velocity */}
+			<section className="site-wide section-shell pt-0">
+				<div className="reveal-scroll mb-12 flex flex-wrap items-end justify-between gap-4">
+					<div>
+						<p className="section-index mb-4">
+							<b>02</b> &nbsp;/&nbsp; Velocity
+						</p>
+						<h2 className="max-w-3xl font-heading text-3xl font-semibold text-ink sm:text-[2.5rem] sm:leading-[1.08]">
+							Prototype in days. Launch in weeks. Results in months.{" "}
+							<span className="gradient-ink">Profit for years.</span>
+						</h2>
+						<p className="mt-4 max-w-2xl text-mute">
+							Working software early is part of how we work. You see something
+							real fast, then we compound it — so the system pays back long
+							after we ship.
+						</p>
+					</div>
+					<p className="dimline hidden max-w-xs md:flex">
+						Working early · compounding
+					</p>
+				</div>
+				<div className="reveal-scroll">
+					<VelocityTimeline />
+				</div>
+			</section>
+
+			{/* 03 — How we work with your team */}
 			<section className="site-wide section-shell pt-0">
 				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
 					<div className="flex items-start gap-4">
@@ -275,7 +308,7 @@ function ApproachPage() {
 						</div>
 						<div>
 							<p className="section-index mb-4">
-								<b>02</b> &nbsp;/&nbsp; How we work with your team
+								<b>03</b> &nbsp;/&nbsp; How we work with your team
 							</p>
 							<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 								Senior people, in the room, building alongside you.
@@ -315,11 +348,11 @@ function ApproachPage() {
 				</div>
 			</section>
 
-			{/* 03 — How it's engineered */}
+			{/* 04 — How it's engineered */}
 			<section className="site-wide section-shell pt-0">
 				<div className="reveal-scroll">
 					<p className="section-index mb-4">
-						<b>03</b> &nbsp;/&nbsp; How it's engineered
+						<b>04</b> &nbsp;/&nbsp; How it's engineered
 					</p>
 					<h2 className="mb-3 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 						The architecture we design for you.
@@ -413,12 +446,12 @@ function ApproachPage() {
 				</div>
 			</section>
 
-			{/* 04 — Tech philosophy */}
+			{/* 05 — Tech philosophy */}
 			<section className="site-wide section-shell pt-0">
 				<div className="reveal-scroll mb-8 flex flex-wrap items-end justify-between gap-4">
 					<div>
 						<p className="section-index mb-4">
-							<b>04</b> &nbsp;/&nbsp; Tech philosophy
+							<b>05</b> &nbsp;/&nbsp; Tech philosophy
 						</p>
 						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 							AI is the engine. Ownership is the principle.
@@ -468,14 +501,14 @@ function ApproachPage() {
 				</div>
 			</section>
 
-			{/* 05 — Start with an Operations Blueprint */}
+			{/* 06 — Start with an Operations Blueprint */}
 			<section className="glow site-wide section-shell pt-0">
 				<div className="panel ticked relative overflow-hidden rounded-[22px] p-8 sm:p-12">
 					<div className="pointer-events-none absolute -right-28 -top-28 h-72 w-72 rounded-full bg-[radial-gradient(circle,var(--color-violet),transparent_70%)] opacity-20 blur-3xl" />
 					<div className="reveal-scroll grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
 						<div>
 							<p className="section-index mb-4">
-								<b>05</b> &nbsp;/&nbsp; A low-risk way to start
+								<b>06</b> &nbsp;/&nbsp; A low-risk way to start
 							</p>
 							<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 								Start with an Operations Blueprint.
@@ -532,7 +565,49 @@ function ApproachPage() {
 				</div>
 			</section>
 
-			{/* 06 — Security summary */}
+			{/* 07 — Commercial models */}
+			<section className="site-wide section-shell pt-0">
+				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
+					<div>
+						<p className="section-index mb-4">
+							<b>07</b> &nbsp;/&nbsp; How you engage
+						</p>
+						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+							Own it the way that suits you.
+						</h2>
+						<p className="mt-4 max-w-2xl text-mute">
+							The system is yours either way. Subscribe, rent toward ownership,
+							or buy it outright — whatever fits how your business invests.
+						</p>
+					</div>
+					<Link to="/plans" className="button-ghost shrink-0">
+						See plans & pricing <ArrowRight className="h-4 w-4" />
+					</Link>
+				</div>
+				<div className="reveal-stagger grid gap-5 md:grid-cols-3">
+					{offer.models.map((model, i) => {
+						const Icon = modelIcons[i];
+						return (
+							<article key={model.name} className="panel panel-hover p-7">
+								<div className="flex items-center justify-between">
+									<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+										<Icon className="h-5 w-5" />
+									</div>
+									<span className="tag">{model.tag}</span>
+								</div>
+								<h3 className="mt-5 font-heading text-xl font-semibold text-ink">
+									{model.name}
+								</h3>
+								<p className="mt-2 text-sm leading-relaxed text-mute">
+									{model.desc}
+								</p>
+							</article>
+						);
+					})}
+				</div>
+			</section>
+
+			{/* 08 — Security summary */}
 			<section className="site-wide section-shell pt-0">
 				<MagneticLink
 					to="/security"
@@ -544,7 +619,7 @@ function ApproachPage() {
 						</div>
 						<div>
 							<p className="section-index mb-2">
-								<b>06</b> &nbsp;/&nbsp; Security
+								<b>08</b> &nbsp;/&nbsp; Security
 							</p>
 							<h3 className="font-heading text-lg font-semibold text-ink">
 								Enterprise-grade governance, built in.
@@ -563,10 +638,23 @@ function ApproachPage() {
 				</MagneticLink>
 			</section>
 
+			{/* 09 — The guarantee */}
+			<section className="site-wide section-shell pt-0">
+				<p className="section-index reveal-scroll mb-6">
+					<b>09</b> &nbsp;/&nbsp; The guarantee
+				</p>
+				<div className="reveal-scroll">
+					<GuaranteeBand />
+				</div>
+				<p className="reveal-scroll mt-6 max-w-2xl text-mute">
+					{offer.meeting}
+				</p>
+			</section>
+
 			<CTASection
 				title="Start by mapping how your business actually runs."
-				description="Book a discovery call. We'll learn how you work today, then show you the system that could run it — and the value case behind it."
-				primaryLabel="Book a discovery call"
+				description="Book a free exploration meeting. We'll learn how you work today, then show you the system that could run it — and the value case behind it."
+				primaryLabel="Book a free exploration meeting"
 				secondaryLabel="What we build"
 			/>
 		</>

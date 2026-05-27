@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhatWeBuildRouteImport } from './routes/what-we-build'
 import { Route as SecurityRouteImport } from './routes/security'
+import { Route as PlansRouteImport } from './routes/plans'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AboutRouteImport } from './routes/about'
@@ -28,6 +29,11 @@ const WhatWeBuildRoute = WhatWeBuildRouteImport.update({
 const SecurityRoute = SecurityRouteImport.update({
   id: '/security',
   path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlansRoute = PlansRouteImport.update({
+  id: '/plans',
+  path: '/plans',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
   '/contact': typeof ContactRoute
+  '/plans': typeof PlansRoute
   '/security': typeof SecurityRoute
   '/what-we-build': typeof WhatWeBuildRoute
   '/insights/$slug': typeof InsightsSlugRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
   '/contact': typeof ContactRoute
+  '/plans': typeof PlansRoute
   '/security': typeof SecurityRoute
   '/what-we-build': typeof WhatWeBuildRoute
   '/insights/$slug': typeof InsightsSlugRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
   '/contact': typeof ContactRoute
+  '/plans': typeof PlansRoute
   '/security': typeof SecurityRoute
   '/what-we-build': typeof WhatWeBuildRoute
   '/insights/$slug': typeof InsightsSlugRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/approach'
     | '/contact'
+    | '/plans'
     | '/security'
     | '/what-we-build'
     | '/insights/$slug'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/approach'
     | '/contact'
+    | '/plans'
     | '/security'
     | '/what-we-build'
     | '/insights/$slug'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/approach'
     | '/contact'
+    | '/plans'
     | '/security'
     | '/what-we-build'
     | '/insights/$slug'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ApproachRoute: typeof ApproachRoute
   ContactRoute: typeof ContactRoute
+  PlansRoute: typeof PlansRoute
   SecurityRoute: typeof SecurityRoute
   WhatWeBuildRoute: typeof WhatWeBuildRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
@@ -174,6 +187,13 @@ declare module '@tanstack/react-router' {
       path: '/security'
       fullPath: '/security'
       preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plans': {
+      id: '/plans'
+      path: '/plans'
+      fullPath: '/plans'
+      preLoaderRoute: typeof PlansRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ApproachRoute: ApproachRoute,
   ContactRoute: ContactRoute,
+  PlansRoute: PlansRoute,
   SecurityRoute: SecurityRoute,
   WhatWeBuildRoute: WhatWeBuildRoute,
   InsightsSlugRoute: InsightsSlugRoute,

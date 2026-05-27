@@ -1,23 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+	ArrowRight,
 	CalendarClock,
 	CalendarDays,
 	CheckCircle2,
+	Compass,
+	LineChart,
 	Mail,
+	Map as MapIcon,
 	MapPin,
 	MessageSquareText,
 	Phone,
+	Search,
 	Workflow,
 } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
+import GuaranteeBand from "../components/GuaranteeBand";
 import InteractiveAura from "../components/InteractiveAura";
-import { mationMeta } from "../content/site";
+import MagneticLink from "../components/MagneticLink";
+import ProcessFlow from "../components/ProcessFlow";
+import { mationMeta, offer } from "../content/site";
 
 export const Route = createFileRoute("/contact")({
 	component: ContactPage,
 	head: () => ({
 		meta: [
-			{ title: "Book a discovery call — Mation" },
+			{ title: "Book a free exploration meeting — Mation" },
 			{
 				name: "description",
 				content:
@@ -25,7 +33,7 @@ export const Route = createFileRoute("/contact")({
 			},
 			{
 				property: "og:title",
-				content: "Book a discovery call — Mation",
+				content: "Book a free exploration meeting — Mation",
 			},
 			{
 				property: "og:description",
@@ -62,6 +70,33 @@ const engagements = [
 	},
 ];
 
+const meetingSteps = [
+	{
+		n: "01",
+		title: "Walk your systems",
+		desc: "We sit with your team — in person or via Teams — and map how the business runs today.",
+		icon: Compass,
+	},
+	{
+		n: "02",
+		title: "Identify opportunities",
+		desc: "We pinpoint where bespoke software removes friction, cost, and manual work.",
+		icon: Search,
+	},
+	{
+		n: "03",
+		title: "Capture the value",
+		desc: "We quantify the upside, so the business case is clear before anyone commits.",
+		icon: LineChart,
+	},
+	{
+		n: "04",
+		title: "Propose a path",
+		desc: "You leave with a clear, no-obligation plan for what to build first.",
+		icon: MapIcon,
+	},
+];
+
 function ContactPage() {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const fieldId = useId();
@@ -80,19 +115,17 @@ function ContactPage() {
 			<section className="glow section-shell">
 				<div className="site-wide">
 					<div className="dimline reveal-up mb-10">
-						Mation — start here · discovery call · Auckland NZ
+						Mation — {offer.meetingShort} · Auckland NZ
 					</div>
 					<div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
 						<div>
 							<p className="kicker reveal-up">Start here</p>
 							<h1 className="reveal-up delay-1 mt-5 display text-[2.5rem] text-ink sm:text-6xl lg:text-[3.6rem]">
-								Tell us how your business runs.{" "}
+								Book a free exploration meeting.{" "}
 								<span className="gradient-ink">We'll map the system.</span>
 							</h1>
 							<p className="reveal-up delay-2 mt-6 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
-								Start with a discovery call. Share where the work gets stuck
-								today and we'll come back with the bespoke system it should run
-								on — clear scope, a value case, and the path to build it.
+								{offer.meeting}
 							</p>
 
 							<div className="reveal-up delay-3 mt-8">
@@ -127,14 +160,32 @@ function ContactPage() {
 
 							<ul className="reveal-up delay-4 mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
 								<li className="flex items-center gap-2">
-									<CheckCircle2 className="h-3.5 w-3.5 text-violet-bright" />{" "}
-									Reply within one business day
+									<CheckCircle2 className="h-3.5 w-3.5 text-violet-bright" /> In
+									person or via Teams
 								</li>
 								<li className="flex items-center gap-2">
 									<CheckCircle2 className="h-3.5 w-3.5 text-violet-bright" /> No
-									obligation
+									obligations
+								</li>
+								<li className="flex items-center gap-2">
+									<CheckCircle2 className="h-3.5 w-3.5 text-violet-bright" />{" "}
+									Reply within one business day
 								</li>
 							</ul>
+
+							<p className="reveal-up delay-4 mt-6 max-w-xl text-sm leading-relaxed text-mute">
+								Engagements run from{" "}
+								<span className="text-ink/85">{offer.priceLow}</span> to{" "}
+								<span className="text-ink/85">{offer.priceHigh}</span>, on a
+								plan that suits you —{" "}
+								<MagneticLink
+									to="/plans"
+									className="text-violet-bright underline-offset-4 hover:underline"
+								>
+									see the flexible plans
+								</MagneticLink>
+								. Every build is backed by our {offer.guaranteeShort}.
+							</p>
 						</div>
 
 						<div className="reveal-up delay-2 relative">
@@ -154,8 +205,9 @@ function ContactPage() {
 											Thanks — we'll be in touch within one business day.
 										</h2>
 										<p className="mt-4 text-pretty leading-relaxed text-mute">
-											We'll review how you operate today and come back with a
-											focused plan for your discovery call.
+											We'll review how you operate today and come back to set up
+											your free exploration meeting — in person or via Teams,
+											with no obligations.
 										</p>
 										<button
 											type="button"
@@ -339,11 +391,11 @@ function ContactPage() {
 											className="button-primary w-full sm:w-auto"
 										>
 											<CalendarClock className="h-4 w-4" />
-											Book a discovery call
+											Book a free exploration meeting
 										</button>
 										<p className="mt-3 text-center text-xs text-mute sm:text-left">
-											We'll respond with proposed scope for a discovery call —
-											no obligation.
+											We'll set up your free exploration meeting — in person or
+											via Teams, with no obligations.
 										</p>
 									</form>
 								)}
@@ -357,10 +409,39 @@ function ContactPage() {
 			</section>
 
 			<section className="site-wide section-shell pt-0">
+				<div className="reveal-scroll mb-12 flex flex-wrap items-end justify-between gap-4">
+					<div>
+						<p className="section-index mb-4">
+							<b>03</b> &nbsp;/&nbsp; What happens in the meeting
+						</p>
+						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+							A focused walk through your business.
+						</h2>
+						<p className="mt-4 max-w-2xl text-mute">{offer.meeting}</p>
+					</div>
+					<p className="dimline hidden max-w-xs md:flex">
+						In-person or Teams · no obligation
+					</p>
+				</div>
+				<div className="reveal-scroll">
+					<ProcessFlow steps={meetingSteps} />
+				</div>
+			</section>
+
+			<section className="site-wide section-shell pt-0">
+				<p className="section-index reveal-scroll mb-6">
+					<b>04</b> &nbsp;/&nbsp; The guarantee
+				</p>
+				<div className="reveal-scroll">
+					<GuaranteeBand />
+				</div>
+			</section>
+
+			<section className="site-wide section-shell pt-0">
 				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
 					<div>
 						<p className="section-index mb-4">
-							<b>03</b> &nbsp;/&nbsp; Ways to start
+							<b>05</b> &nbsp;/&nbsp; Ways to start
 						</p>
 						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 							Pick the entry point that fits where you are.
@@ -394,11 +475,17 @@ function ContactPage() {
 						</article>
 					))}
 				</div>
-				<p className="mt-6 flex items-center justify-center gap-2 text-sm text-mute">
-					<CheckCircle2 className="h-4 w-4 text-violet-bright" />
-					Not sure which fits? Send the form and we'll suggest the right
-					starting point.
-				</p>
+				<div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+					<p className="flex items-center gap-2 text-sm text-mute">
+						<CheckCircle2 className="h-4 w-4 text-violet-bright" />
+						Not sure which fits? Send the form and we'll suggest the right
+						starting point.
+					</p>
+					<MagneticLink to="/plans" className="button-secondary">
+						See flexible plans
+						<ArrowRight className="h-4 w-4" />
+					</MagneticLink>
+				</div>
 			</section>
 		</>
 	);

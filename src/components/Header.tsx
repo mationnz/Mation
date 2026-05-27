@@ -91,7 +91,7 @@ export default function Header() {
 						</span>
 					</Link>
 
-					<nav className="hidden items-center gap-9 lg:flex">
+					<nav className="hidden items-center gap-7 lg:flex">
 						{navLinks.map((link) => (
 							<Link
 								key={link.to}
@@ -109,7 +109,7 @@ export default function Header() {
 							to="/contact"
 							className="button-primary hidden md:inline-flex"
 						>
-							Book a discovery call
+							Book a free session
 							<ArrowUpRight className="h-4 w-4" />
 						</Link>
 						<button
@@ -180,7 +180,7 @@ export default function Header() {
 					onClick={() => setIsOpen(false)}
 					className="button-primary mt-7 inline-flex w-full justify-center"
 				>
-					Book a discovery call
+					Book a free session
 				</Link>
 			</aside>
 		</>

@@ -209,7 +209,7 @@ function ArticlePage() {
 			<CTASection
 				title="Want to see this in your business?"
 				description="Start with a conversation. We’ll learn how you work today and show you what one unified system could change."
-				primaryLabel="Book a discovery call"
+				primaryLabel="Book a free exploration meeting"
 				secondaryLabel="See our approach"
 			/>
 		</>

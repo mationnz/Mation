@@ -163,7 +163,7 @@ function SecurityPage() {
 							</p>
 							<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
 								<MagneticLink to="/contact" className="button-primary">
-									Book a discovery call
+									Book a free exploration meeting
 									<ArrowRight className="h-4 w-4" />
 								</MagneticLink>
 								<MagneticLink to="/approach" className="button-secondary">
@@ -387,7 +387,7 @@ function SecurityPage() {
 			<CTASection
 				title="Move fast on a system you can actually trust."
 				description="Start with a discovery call. We'll learn how you operate and show you how security and governance get built into what we ship for you."
-				primaryLabel="Book a discovery call"
+				primaryLabel="Book a free exploration meeting"
 				secondaryLabel="See our approach"
 			/>
 		</>
