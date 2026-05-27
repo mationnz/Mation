@@ -46,6 +46,18 @@ src/
 └── router.tsx     # Router configuration
 ```
 
+## Environment
+
+The contact form (`/contact`) emails submissions via [Resend](https://resend.com), through a
+server-side TanStack Start server function (`src/server/sendContact.ts`) so the API key never
+reaches the browser. Set these on the host (e.g. Railway → service → Variables):
+
+| Variable | Required | Default | Notes |
+|----------|----------|---------|-------|
+| `RESEND_API_KEY` | Yes | — | Resend API key. Without it, the form shows an "email us directly" fallback. |
+| `CONTACT_TO_EMAIL` | No | `cam@mation.nz` | Where submissions are delivered. |
+| `CONTACT_FROM_EMAIL` | No | `Mation website <noreply@mation.nz>` | Sender — must be on a Resend-verified domain. |
+
 ## Deployment
 
 The app uses [Nitro](https://nitro.build/) with the Bun preset. Build outputs to `.output/`. Deploy to any platform that supports Node (Vercel, Netlify, Railway, etc.) or use the custom Bun server for self-hosting.

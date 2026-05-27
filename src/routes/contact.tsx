@@ -20,6 +20,7 @@ import InteractiveAura from "../components/InteractiveAura";
 import MagneticLink from "../components/MagneticLink";
 import ProcessFlow from "../components/ProcessFlow";
 import { mationMeta, offer } from "../content/site";
+import { sendContact } from "../server/sendContact";
 
 export const Route = createFileRoute("/contact")({
 	component: ContactPage,
@@ -98,15 +99,40 @@ const meetingSteps = [
 ];
 
 function ContactPage() {
-	const [isSubmitted, setIsSubmitted] = useState(false);
+	const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+		"idle",
+	);
 	const fieldId = useId();
 	const successRef = useRef<HTMLHeadingElement>(null);
 
 	useEffect(() => {
-		if (isSubmitted) {
+		if (status === "sent") {
 			successRef.current?.focus();
 		}
-	}, [isSubmitted]);
+	}, [status]);
+
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const fd = new FormData(event.currentTarget);
+		setStatus("sending");
+		try {
+			const result = await sendContact({
+				data: {
+					name: String(fd.get("name") ?? ""),
+					email: String(fd.get("email") ?? ""),
+					company: String(fd.get("company") ?? ""),
+					role: String(fd.get("role") ?? ""),
+					industry: String(fd.get("industry") ?? ""),
+					timeline: String(fd.get("timeline") ?? ""),
+					systems: String(fd.get("systems") ?? ""),
+					message: String(fd.get("message") ?? ""),
+				},
+			});
+			setStatus(result.ok ? "sent" : "error");
+		} catch {
+			setStatus("error");
+		}
+	};
 
 	return (
 		<>
@@ -190,7 +216,7 @@ function ContactPage() {
 
 						<div className="reveal-up delay-2 relative">
 							<div className="panel ticked rounded-[22px] p-7 sm:p-8">
-								{isSubmitted ? (
+								{status === "sent" ? (
 									<div
 										aria-atomic="true"
 										aria-live="polite"
@@ -211,25 +237,19 @@ function ContactPage() {
 										</p>
 										<button
 											type="button"
-											onClick={() => setIsSubmitted(false)}
+											onClick={() => setStatus("idle")}
 											className="button-secondary mt-6"
 										>
 											Send another message
 										</button>
 									</div>
 								) : (
-									<form
-										className="space-y-5"
-										onSubmit={(event) => {
-											event.preventDefault();
-											setIsSubmitted(true);
-										}}
-									>
+									<form className="space-y-5" onSubmit={handleSubmit}>
 										<div className="flex items-center justify-between">
 											<p className="section-index">
 												<b>01</b> &nbsp;/&nbsp; About you
 											</p>
-											<span className="bp-coord">REQ-FORM · LOCAL</span>
+											<span className="bp-coord">REQ-FORM · SECURE</span>
 										</div>
 
 										<div className="grid gap-5 sm:grid-cols-2">
@@ -386,15 +406,33 @@ function ContactPage() {
 											/>
 										</div>
 
+										{status === "error" ? (
+											<p
+												aria-live="polite"
+												className="rounded-[10px] border border-[rgba(232,90,95,0.4)] bg-[rgba(232,90,95,0.08)] px-4 py-3 text-sm text-ink/85"
+											>
+												Sorry — that didn’t send. Please email{" "}
+												<a
+													href={`mailto:${mationMeta.email}`}
+													className="text-violet-bright underline-offset-4 hover:underline"
+												>
+													{mationMeta.email}
+												</a>{" "}
+												directly and we’ll come straight back to you.
+											</p>
+										) : null}
 										<button
 											type="submit"
-											className="button-primary w-full sm:w-auto"
+											disabled={status === "sending"}
+											className="button-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
 										>
 											<CalendarClock className="h-4 w-4" />
-											Book a free exploration meeting
+											{status === "sending"
+												? "Sending…"
+												: "Book a free exploration meeting"}
 										</button>
 										<p className="mt-3 text-center text-xs text-mute sm:text-left">
-											We'll set up your free exploration meeting — in person or
+											We’ll set up your free exploration meeting — in person or
 											via Teams, with no obligations.
 										</p>
 									</form>
