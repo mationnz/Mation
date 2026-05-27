@@ -141,87 +141,106 @@ function ApproachPage() {
 			<InteractiveAura />
 
 			{/* Hero */}
-			<section className="section-shell">
-				<div className="site-wide grid items-center gap-12 lg:grid-cols-[1.06fr_0.94fr]">
-					<div className="space-y-7">
-						<p className="kicker reveal-up">Approach</p>
-						<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4rem]">
-							We learn how you run, then{" "}
-							<span className="gradient-ink">build the system</span> that runs
-							it.
-						</h1>
-						<p className="reveal-up delay-2 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
-							A senior partnership, not a hand-off. The engineers who map your
-							operations are the ones who build the system — embedded with your
-							team and accountable for outcomes you can measure.
-						</p>
-						<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
-							<MagneticLink to="/contact" className="button-primary">
-								Start with a Blueprint
-								<ArrowRight className="h-4 w-4" />
-							</MagneticLink>
-							<MagneticLink to="/what-we-build" className="button-secondary">
-								What we build
-							</MagneticLink>
-						</div>
-						<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
-							<li className="flex items-center gap-2">
-								<Check className="h-3.5 w-3.5 text-violet-bright" /> Senior,
-								embedded engineers
-							</li>
-							<li className="flex items-center gap-2">
-								<Check className="h-3.5 w-3.5 text-violet-bright" /> Accountable
-								for outcomes
-							</li>
-							<li className="flex items-center gap-2">
-								<Check className="h-3.5 w-3.5 text-violet-bright" /> You own
-								everything we ship
-							</li>
-						</ul>
+			<section className="glow section-shell pt-10 sm:pt-14">
+				<div className="site-wide">
+					<div className="dimline reveal-up mb-10">
+						Approach — discovery to a system you own
 					</div>
-
-					{/* Hero figure — the four-stage engagement, at a glance */}
-					<div className="reveal-up delay-2">
-						<div className="panel ticked relative overflow-hidden rounded-[22px] p-6 sm:p-7">
-							<div
-								aria-hidden
-								className="pointer-events-none absolute inset-0 opacity-60"
-								style={{
-									backgroundImage:
-										"linear-gradient(rgba(123,97,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.06) 1px, transparent 1px)",
-									backgroundSize: "32px 32px",
-									maskImage:
-										"radial-gradient(circle at 50% 40%, #000 30%, transparent 92%)",
-								}}
-							/>
-							<p className="relative font-mono text-[0.7rem] uppercase tracking-[0.18em] text-mute">
-								FIG.01 — The engagement
+					<div className="grid items-center gap-12 lg:grid-cols-[1.06fr_0.94fr]">
+						<div className="space-y-7">
+							<span className="pill reveal-up">
+								<span className="live-dot" /> One partner, discovery to run
+							</span>
+							<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4rem]">
+								We learn how you run, then{" "}
+								<span className="gradient-ink">build the system</span> that runs
+								it.
+							</h1>
+							<p className="reveal-up delay-2 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
+								A senior partnership, not a hand-off. The engineers who map your
+								operations are the ones who build the system — embedded with
+								your team and accountable for outcomes you can measure.
 							</p>
-							<ol className="relative mt-5 space-y-px">
-								{engagementHeads.map((stage, i) => (
-									<li
-										key={stage.n}
-										className="flex items-center gap-4 rounded-[10px] border border-line bg-panel-2/60 p-3.5"
-									>
-										<span className="font-mono text-sm text-violet-bright">
-											{stage.n}
-										</span>
-										<div className="min-w-0">
-											<p className="font-heading text-base font-semibold text-ink">
-												{stage.label}
-											</p>
-											<p className="truncate text-xs text-mute">{stage.note}</p>
-										</div>
-										{i < engagementHeads.length - 1 && (
-											<ArrowRight className="ml-auto h-4 w-4 shrink-0 rotate-90 text-violet/60" />
-										)}
-									</li>
-								))}
-							</ol>
-							<div className="relative mt-4 flex items-center gap-2 text-xs text-mute">
-								<span className="live-dot" />
-								One partner, discovery to run.
+							<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
+								<MagneticLink to="/contact" className="button-primary">
+									Start with a Blueprint
+									<ArrowRight className="h-4 w-4" />
+								</MagneticLink>
+								<MagneticLink to="/what-we-build" className="button-secondary">
+									What we build
+								</MagneticLink>
 							</div>
+							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
+								<li className="flex items-center gap-2">
+									<Check className="h-3.5 w-3.5 text-violet-bright" /> Senior,
+									embedded engineers
+								</li>
+								<li className="flex items-center gap-2">
+									<Check className="h-3.5 w-3.5 text-violet-bright" />{" "}
+									Accountable for outcomes
+								</li>
+								<li className="flex items-center gap-2">
+									<Check className="h-3.5 w-3.5 text-violet-bright" /> You own
+									everything we ship
+								</li>
+							</ul>
+						</div>
+
+						{/* Hero figure — the four-stage engagement, at a glance */}
+						<div className="reveal-up delay-2 relative">
+							<div className="bracket">
+								<div className="panel ticked relative overflow-hidden rounded-[22px] p-6 sm:p-7">
+									<div
+										aria-hidden
+										className="pointer-events-none absolute inset-0 opacity-60"
+										style={{
+											backgroundImage:
+												"linear-gradient(rgba(123,97,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.06) 1px, transparent 1px)",
+											backgroundSize: "32px 32px",
+											maskImage:
+												"radial-gradient(circle at 50% 40%, #000 30%, transparent 92%)",
+										}}
+									/>
+									<div className="relative flex items-center justify-between">
+										<p className="bp-coord">FIG.01 · THE ENGAGEMENT</p>
+										<span className="flex items-center gap-1.5 text-xs text-mute">
+											<span className="live-dot" />
+											<span className="font-mono text-[0.62rem] uppercase tracking-[0.18em]">
+												Live
+											</span>
+										</span>
+									</div>
+									<ol className="relative mt-5 space-y-px">
+										{engagementHeads.map((stage, i) => (
+											<li
+												key={stage.n}
+												className="flex items-center gap-4 rounded-[10px] border border-line bg-panel-2/60 p-3.5"
+											>
+												<span className="font-mono text-sm text-violet-bright">
+													{stage.n}
+												</span>
+												<div className="min-w-0">
+													<p className="font-heading text-base font-semibold text-ink">
+														{stage.label}
+													</p>
+													<p className="truncate text-xs text-mute">
+														{stage.note}
+													</p>
+												</div>
+												{i < engagementHeads.length - 1 && (
+													<ArrowRight className="ml-auto h-4 w-4 shrink-0 rotate-90 text-violet/60" />
+												)}
+											</li>
+										))}
+									</ol>
+								</div>
+							</div>
+							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
+								<span className="bp-coord">4 stages → 1 system</span>
+							</div>
+							<p className="bp-coord mt-3 text-center">
+								FIG.01 · ENGAGEMENT — DISCOVERY → RUN
+							</p>
 						</div>
 					</div>
 				</div>
@@ -229,137 +248,61 @@ function ApproachPage() {
 
 			{/* 01 — The engagement model (scroll-driven) */}
 			<section className="site-wide section-shell pt-0">
-				<div className="mb-10 max-w-2xl">
-					<p className="section-index mb-4">
-						<b>01</b> &nbsp;/&nbsp; The engagement model
-					</p>
-					<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-						Four stages, one continuous partnership.
-					</h2>
-					<p className="mt-4 text-mute">
-						Every stage ends in something concrete you can hold — a map, a
-						design, a working increment, a system that keeps getting better.
-					</p>
+				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
+					<div className="max-w-2xl">
+						<p className="section-index mb-4">
+							<b>01</b> &nbsp;/&nbsp; The engagement model
+						</p>
+						<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+							Four stages, one continuous partnership.
+						</h2>
+						<p className="mt-4 text-mute">
+							Every stage ends in something concrete you can hold — a map, a
+							design, a working increment, a system that keeps getting better.
+						</p>
+					</div>
+					<p className="dimline hidden max-w-xs md:flex">Scroll the sequence</p>
 				</div>
 				<ScrollyTransformation />
 			</section>
 
 			{/* 02 — How we work with your team */}
 			<section className="site-wide section-shell pt-0">
-				<div className="mb-8 flex items-start gap-4">
-					<div className="hidden shrink-0 rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright sm:inline-flex">
-						<Handshake className="h-5 w-5" />
-					</div>
-					<div>
-						<p className="section-index mb-4">
-							<b>02</b> &nbsp;/&nbsp; How we work with your team
-						</p>
-						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-							Senior people, in the room, building alongside you.
-						</h2>
-					</div>
-				</div>
-				<div className="grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] sm:grid-cols-2">
-					{teamPrinciples.map((item) => (
-						<div key={item.title} className="bg-panel p-6 sm:p-7">
-							<div className="mb-4 inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
-								<item.icon className="h-5 w-5" />
-							</div>
-							<h3 className="font-heading text-lg font-semibold text-ink">
-								{item.title}
-							</h3>
-							<p className="mt-2 text-sm leading-relaxed text-mute">
-								{item.desc}
+				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
+					<div className="flex items-start gap-4">
+						<div className="hidden shrink-0 rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright sm:inline-flex">
+							<Handshake className="h-5 w-5" />
+						</div>
+						<div>
+							<p className="section-index mb-4">
+								<b>02</b> &nbsp;/&nbsp; How we work with your team
 							</p>
-						</div>
-					))}
-				</div>
-			</section>
-
-			{/* 03 — How it's engineered */}
-			<section className="site-wide section-shell pt-0">
-				<p className="section-index mb-4">
-					<b>03</b> &nbsp;/&nbsp; How it's engineered
-				</p>
-				<h2 className="mb-3 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-					The architecture we design for you.
-				</h2>
-				<p className="mb-10 max-w-2xl text-mute">
-					Not a platform you rent. A system we engineer around your operations —
-					on foundations that are reliable, secure, and entirely yours.
-				</p>
-				<div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-					<div className="grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] sm:grid-cols-2">
-						{engineeringPillars.map((pillar) => (
-							<div key={pillar.title} className="bg-panel p-6">
-								<div className="mb-4 inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
-									<pillar.icon className="h-5 w-5" />
-								</div>
-								<h3 className="font-heading text-base font-semibold text-ink">
-									{pillar.title}
-								</h3>
-								<p className="mt-2 text-sm leading-relaxed text-mute">
-									{pillar.desc}
-								</p>
-							</div>
-						))}
-					</div>
-
-					{/* Bespoke layered figure — the system stack */}
-					<div className="panel ticked relative overflow-hidden rounded-[22px] p-6 sm:p-7">
-						<div
-							aria-hidden
-							className="pointer-events-none absolute inset-0 opacity-50"
-							style={{
-								backgroundImage:
-									"linear-gradient(rgba(123,97,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.06) 1px, transparent 1px)",
-								backgroundSize: "32px 32px",
-								maskImage:
-									"radial-gradient(circle at 50% 50%, #000 20%, transparent 90%)",
-							}}
-						/>
-						<p className="relative font-mono text-[0.7rem] uppercase tracking-[0.18em] text-mute">
-							FIG.02 — The system, layered
-						</p>
-						<div className="relative mt-5 space-y-3">
-							{archLayers.map((layer, i) => (
-								<div key={layer.tag}>
-									<div className="rounded-[12px] border border-line bg-panel-2 px-4 py-3.5">
-										<p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-violet-bright">
-											{layer.tag}
-										</p>
-										<p className="mt-1 text-sm text-ink">{layer.label}</p>
-									</div>
-									{i < archLayers.length - 1 && (
-										<div
-											aria-hidden
-											className="mx-auto h-3 w-px bg-gradient-to-b from-violet/50 to-violet/10"
-										/>
-									)}
-								</div>
-							))}
-						</div>
-						<div className="relative mt-5 flex items-center gap-2 border-t border-line pt-4 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-mute">
-							<ShieldCheck className="h-3.5 w-3.5 text-violet-bright" />
-							Governed & observable end-to-end
+							<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+								Senior people, in the room, building alongside you.
+							</h2>
 						</div>
 					</div>
+					<p className="dimline hidden max-w-xs lg:flex">
+						Embedded · accountable
+					</p>
 				</div>
-			</section>
-
-			{/* 04 — Tech philosophy */}
-			<section className="site-wide section-shell pt-0">
-				<p className="section-index mb-4">
-					<b>04</b> &nbsp;/&nbsp; Tech philosophy
-				</p>
-				<h2 className="mb-8 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-					AI is the engine. Ownership is the principle.
-				</h2>
-				<div className="grid gap-5 md:grid-cols-3">
-					{philosophy.map((item) => (
-						<article key={item.title} className="panel panel-hover p-6 sm:p-7">
-							<div className="mb-5 inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
-								<item.icon className="h-5 w-5" />
+				<div className="reveal-stagger grid gap-5 sm:grid-cols-2">
+					{teamPrinciples.map((item) => (
+						<article
+							key={item.title}
+							className="panel panel-hover group p-6 sm:p-7"
+						>
+							<div className="relative mb-4 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+								<span
+									aria-hidden
+									className="pointer-events-none absolute inset-0 opacity-40"
+									style={{
+										backgroundImage:
+											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
+										backgroundSize: "8px 8px",
+									}}
+								/>
+								<item.icon className="relative h-5 w-5" />
 							</div>
 							<h3 className="font-heading text-lg font-semibold text-ink">
 								{item.title}
@@ -372,11 +315,164 @@ function ApproachPage() {
 				</div>
 			</section>
 
-			{/* 05 — Start with an Operations Blueprint */}
+			{/* 03 — How it's engineered */}
 			<section className="site-wide section-shell pt-0">
+				<div className="reveal-scroll">
+					<p className="section-index mb-4">
+						<b>03</b> &nbsp;/&nbsp; How it's engineered
+					</p>
+					<h2 className="mb-3 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+						The architecture we design for you.
+					</h2>
+					<p className="mb-10 max-w-2xl text-mute">
+						Not a platform you rent. A system we engineer around your operations
+						— on foundations that are reliable, secure, and entirely yours.
+					</p>
+				</div>
+				<div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+					<div className="reveal-stagger grid gap-5 sm:grid-cols-2">
+						{engineeringPillars.map((pillar) => (
+							<article
+								key={pillar.title}
+								className="panel panel-hover group p-6"
+							>
+								<div className="relative mb-4 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+									<span
+										aria-hidden
+										className="pointer-events-none absolute inset-0 opacity-40"
+										style={{
+											backgroundImage:
+												"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
+											backgroundSize: "8px 8px",
+										}}
+									/>
+									<pillar.icon className="relative h-5 w-5" />
+								</div>
+								<h3 className="font-heading text-base font-semibold text-ink">
+									{pillar.title}
+								</h3>
+								<p className="mt-2 text-sm leading-relaxed text-mute">
+									{pillar.desc}
+								</p>
+							</article>
+						))}
+					</div>
+
+					{/* Bespoke layered figure — the system stack */}
+					<div className="reveal-scroll relative">
+						<div className="bracket">
+							<div className="panel ticked relative overflow-hidden rounded-[22px] p-6 sm:p-7">
+								<div
+									aria-hidden
+									className="pointer-events-none absolute inset-0 opacity-50"
+									style={{
+										backgroundImage:
+											"linear-gradient(rgba(123,97,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.06) 1px, transparent 1px)",
+										backgroundSize: "32px 32px",
+										maskImage:
+											"radial-gradient(circle at 50% 50%, #000 20%, transparent 90%)",
+									}}
+								/>
+								<div className="relative flex items-center justify-between">
+									<p className="bp-coord">FIG.02 · THE SYSTEM, LAYERED</p>
+									<span className="bp-coord">4 LAYERS</span>
+								</div>
+								<div className="relative mt-5 space-y-2.5">
+									{archLayers.map((layer, i) => (
+										<div key={layer.tag}>
+											<div className="flex items-center gap-3 rounded-[12px] border border-line bg-panel-2 px-4 py-3.5">
+												<span className="font-mono text-[0.6rem] text-violet/70">
+													L{archLayers.length - i}
+												</span>
+												<div className="min-w-0">
+													<p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-violet-bright">
+														{layer.tag}
+													</p>
+													<p className="mt-1 text-sm text-ink">{layer.label}</p>
+												</div>
+											</div>
+											{i < archLayers.length - 1 && (
+												<div
+													aria-hidden
+													className="mx-auto h-3 w-px bg-gradient-to-b from-violet/50 to-violet/10"
+												/>
+											)}
+										</div>
+									))}
+								</div>
+								<div className="relative mt-5 flex items-center gap-2 border-t border-line pt-4 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-mute">
+									<ShieldCheck className="h-3.5 w-3.5 text-violet-bright" />
+									Governed & observable end-to-end
+								</div>
+							</div>
+						</div>
+						<div className="absolute -right-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
+							<span className="bp-coord">Built around you</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* 04 — Tech philosophy */}
+			<section className="site-wide section-shell pt-0">
+				<div className="reveal-scroll mb-8 flex flex-wrap items-end justify-between gap-4">
+					<div>
+						<p className="section-index mb-4">
+							<b>04</b> &nbsp;/&nbsp; Tech philosophy
+						</p>
+						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+							AI is the engine. Ownership is the principle.
+						</h2>
+					</div>
+					<p className="dimline hidden max-w-xs md:flex">
+						Open · yours · no lock-in
+					</p>
+				</div>
+				<div className="reveal-stagger grid gap-5 md:grid-cols-3">
+					{philosophy.map((item) => (
+						<article
+							key={item.title}
+							className="panel panel-hover group p-6 sm:p-7"
+						>
+							<div className="relative mb-5 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+								<span
+									aria-hidden
+									className="pointer-events-none absolute inset-0 opacity-40"
+									style={{
+										backgroundImage:
+											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
+										backgroundSize: "8px 8px",
+									}}
+								/>
+								<item.icon className="relative h-5 w-5" />
+							</div>
+							<h3 className="font-heading text-lg font-semibold text-ink">
+								{item.title}
+							</h3>
+							<p className="mt-2 text-sm leading-relaxed text-mute">
+								{item.desc}
+							</p>
+						</article>
+					))}
+				</div>
+
+				{/* Oversized ownership statement — reinforces, doesn't add claims */}
+				<div className="reveal-scroll mt-5 grid items-center gap-8 rounded-[22px] border border-line bg-panel/40 px-7 py-9 sm:grid-cols-[auto_1fr] sm:px-10">
+					<div className="font-heading text-[clamp(2.6rem,6vw,4.5rem)] font-semibold leading-none tracking-[-0.04em]">
+						<span className="gradient-ink">100%</span>
+					</div>
+					<p className="max-w-xl text-pretty text-ink/85">
+						Yours — the code, the data, and the infrastructure, handed over in
+						full. The system runs on your terms, long after we ship.
+					</p>
+				</div>
+			</section>
+
+			{/* 05 — Start with an Operations Blueprint */}
+			<section className="glow site-wide section-shell pt-0">
 				<div className="panel ticked relative overflow-hidden rounded-[22px] p-8 sm:p-12">
 					<div className="pointer-events-none absolute -right-28 -top-28 h-72 w-72 rounded-full bg-[radial-gradient(circle,var(--color-violet),transparent_70%)] opacity-20 blur-3xl" />
-					<div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+					<div className="reveal-scroll grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
 						<div>
 							<p className="section-index mb-4">
 								<b>05</b> &nbsp;/&nbsp; A low-risk way to start
@@ -401,9 +497,19 @@ function ApproachPage() {
 							</div>
 						</div>
 						<div className="rounded-[14px] border border-line bg-panel-2/50 p-6 sm:p-7">
-							<div className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-violet-bright">
-								<FileText className="h-4 w-4" />
-								You walk away with
+							<div className="flex items-center justify-between">
+								<div className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-violet-bright">
+									<FileText className="h-4 w-4" />
+									You walk away with
+								</div>
+								<div className="flex items-baseline gap-2 leading-none">
+									<span className="font-heading text-[clamp(2.6rem,6vw,4.5rem)] font-semibold leading-none tracking-[-0.04em]">
+										<span className="gradient-ink">
+											{blueprintDeliverables.length.toString().padStart(2, "0")}
+										</span>
+									</span>
+									<span className="bp-coord">deliverables</span>
+								</div>
 							</div>
 							<ul className="mt-5 space-y-3.5">
 								{blueprintDeliverables.map((item) => (
@@ -430,7 +536,7 @@ function ApproachPage() {
 			<section className="site-wide section-shell pt-0">
 				<MagneticLink
 					to="/security"
-					className="panel panel-hover group flex flex-col items-start gap-5 p-7 sm:flex-row sm:items-center sm:justify-between"
+					className="reveal-scroll panel panel-hover group flex flex-col items-start gap-5 p-7 sm:flex-row sm:items-center sm:justify-between"
 				>
 					<div className="flex items-start gap-4">
 						<div className="inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">

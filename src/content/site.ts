@@ -37,7 +37,7 @@ export const mationMeta = {
 	tagline: "The operating system your business actually runs on.",
 	description:
 		"Mation is a software-engineering partner that builds bespoke systems — unifying your tools, data, and workflows into one operating system, engineered around exactly how you operate and powered by AI.",
-	email: "hello@mation.nz",
-	phone: "+64 9 889 4006",
+	email: "cam@mation.nz",
+	phone: "+64 21 307 804",
 	location: "Auckland, New Zealand",
 };

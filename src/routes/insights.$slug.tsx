@@ -125,7 +125,10 @@ function ArticlePage() {
 			{/* Article hero */}
 			<section className="section-tight">
 				<div className="site-shell mx-auto max-w-3xl space-y-6">
-					<span className="tag">{article.category}</span>
+					<div className="reveal-up flex items-center justify-between gap-3">
+						<span className="tag">{article.category}</span>
+						<span className="bp-coord">DOC · {article.readTime}</span>
+					</div>
 
 					<h1 className="reveal-up font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
 						{article.title}
@@ -162,11 +165,14 @@ function ArticlePage() {
 			{/* Related articles */}
 			{related.length > 0 && (
 				<section className="site-wide section-shell pt-0">
-					<p className="section-index mb-6">
+					<div className="site-shell mx-auto mb-12 max-w-3xl">
+						<div className="dimline">End of article · keep reading</div>
+					</div>
+					<p className="section-index reveal-scroll mb-6">
 						<b>{String(related.length).padStart(2, "0")}</b> &nbsp;/&nbsp;
 						Related reading
 					</p>
-					<div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+					<div className="reveal-stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 						{related.map((rel) => (
 							<Link
 								key={rel.slug}
@@ -178,7 +184,7 @@ function ArticlePage() {
 									<span className="tag">{rel.category}</span>
 									<ArrowUpRight className="h-4 w-4 shrink-0 text-mute transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-violet-bright" />
 								</div>
-								<h3 className="font-heading text-base font-semibold leading-snug text-ink">
+								<h3 className="font-heading text-base font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-violet-bright">
 									{rel.title}
 								</h3>
 								<span className="mt-auto pt-4 font-mono text-xs uppercase tracking-[0.12em] text-violet-bright">

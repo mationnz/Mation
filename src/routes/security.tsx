@@ -4,18 +4,22 @@ import {
 	Check,
 	Database,
 	Eye,
+	EyeOff,
 	GitPullRequestArrow,
 	Key,
 	type LucideIcon,
 	Network,
+	Radar,
 	Scale,
 	ScrollText,
 	ShieldCheck,
+	Users,
 } from "lucide-react";
 
 import CTASection from "../components/CTASection";
 import InteractiveAura from "../components/InteractiveAura";
 import MagneticLink from "../components/MagneticLink";
+import ProcessFlow from "../components/ProcessFlow";
 import TrustControlPanel from "../components/TrustControlPanel";
 
 export const Route = createFileRoute("/security")({
@@ -93,6 +97,7 @@ type Stage = {
 	n: string;
 	title: string;
 	desc: string;
+	icon: LucideIcon;
 };
 
 const rollout: Stage[] = [
@@ -100,21 +105,25 @@ const rollout: Stage[] = [
 		n: "01",
 		title: "Read-only first",
 		desc: "We start by reading from your systems — no writes, no changes. You see value before anything moves.",
+		icon: EyeOff,
 	},
 	{
 		n: "02",
 		title: "Approval gates",
 		desc: "When the system starts taking action, sensitive steps pause for a human to approve.",
+		icon: GitPullRequestArrow,
 	},
 	{
 		n: "03",
 		title: "Observability",
 		desc: "We harden logging and audit coverage so every action is visible and accountable.",
+		icon: Radar,
 	},
 	{
 		n: "04",
 		title: "Scale across teams",
 		desc: "Once it's proven and trusted, we widen access to more workflows and more of your team.",
+		icon: Users,
 	},
 ];
 
@@ -131,49 +140,101 @@ function SecurityPage() {
 			<InteractiveAura />
 
 			{/* Hero */}
-			<section className="section-shell">
-				<div className="site-wide max-w-4xl">
-					<span className="pill reveal-up">
-						<ShieldCheck className="h-3.5 w-3.5 text-violet-bright" />
-						Security & governance
-					</span>
-					<h1 className="reveal-up delay-1 mt-6 display text-[2.6rem] text-ink sm:text-6xl lg:text-[3.9rem]">
-						Protect your business while{" "}
-						<span className="gradient-ink">moving faster.</span>
-					</h1>
-					<p className="reveal-up delay-2 mt-6 max-w-2xl text-lg leading-relaxed text-mute sm:text-xl">
-						You shouldn't have to trade speed for control. We build security and
-						governance into the system we ship for you — so you move fast
-						without putting compliance, your data, or your business at risk.
-					</p>
-					<div className="reveal-up delay-3 mt-8 flex flex-col gap-3 sm:flex-row">
-						<MagneticLink to="/contact" className="button-primary">
-							Book a discovery call
-							<ArrowRight className="h-4 w-4" />
-						</MagneticLink>
-						<MagneticLink to="/approach" className="button-secondary">
-							See how we work
-						</MagneticLink>
+			<section className="glow section-shell">
+				<div className="site-wide">
+					<div className="dimline reveal-up mb-10">
+						Mation — security & governance · built in, not bolted on
 					</div>
-					<ul className="reveal-up delay-4 mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
-						<li className="flex items-center gap-2">
-							<Check className="h-3.5 w-3.5 text-violet-bright" /> Your data
-							stays yours
-						</li>
-						<li className="flex items-center gap-2">
-							<Check className="h-3.5 w-3.5 text-violet-bright" /> You own the
-							code
-						</li>
-						<li className="flex items-center gap-2">
-							<Check className="h-3.5 w-3.5 text-violet-bright" /> No lock-in
-						</li>
-					</ul>
+					<div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+						<div className="space-y-7">
+							<span className="pill reveal-up">
+								<ShieldCheck className="h-3.5 w-3.5 text-violet-bright" />
+								Security & governance
+							</span>
+							<h1 className="reveal-up delay-1 display text-[2.6rem] text-ink sm:text-6xl lg:text-[3.9rem]">
+								Protect your business while{" "}
+								<span className="gradient-ink">moving faster.</span>
+							</h1>
+							<p className="reveal-up delay-2 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
+								You shouldn't have to trade speed for control. We build security
+								and governance into the system we ship for you — so you move
+								fast without putting compliance, your data, or your business at
+								risk.
+							</p>
+							<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
+								<MagneticLink to="/contact" className="button-primary">
+									Book a discovery call
+									<ArrowRight className="h-4 w-4" />
+								</MagneticLink>
+								<MagneticLink to="/approach" className="button-secondary">
+									See how we work
+								</MagneticLink>
+							</div>
+							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
+								<li className="flex items-center gap-2">
+									<Check className="h-3.5 w-3.5 text-violet-bright" /> Your data
+									stays yours
+								</li>
+								<li className="flex items-center gap-2">
+									<Check className="h-3.5 w-3.5 text-violet-bright" /> You own
+									the code
+								</li>
+								<li className="flex items-center gap-2">
+									<Check className="h-3.5 w-3.5 text-violet-bright" /> No
+									lock-in
+								</li>
+							</ul>
+						</div>
+
+						{/* Oversized exposure stat — the signature security visual */}
+						<div className="reveal-up delay-2 relative">
+							<div className="bracket">
+								<div className="panel ticked relative overflow-hidden rounded-[22px] p-8 sm:p-9">
+									<div
+										aria-hidden
+										className="pointer-events-none absolute inset-0 opacity-60"
+										style={{
+											backgroundImage:
+												"linear-gradient(rgba(123,97,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.06) 1px, transparent 1px)",
+											backgroundSize: "32px 32px",
+											maskImage:
+												"radial-gradient(circle at 50% 30%, #000 30%, transparent 90%)",
+										}}
+									/>
+									<div className="relative">
+										<p className="bp-coord">Exposure with controls on</p>
+										<div className="mt-4 font-heading text-[clamp(4rem,9vw,6.5rem)] font-semibold leading-none tracking-[-0.04em] text-ink">
+											<span className="gradient-ink">5%</span>
+										</div>
+										<p className="mt-4 max-w-[18rem] text-sm leading-relaxed text-mute">
+											Every guardrail on — least privilege, scoped reach,
+											approvals, and full audit. The more controls, the less
+											surface area exposed.
+										</p>
+										<div className="trust-meter mt-6">
+											<div style={{ width: "95%" }} />
+										</div>
+										<div className="mt-4 flex items-center gap-2 font-mono text-xs text-violet-bright">
+											<ShieldCheck className="h-3.5 w-3.5" />5 / 5 controls
+											active
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
+								<span className="bp-coord">Risk ↓ 90%</span>
+							</div>
+							<p className="bp-coord mt-3 text-center">
+								FIG.01 · SURFACE AREA — CONTROLS ENGAGED
+							</p>
+						</div>
+					</div>
 				</div>
 			</section>
 
 			{/* Pillars */}
 			<section className="site-wide section-shell pt-0">
-				<div className="mb-10 max-w-2xl">
+				<div className="reveal-scroll mb-10 max-w-2xl">
 					<p className="section-index mb-4">
 						<b>01</b> &nbsp;/&nbsp; What's built in
 					</p>
@@ -187,16 +248,23 @@ function SecurityPage() {
 					</p>
 				</div>
 
-				<div className="grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] md:grid-cols-2 lg:grid-cols-3">
+				<div className="reveal-stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 					{pillars.map((pillar) => (
-						<article key={pillar.n} className="bg-panel p-7">
-							<div className="flex items-center gap-4">
-								<span className="font-mono text-sm text-violet-bright">
-									{pillar.n}
-								</span>
-								<span className="inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
-									<pillar.icon className="h-5 w-5" />
-								</span>
+						<article key={pillar.n} className="panel panel-hover group p-6">
+							<div className="flex items-center justify-between">
+								<div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+									<span
+										aria-hidden
+										className="pointer-events-none absolute inset-0 opacity-40"
+										style={{
+											backgroundImage:
+												"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
+											backgroundSize: "8px 8px",
+										}}
+									/>
+									<pillar.icon className="relative h-5 w-5" />
+								</div>
+								<span className="bp-coord">{pillar.n}</span>
 							</div>
 							<h3 className="mt-5 font-heading text-lg font-semibold text-ink">
 								{pillar.title}
@@ -206,10 +274,19 @@ function SecurityPage() {
 							</p>
 						</article>
 					))}
-					<article className="flex flex-col justify-between bg-panel p-7">
-						<span className="inline-flex w-fit rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
-							<Scale className="h-5 w-5" />
-						</span>
+					<article className="panel group flex flex-col justify-between bg-[radial-gradient(circle_at_80%_-10%,rgba(123,97,255,0.12),transparent_55%)] p-6">
+						<div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+							<span
+								aria-hidden
+								className="pointer-events-none absolute inset-0 opacity-40"
+								style={{
+									backgroundImage:
+										"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
+									backgroundSize: "8px 8px",
+								}}
+							/>
+							<Scale className="relative h-5 w-5" />
+						</div>
 						<div className="mt-8">
 							<h3 className="font-heading text-lg font-semibold text-ink">
 								Built to recognised standards
@@ -224,9 +301,9 @@ function SecurityPage() {
 			</section>
 
 			{/* Interactive governance illustration */}
-			<section className="site-wide section-shell pt-0">
+			<section className="glow site-wide section-shell pt-0">
 				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
-					<div className="mb-8 max-w-2xl">
+					<div className="reveal-scroll mb-8 max-w-2xl">
 						<p className="section-index mb-4">
 							<b>02</b> &nbsp;/&nbsp; Safety at every step
 						</p>
@@ -246,71 +323,64 @@ function SecurityPage() {
 
 			{/* Rollout approach + FAQ */}
 			<section className="site-wide section-shell pt-0">
-				<div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-					<div>
-						<p className="section-index mb-4">
-							<b>03</b> &nbsp;/&nbsp; How we roll out safely
-						</p>
-						<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
-							We earn trust before we widen reach.
-						</h2>
-						<p className="mt-4 max-w-xl text-pretty text-mute">
-							Nothing goes straight to full access. We expand capability one
-							deliberate step at a time, with you in control at every gate.
-						</p>
-						<ol className="mt-8 flex flex-col gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)]">
-							{rollout.map((stage) => (
-								<li
-									key={stage.n}
-									className="flex items-start gap-4 bg-panel p-5"
-								>
-									<span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line bg-white/[0.03] font-mono text-xs text-violet-bright">
-										{stage.n}
-									</span>
-									<div>
-										<h3 className="font-heading text-base font-semibold text-ink">
-											{stage.title}
-										</h3>
-										<p className="mt-1 text-sm leading-relaxed text-mute">
-											{stage.desc}
-										</p>
-									</div>
-								</li>
-							))}
-						</ol>
-					</div>
+				<div className="reveal-scroll mb-12 max-w-2xl">
+					<p className="section-index mb-4">
+						<b>03</b> &nbsp;/&nbsp; How we roll out safely
+					</p>
+					<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
+						We earn trust before we widen reach.
+					</h2>
+					<p className="mt-4 text-pretty text-mute">
+						Nothing goes straight to full access. We expand capability one
+						deliberate step at a time, with you in control at every gate.
+					</p>
+				</div>
 
-					<div className="panel rounded-[22px] p-7 sm:p-8">
-						<div className="mb-2 flex items-center gap-3">
-							<span className="inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
-								<Eye className="h-5 w-5" />
-							</span>
-							<p className="font-mono text-xs uppercase tracking-[0.16em] text-violet-bright/90">
-								Straight answers
-							</p>
-						</div>
-						<h3 className="font-heading text-2xl font-semibold text-ink">
+				<div className="reveal-scroll mb-6">
+					<p className="dimline">Read-only → approvals → observed → scaled</p>
+				</div>
+				<div className="reveal-scroll">
+					<ProcessFlow steps={rollout} />
+				</div>
+
+				<hr className="hairline my-12" />
+
+				<div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+					<div className="reveal-scroll">
+						<p className="section-index mb-4">
+							<b>04</b> &nbsp;/&nbsp; Straight answers
+						</p>
+						<h3 className="font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
 							The questions we get asked first.
 						</h3>
-						<dl className="mt-6 flex flex-col gap-px overflow-hidden rounded-[12px] border border-line bg-[var(--color-line)]">
-							{faqs.map((faq) => (
-								<div key={faq.q} className="bg-panel p-5">
-									<dt className="text-[0.95rem] font-medium text-ink">
-										{faq.q}
-									</dt>
-									<dd className="mt-2 flex items-center gap-2 font-mono text-sm text-violet-bright">
-										<Check className="h-4 w-4" /> {faq.a}
-									</dd>
-								</div>
-							))}
-						</dl>
-						<hr className="hairline my-6" />
-						<p className="flex items-start gap-3 text-sm leading-relaxed text-mute">
+						<p className="mt-4 max-w-md text-pretty text-mute">
+							Short answers to the controls most teams ask about before they
+							start. Need one we haven't listed?
+						</p>
+						<p className="mt-6 flex items-start gap-3 text-sm leading-relaxed text-mute">
 							<GitPullRequestArrow className="mt-0.5 h-4 w-4 shrink-0 text-violet-bright" />
 							Have a control your auditors require? Tell us and we'll build to
 							it.
 						</p>
 					</div>
+
+					<dl className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] sm:grid-cols-2">
+						{faqs.map((faq) => (
+							<div key={faq.q} className="bg-panel p-6">
+								<div className="flex items-center gap-3">
+									<span className="inline-flex rounded-lg border border-line bg-white/[0.03] p-2 text-violet-bright">
+										<Eye className="h-4 w-4" />
+									</span>
+									<dt className="text-[0.95rem] font-medium text-ink">
+										{faq.q}
+									</dt>
+								</div>
+								<dd className="mt-4 flex items-center gap-2 font-mono text-sm text-violet-bright">
+									<Check className="h-4 w-4" /> {faq.a}
+								</dd>
+							</div>
+						))}
+					</dl>
 				</div>
 			</section>
 

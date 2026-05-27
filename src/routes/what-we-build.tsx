@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
 	AppWindow,
 	ArrowRight,
+	Blocks,
 	Boxes,
 	ClipboardCheck,
 	Cpu,
@@ -12,15 +13,19 @@ import {
 	LineChart,
 	type LucideIcon,
 	Network,
+	PenTool,
 	Plug,
+	Search,
 	ShieldCheck,
 	Users,
 	Workflow,
 } from "lucide-react";
 
+import CapabilityStack from "../components/CapabilityStack";
 import CTASection from "../components/CTASection";
 import InteractiveAura from "../components/InteractiveAura";
 import MagneticLink from "../components/MagneticLink";
+import ProcessFlow from "../components/ProcessFlow";
 
 export const Route = createFileRoute("/what-we-build")({
 	component: WhatWeBuildPage,
@@ -219,21 +224,44 @@ const audiences: Audience[] = [
 	},
 ];
 
+const heroLayers = [
+	{
+		tag: "Applications",
+		label: "Software built to your workflow",
+		icon: AppWindow,
+	},
+	{ tag: "Automation", label: "Workflows & AI agents", icon: Workflow },
+	{
+		tag: "Integration",
+		label: "Your existing tools, connected",
+		icon: Network,
+	},
+	{
+		tag: "Tools",
+		label: "Dashboards & operations screens",
+		icon: LayoutDashboard,
+	},
+	{ tag: "Data", label: "One unified model of your business", icon: Database },
+];
+
 const buildSteps = [
 	{
 		n: "01",
 		title: "Learn",
 		desc: "We map how your business actually runs before we design anything.",
+		icon: Search,
 	},
 	{
 		n: "02",
 		title: "Blueprint",
 		desc: "We design the system and the value case, so you see the path first.",
+		icon: PenTool,
 	},
 	{
 		n: "03",
 		title: "Build",
 		desc: "We ship in increments — you see it working early, not at the end.",
+		icon: Blocks,
 	},
 ];
 
@@ -243,59 +271,94 @@ function WhatWeBuildPage() {
 			<InteractiveAura />
 
 			{/* Hero */}
-			<section className="section-shell">
-				<div className="site-wide max-w-4xl">
-					<p className="kicker reveal-up">What we build</p>
-					<h1 className="reveal-up delay-1 mt-6 display text-[2.6rem] text-ink sm:text-6xl lg:text-[3.9rem]">
-						We don't sell a product. We build the{" "}
-						<span className="gradient-ink">system your business needs.</span>
-					</h1>
-					<p className="reveal-up delay-2 mt-6 max-w-2xl text-lg leading-relaxed text-mute sm:text-xl">
-						No two businesses run the same way, so no two systems should. We
-						engineer software around exactly how you operate — your tools, your
-						data, your workflows, unified into one — with AI as the engine
-						underneath.
-					</p>
-					<div className="reveal-up delay-3 mt-8 flex flex-col gap-3 sm:flex-row">
-						<MagneticLink to="/contact" className="button-primary">
-							Book a discovery call
-							<ArrowRight className="h-4 w-4" />
-						</MagneticLink>
-						<MagneticLink to="/approach" className="button-secondary">
-							See our approach
-						</MagneticLink>
+			<section className="glow section-shell">
+				<div className="site-wide">
+					<div className="dimline reveal-up mb-10">
+						What we build — one bespoke system, five layers
+					</div>
+					<div className="grid items-center gap-12 lg:grid-cols-[1.06fr_0.94fr]">
+						<div className="space-y-7">
+							<p className="kicker reveal-up">What we build</p>
+							<h1 className="reveal-up delay-1 display text-[2.6rem] text-ink sm:text-6xl lg:text-[3.9rem]">
+								We don't sell a product. We build the{" "}
+								<span className="gradient-ink">
+									system your business needs.
+								</span>
+							</h1>
+							<p className="reveal-up delay-2 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
+								No two businesses run the same way, so no two systems should. We
+								engineer software around exactly how you operate — your tools,
+								your data, your workflows, unified into one — with AI as the
+								engine underneath.
+							</p>
+							<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
+								<MagneticLink to="/contact" className="button-primary">
+									Book a discovery call
+									<ArrowRight className="h-4 w-4" />
+								</MagneticLink>
+								<MagneticLink to="/approach" className="button-secondary">
+									See our approach
+								</MagneticLink>
+							</div>
+						</div>
+
+						<div className="reveal-up delay-2 relative">
+							<div className="bracket">
+								<CapabilityStack layers={heroLayers} />
+							</div>
+							<div className="absolute -right-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
+								<span className="bp-coord">Engineered around you</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 
 			{/* Capabilities */}
 			<section className="site-wide section-shell pt-0">
-				<div className="mb-10 max-w-2xl">
-					<p className="section-index mb-4">
-						<b>01</b> &nbsp;/&nbsp; Capabilities
-					</p>
-					<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-						Five ways we build the system you run on.
-					</h2>
-					<p className="mt-4 text-pretty text-mute">
-						We don't pick from a menu. We combine these into one system,
-						engineered for your business — not a product you adopt.
+				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
+					<div className="max-w-2xl">
+						<p className="section-index mb-4">
+							<b>01</b> &nbsp;/&nbsp; Capabilities
+						</p>
+						<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+							Five ways we build the system you run on.
+						</h2>
+						<p className="mt-4 text-pretty text-mute">
+							We don't pick from a menu. We combine these into one system,
+							engineered for your business — not a product you adopt.
+						</p>
+					</div>
+					<p className="dimline hidden max-w-xs md:flex">
+						Combined · not à la carte
 					</p>
 				</div>
 
-				<div className="grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)]">
+				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)]">
 					{capabilities.map((cap) => (
 						<article
 							key={cap.n}
-							className="bg-panel p-7 sm:p-9 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-10"
+							className="group relative bg-panel p-7 transition-colors duration-200 hover:bg-panel-2/40 sm:p-9 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-10"
 						>
+							<span className="bp-coord absolute right-6 top-6 hidden sm:block">
+								FIG.{cap.n}
+							</span>
 							<div>
 								<div className="flex items-center gap-4">
 									<span className="font-mono text-sm text-violet-bright">
 										{cap.n}
 									</span>
-									<span className="inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
-										<cap.icon className="h-5 w-5" />
+									<span className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+										<span
+											aria-hidden
+											className="pointer-events-none absolute inset-0 opacity-40"
+											style={{
+												backgroundImage:
+													"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
+												backgroundSize: "8px 8px",
+											}}
+										/>
+										<cap.icon className="relative h-5 w-5" />
 									</span>
 								</div>
 								<h3 className="mt-5 font-heading text-2xl font-semibold text-ink">
@@ -349,24 +412,44 @@ function WhatWeBuildPage() {
 
 			{/* Who it's for */}
 			<section className="site-wide section-shell pt-0">
-				<div className="mb-10 max-w-2xl">
-					<p className="section-index mb-4">
-						<b>02</b> &nbsp;/&nbsp; Who it's for
-					</p>
-					<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-						What we'd build for you.
-					</h2>
-					<p className="mt-4 text-pretty text-mute">
-						The same capabilities, shaped to the people who run the work. A few
-						of the places a bespoke system earns its keep.
-					</p>
+				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-6">
+					<div className="max-w-2xl">
+						<p className="section-index mb-4">
+							<b>02</b> &nbsp;/&nbsp; Who it's for
+						</p>
+						<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+							What we'd build for you.
+						</h2>
+						<p className="mt-4 text-pretty text-mute">
+							The same capabilities, shaped to the people who run the work. A
+							few of the places a bespoke system earns its keep.
+						</p>
+					</div>
+					<div className="shrink-0">
+						<div className="font-heading text-[clamp(2.6rem,6vw,4.5rem)] font-semibold leading-none tracking-[-0.04em]">
+							<span className="gradient-ink">5</span>
+						</div>
+						<p className="bp-coord mt-2">Teams it earns its keep</p>
+					</div>
 				</div>
 
-				<div className="grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] md:grid-cols-2 lg:grid-cols-3">
+				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] md:grid-cols-2 lg:grid-cols-3">
 					{audiences.map((aud) => (
-						<article key={aud.role} className="bg-panel p-7">
-							<div className="inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
-								<aud.icon className="h-5 w-5" />
+						<article
+							key={aud.role}
+							className="group bg-panel p-7 transition-colors duration-200 hover:bg-panel-2/40"
+						>
+							<div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+								<span
+									aria-hidden
+									className="pointer-events-none absolute inset-0 opacity-40"
+									style={{
+										backgroundImage:
+											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
+										backgroundSize: "8px 8px",
+									}}
+								/>
+								<aud.icon className="relative h-5 w-5" />
 							</div>
 							<h3 className="mt-5 font-heading text-lg font-semibold text-ink">
 								{aud.role}
@@ -385,7 +468,7 @@ function WhatWeBuildPage() {
 					))}
 					<Link
 						to="/work"
-						className="panel-hover group flex flex-col justify-between bg-panel p-7"
+						className="panel-hover group flex flex-col justify-between bg-panel bg-[radial-gradient(circle_at_80%_-10%,rgba(123,97,255,0.12),transparent_55%)] p-7"
 					>
 						<ArrowRight className="h-6 w-6 text-violet-bright transition-transform duration-200 group-hover:translate-x-0.5" />
 						<span className="mt-8 font-heading text-lg font-semibold text-ink">
@@ -396,9 +479,9 @@ function WhatWeBuildPage() {
 			</section>
 
 			{/* How a build comes together */}
-			<section className="site-wide section-shell pt-0">
+			<section className="glow site-wide section-shell pt-0">
 				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
-					<div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+					<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
 						<div>
 							<p className="section-index mb-4">
 								<b>03</b> &nbsp;/&nbsp; How a build comes together
@@ -411,20 +494,9 @@ function WhatWeBuildPage() {
 							The full approach <ArrowRight className="h-4 w-4" />
 						</Link>
 					</div>
-					<div className="grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] md:grid-cols-3">
-						{buildSteps.map((step) => (
-							<div key={step.n} className="bg-panel p-6">
-								<span className="font-mono text-sm text-violet-bright">
-									{step.n}
-								</span>
-								<h3 className="mt-3 font-heading text-xl font-semibold text-ink">
-									{step.title}
-								</h3>
-								<p className="mt-2 text-sm leading-relaxed text-mute">
-									{step.desc}
-								</p>
-							</div>
-						))}
+					<p className="dimline mb-8">Discovery → live system</p>
+					<div className="reveal-scroll">
+						<ProcessFlow steps={buildSteps} />
 					</div>
 				</div>
 			</section>

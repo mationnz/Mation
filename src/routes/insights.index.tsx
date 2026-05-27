@@ -38,27 +38,32 @@ function InsightsPage() {
 			<InteractiveAura />
 
 			{/* Hero */}
-			<section className="section-shell">
-				<div className="site-wide max-w-3xl space-y-7">
-					<span className="pill reveal-up">
-						<span className="live-dot" /> Insights
-					</span>
-					<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4rem]">
-						How we think about{" "}
-						<span className="gradient-ink">building systems</span>.
-					</h1>
-					<p className="reveal-up delay-2 max-w-2xl text-lg leading-relaxed text-mute sm:text-xl">
-						Practical pieces on building bespoke systems, automation,
-						integration, and governance — written from the work, not the
-						marketing deck.
-					</p>
+			<section className="glow section-shell pt-10 sm:pt-14">
+				<div className="site-wide">
+					<div className="dimline reveal-up mb-10">
+						Mation — field notes from the build · Auckland NZ
+					</div>
+					<div className="max-w-3xl space-y-7">
+						<span className="pill reveal-up">
+							<span className="live-dot" /> Insights
+						</span>
+						<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4rem]">
+							How we think about{" "}
+							<span className="gradient-ink">building systems</span>.
+						</h1>
+						<p className="reveal-up delay-2 max-w-2xl text-lg leading-relaxed text-mute sm:text-xl">
+							Practical pieces on building bespoke systems, automation,
+							integration, and governance — written from the work, not the
+							marketing deck.
+						</p>
+					</div>
 				</div>
 			</section>
 
 			{/* Categories + articles */}
 			<section className="site-wide section-shell grid gap-12 pt-0 lg:grid-cols-[0.28fr_0.72fr]">
 				{/* Topics */}
-				<aside className="lg:sticky lg:top-28 lg:self-start">
+				<aside className="reveal-scroll lg:sticky lg:top-28 lg:self-start">
 					<p className="section-index mb-5">
 						<b>{String(categories.length).padStart(2, "0")}</b> &nbsp;/&nbsp;
 						Topics
@@ -70,35 +75,51 @@ function InsightsPage() {
 							</li>
 						))}
 					</ul>
+					<p className="dimline mt-8 hidden lg:flex">Written from the work</p>
 				</aside>
 
 				{/* Article grid */}
 				<div>
-					<p className="section-index mb-6">
-						<b>{String(articles.length).padStart(2, "0")}</b> &nbsp;/&nbsp;
-						Latest writing
-					</p>
-					<div className="grid gap-5 sm:grid-cols-2">
-						{articles.map((article) => (
+					<div className="reveal-scroll mb-6 flex flex-wrap items-end justify-between gap-3">
+						<p className="section-index">
+							<b>{String(articles.length).padStart(2, "0")}</b> &nbsp;/&nbsp;
+							Latest writing
+						</p>
+						<span className="bp-coord hidden sm:block">IDX · ALL PIECES</span>
+					</div>
+					<div className="reveal-stagger grid gap-5 sm:grid-cols-2">
+						{articles.map((article, idx) => (
 							<Link
 								key={article.slug}
 								to="/insights/$slug"
 								params={{ slug: article.slug }}
-								className="panel panel-hover group flex flex-col p-6"
+								className="panel panel-hover group relative flex flex-col overflow-hidden p-6"
 							>
+								<span
+									aria-hidden
+									className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-bright/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+								/>
 								<div className="mb-4 flex items-center justify-between gap-3">
 									<span className="tag">{article.category}</span>
-									<ArrowUpRight className="h-4 w-4 shrink-0 text-mute transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-violet-bright" />
+									<span className="bp-coord">
+										{String(idx + 1).padStart(2, "0")}
+									</span>
 								</div>
-								<h2 className="font-heading text-xl font-semibold leading-snug text-ink">
+								<h2 className="font-heading text-xl font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-violet-bright">
 									{article.title}
 								</h2>
 								<p className="mt-2.5 line-clamp-3 text-sm leading-relaxed text-mute">
 									{article.excerpt}
 								</p>
-								<span className="mt-auto pt-5 font-mono text-xs uppercase tracking-[0.12em] text-violet-bright">
-									{article.readTime}
-								</span>
+								<div className="mt-auto flex items-center justify-between gap-3 pt-5">
+									<span className="font-mono text-xs uppercase tracking-[0.12em] text-violet-bright">
+										{article.readTime}
+									</span>
+									<span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.1em] text-mute transition-colors duration-200 group-hover:text-ink">
+										Read
+										<ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+									</span>
+								</div>
 							</Link>
 						))}
 					</div>
@@ -109,7 +130,7 @@ function InsightsPage() {
 			<section className="site-wide section-shell pt-0">
 				<Link
 					to="/work"
-					className="panel panel-hover group flex flex-col items-start gap-5 p-7 sm:flex-row sm:items-center sm:justify-between"
+					className="panel panel-hover reveal-scroll group flex flex-col items-start gap-5 p-7 sm:flex-row sm:items-center sm:justify-between"
 				>
 					<div>
 						<h3 className="font-heading text-lg font-semibold text-ink">
