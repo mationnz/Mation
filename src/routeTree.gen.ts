@@ -9,26 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SolutionsRouteImport } from './routes/solutions'
-import { Route as ServicesRouteImport } from './routes/services'
+import { Route as WhatWeBuildRouteImport } from './routes/what-we-build'
 import { Route as SecurityRouteImport } from './routes/security'
-import { Route as ProductRouteImport } from './routes/product'
-import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CompanyRouteImport } from './routes/company'
-import { Route as ArchitectureRouteImport } from './routes/architecture'
+import { Route as ApproachRouteImport } from './routes/approach'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
-import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
+import { Route as WorkIndexRouteImport } from './routes/work.index'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
+import { Route as WorkSlugRouteImport } from './routes/work.$slug'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 
-const SolutionsRoute = SolutionsRouteImport.update({
-  id: '/solutions',
-  path: '/solutions',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
+const WhatWeBuildRoute = WhatWeBuildRouteImport.update({
+  id: '/what-we-build',
+  path: '/what-we-build',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SecurityRoute = SecurityRouteImport.update({
@@ -36,29 +30,19 @@ const SecurityRoute = SecurityRouteImport.update({
   path: '/security',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductRoute = ProductRouteImport.update({
-  id: '/product',
-  path: '/product',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoRoute = DemoRouteImport.update({
-  id: '/demo',
-  path: '/demo',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CompanyRoute = CompanyRouteImport.update({
-  id: '/company',
-  path: '/company',
+const ApproachRoute = ApproachRouteImport.update({
+  id: '/approach',
+  path: '/approach',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ArchitectureRoute = ArchitectureRouteImport.update({
-  id: '/architecture',
-  path: '/architecture',
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -66,127 +50,123 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
-  id: '/resources/',
-  path: '/resources/',
+const WorkIndexRoute = WorkIndexRouteImport.update({
+  id: '/work/',
+  path: '/work/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
-  id: '/resources/$slug',
-  path: '/resources/$slug',
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkSlugRoute = WorkSlugRouteImport.update({
+  id: '/work/$slug',
+  path: '/work/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/insights/$slug',
+  path: '/insights/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/architecture': typeof ArchitectureRoute
-  '/company': typeof CompanyRoute
+  '/about': typeof AboutRoute
+  '/approach': typeof ApproachRoute
   '/contact': typeof ContactRoute
-  '/demo': typeof DemoRoute
-  '/product': typeof ProductRoute
   '/security': typeof SecurityRoute
-  '/services': typeof ServicesRoute
-  '/solutions': typeof SolutionsRoute
-  '/resources/$slug': typeof ResourcesSlugRoute
-  '/resources/': typeof ResourcesIndexRoute
+  '/what-we-build': typeof WhatWeBuildRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/work/$slug': typeof WorkSlugRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/architecture': typeof ArchitectureRoute
-  '/company': typeof CompanyRoute
+  '/about': typeof AboutRoute
+  '/approach': typeof ApproachRoute
   '/contact': typeof ContactRoute
-  '/demo': typeof DemoRoute
-  '/product': typeof ProductRoute
   '/security': typeof SecurityRoute
-  '/services': typeof ServicesRoute
-  '/solutions': typeof SolutionsRoute
-  '/resources/$slug': typeof ResourcesSlugRoute
-  '/resources': typeof ResourcesIndexRoute
+  '/what-we-build': typeof WhatWeBuildRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/work/$slug': typeof WorkSlugRoute
+  '/insights': typeof InsightsIndexRoute
+  '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/architecture': typeof ArchitectureRoute
-  '/company': typeof CompanyRoute
+  '/about': typeof AboutRoute
+  '/approach': typeof ApproachRoute
   '/contact': typeof ContactRoute
-  '/demo': typeof DemoRoute
-  '/product': typeof ProductRoute
   '/security': typeof SecurityRoute
-  '/services': typeof ServicesRoute
-  '/solutions': typeof SolutionsRoute
-  '/resources/$slug': typeof ResourcesSlugRoute
-  '/resources/': typeof ResourcesIndexRoute
+  '/what-we-build': typeof WhatWeBuildRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/work/$slug': typeof WorkSlugRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/architecture'
-    | '/company'
+    | '/about'
+    | '/approach'
     | '/contact'
-    | '/demo'
-    | '/product'
     | '/security'
-    | '/services'
-    | '/solutions'
-    | '/resources/$slug'
-    | '/resources/'
+    | '/what-we-build'
+    | '/insights/$slug'
+    | '/work/$slug'
+    | '/insights/'
+    | '/work/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/architecture'
-    | '/company'
+    | '/about'
+    | '/approach'
     | '/contact'
-    | '/demo'
-    | '/product'
     | '/security'
-    | '/services'
-    | '/solutions'
-    | '/resources/$slug'
-    | '/resources'
+    | '/what-we-build'
+    | '/insights/$slug'
+    | '/work/$slug'
+    | '/insights'
+    | '/work'
   id:
     | '__root__'
     | '/'
-    | '/architecture'
-    | '/company'
+    | '/about'
+    | '/approach'
     | '/contact'
-    | '/demo'
-    | '/product'
     | '/security'
-    | '/services'
-    | '/solutions'
-    | '/resources/$slug'
-    | '/resources/'
+    | '/what-we-build'
+    | '/insights/$slug'
+    | '/work/$slug'
+    | '/insights/'
+    | '/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ArchitectureRoute: typeof ArchitectureRoute
-  CompanyRoute: typeof CompanyRoute
+  AboutRoute: typeof AboutRoute
+  ApproachRoute: typeof ApproachRoute
   ContactRoute: typeof ContactRoute
-  DemoRoute: typeof DemoRoute
-  ProductRoute: typeof ProductRoute
   SecurityRoute: typeof SecurityRoute
-  ServicesRoute: typeof ServicesRoute
-  SolutionsRoute: typeof SolutionsRoute
-  ResourcesSlugRoute: typeof ResourcesSlugRoute
-  ResourcesIndexRoute: typeof ResourcesIndexRoute
+  WhatWeBuildRoute: typeof WhatWeBuildRoute
+  InsightsSlugRoute: typeof InsightsSlugRoute
+  WorkSlugRoute: typeof WorkSlugRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
+  WorkIndexRoute: typeof WorkIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/solutions': {
-      id: '/solutions'
-      path: '/solutions'
-      fullPath: '/solutions'
-      preLoaderRoute: typeof SolutionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
+    '/what-we-build': {
+      id: '/what-we-build'
+      path: '/what-we-build'
+      fullPath: '/what-we-build'
+      preLoaderRoute: typeof WhatWeBuildRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/security': {
@@ -196,20 +176,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SecurityRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/product': {
-      id: '/product'
-      path: '/product'
-      fullPath: '/product'
-      preLoaderRoute: typeof ProductRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo': {
-      id: '/demo'
-      path: '/demo'
-      fullPath: '/demo'
-      preLoaderRoute: typeof DemoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -217,18 +183,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/company': {
-      id: '/company'
-      path: '/company'
-      fullPath: '/company'
-      preLoaderRoute: typeof CompanyRouteImport
+    '/approach': {
+      id: '/approach'
+      path: '/approach'
+      fullPath: '/approach'
+      preLoaderRoute: typeof ApproachRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/architecture': {
-      id: '/architecture'
-      path: '/architecture'
-      fullPath: '/architecture'
-      preLoaderRoute: typeof ArchitectureRouteImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -238,18 +204,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resources/': {
-      id: '/resources/'
-      path: '/resources'
-      fullPath: '/resources/'
-      preLoaderRoute: typeof ResourcesIndexRouteImport
+    '/work/': {
+      id: '/work/'
+      path: '/work'
+      fullPath: '/work/'
+      preLoaderRoute: typeof WorkIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resources/$slug': {
-      id: '/resources/$slug'
-      path: '/resources/$slug'
-      fullPath: '/resources/$slug'
-      preLoaderRoute: typeof ResourcesSlugRouteImport
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/$slug': {
+      id: '/work/$slug'
+      path: '/work/$slug'
+      fullPath: '/work/$slug'
+      preLoaderRoute: typeof WorkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/insights/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -257,16 +237,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ArchitectureRoute: ArchitectureRoute,
-  CompanyRoute: CompanyRoute,
+  AboutRoute: AboutRoute,
+  ApproachRoute: ApproachRoute,
   ContactRoute: ContactRoute,
-  DemoRoute: DemoRoute,
-  ProductRoute: ProductRoute,
   SecurityRoute: SecurityRoute,
-  ServicesRoute: ServicesRoute,
-  SolutionsRoute: SolutionsRoute,
-  ResourcesSlugRoute: ResourcesSlugRoute,
-  ResourcesIndexRoute: ResourcesIndexRoute,
+  WhatWeBuildRoute: WhatWeBuildRoute,
+  InsightsSlugRoute: InsightsSlugRoute,
+  WorkSlugRoute: WorkSlugRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
+  WorkIndexRoute: WorkIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

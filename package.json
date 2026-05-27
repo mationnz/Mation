@@ -1,6 +1,6 @@
 {
   "name": "mation",
-  "description": "Mation - Business automation and transformation powered by AI",
+  "description": "Mation — bespoke software that unifies your business into one operating system, powered by AI",
   "homepage": "https://mation.nz",
   "private": true,
   "engines": {
@@ -22,6 +22,8 @@
     "check": "biome check"
   },
   "dependencies": {
+    "@fontsource-variable/geist": "^5.2.9",
+    "@fontsource-variable/geist-mono": "^5.2.8",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "^0.7.0",
     "@tanstack/react-router": "^1.132.0",
@@ -29,7 +31,6 @@
     "@tanstack/react-router-ssr-query": "^1.131.7",
     "@tanstack/react-start": "^1.132.0",
     "@tanstack/router-plugin": "^1.132.0",
-    "framer-motion": "^12.34.3",
     "lucide-react": "^0.545.0",
     "nitro": "npm:nitro-nightly@latest",
     "react": "^19.2.0",

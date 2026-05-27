@@ -1,8 +1,8 @@
 # Mation
 
-**Business automation and transformation powered by AI.**
+**Bespoke software, built around your business.**
 
-Company website for [Mation](https://mation.nz) — we help organisations streamline operations, reduce costs, and accelerate growth with AI-powered solutions.
+Marketing site for [Mation](https://mation.nz) — a software-engineering partner that builds the operating system each client actually runs on: custom systems that unify their tools, data, and workflows, engineered around how they operate and powered by AI.
 
 ## Stack
 

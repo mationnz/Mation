@@ -18,29 +18,41 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Mation | AI Transformation + Automation",
+				title: "Mation — Bespoke software, built around your business",
 			},
 			{
 				name: "description",
 				content:
-					"Mation ends software sprawl with one custom AI cockpit that automates workflows across your business and unsilos your data.",
+					"Mation is a software-engineering partner that builds the operating system your business actually runs on — bespoke systems that unify your tools, data, and workflows, engineered around how you operate and powered by AI.",
 			},
 			{
 				name: "theme-color",
-				content: "#070a1d",
+				content: "#07060e",
 			},
 			{
 				property: "og:title",
-				content: "Mation | Business AI Transformation + Automation",
+				content: "Mation — The operating system your business runs on",
 			},
 			{
 				property: "og:description",
 				content:
-					"Drive your entire business from one AI command layer with agentic automation, cross-domain intelligence, and measurable performance uplift.",
+					"We're the engineering partner that turns disconnected tools and manual admin into one custom system, built around exactly how you work — powered by AI.",
 			},
 			{
 				property: "og:type",
 				content: "website",
+			},
+			{
+				property: "og:site_name",
+				content: "Mation",
+			},
+			{
+				property: "og:image",
+				content: "https://mation.nz/logo512.png",
+			},
+			{
+				name: "twitter:card",
+				content: "summary",
 			},
 		],
 		links: [
@@ -65,19 +77,6 @@ export const Route = createRootRoute({
 				rel: "manifest",
 				href: "/manifest.json",
 			},
-			{
-				rel: "preconnect",
-				href: "https://fonts.googleapis.com",
-			},
-			{
-				rel: "preconnect",
-				href: "https://fonts.gstatic.com",
-				crossOrigin: "anonymous",
-			},
-			{
-				rel: "stylesheet",
-				href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap",
-			},
 		],
 	}),
 	shellComponent: RootDocument,
@@ -91,7 +90,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<Header />
-				<main className="pb-10 pt-20">{children}</main>
+				<main className="pt-20">{children}</main>
 				<Footer />
 
 				{import.meta.env.DEV ? (

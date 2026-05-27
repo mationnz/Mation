@@ -4,6 +4,7 @@ type SequenceStep = {
 	id: string;
 	title: string;
 	subtitle: string;
+	duration: string;
 	detail: string;
 	outcome: string;
 };
@@ -12,36 +13,38 @@ const steps: SequenceStep[] = [
 	{
 		id: "discover",
 		title: "Discover",
-		subtitle: "Map software sprawl and hidden drag",
+		subtitle: "Map how you actually run",
+		duration: "1–2 weeks",
 		detail:
-			"Identify high-friction process paths, context gaps, and repetitive task load across every function.",
-		outcome: "Cross-domain opportunity map with ROI-ranked automation targets",
+			"We sit with your team and trace every process, hand-off, and spreadsheet — finding the friction and the data that never connects.",
+		outcome: "Operations map and a value case ranked by impact",
 	},
 	{
-		id: "architect",
-		title: "Architect",
-		subtitle: "Design one cockpit operating model",
+		id: "blueprint",
+		title: "Blueprint",
+		subtitle: "Design the system before we build it",
+		duration: "2–3 weeks",
 		detail:
-			"Create the AI command architecture: context fabric, workflow graph, agent roles, and governance controls.",
-		outcome:
-			"Blueprint for a unified cockpit replacing fragmented app-driven execution",
+			"We design the data model, workflows, and integrations into one coherent system — with the value case and a roadmap you can sign off.",
+		outcome: "System design, value case, and a staged delivery roadmap",
 	},
 	{
-		id: "activate",
-		title: "Activate",
-		subtitle: "Launch production workflows and agents",
+		id: "build",
+		title: "Build",
+		subtitle: "Ship in increments, working early",
+		duration: "Iterative",
 		detail:
-			"Deploy agents inside existing systems, automate handoffs, and establish live telemetry from day one.",
-		outcome:
-			"Enterprise-wide automation cells producing measurable value in weeks",
+			"We build in tight increments against your real workflows. You see it working in weeks — not at the very end — and steer as it lands.",
+		outcome: "Production increments your team uses as they ship",
 	},
 	{
-		id: "compound",
-		title: "Compound",
-		subtitle: "Scale intelligence and velocity every quarter",
+		id: "evolve",
+		title: "Run & evolve",
+		subtitle: "Support, refine, and extend",
+		duration: "Ongoing",
 		detail:
-			"Use trend analysis and operational telemetry to continuously optimize decisions, flows, and team capacity.",
-		outcome: "Compounding productivity, stronger margin, and strategic speed",
+			"We run the system with you, tune it against live telemetry, and extend it into new corners of the business as you grow.",
+		outcome: "A maintained system that compounds in value over time",
 	},
 ];
 
@@ -65,7 +68,7 @@ export default function ScrollyTransformation() {
 						return;
 					}
 
-					const element = entry.target as HTMLElement;
+					const element = entry.target as HTMLDivElement;
 					const index = Number(element.dataset.stepIndex);
 					if (!Number.isNaN(index)) {
 						setActiveIndex(index);
@@ -78,7 +81,9 @@ export default function ScrollyTransformation() {
 			},
 		);
 
-		elements.forEach((element) => observer.observe(element));
+		elements.forEach((element) => {
+			observer.observe(element);
+		});
 		return () => observer.disconnect();
 	}, []);
 
@@ -86,50 +91,61 @@ export default function ScrollyTransformation() {
 
 	return (
 		<div className="scrolly-grid">
-			<aside className="panel-glass scrolly-sticky rounded-3xl p-6 sm:p-7">
-				<p className="kicker">Transformation Sequence</p>
-				<h3 className="mt-4 font-heading text-4xl font-semibold text-white">
-					{active.title}
-				</h3>
-				<p className="mt-3 text-base font-semibold text-cyan-100">
-					{active.subtitle}
-				</p>
-				<p className="mt-4 text-sm leading-relaxed text-indigo-100/78 sm:text-base">
+			<aside className="panel scrolly-sticky rounded-[22px] p-6 sm:p-7">
+				<p className="kicker">Engagement sequence</p>
+				<div className="mt-4 flex items-baseline gap-3">
+					<span className="font-mono text-sm text-violet-bright">
+						{`0${activeIndex + 1}`}
+					</span>
+					<h3 className="font-heading text-4xl font-semibold text-ink">
+						{active.title}
+					</h3>
+				</div>
+				<div className="mt-3 flex flex-wrap items-center gap-3">
+					<p className="text-base font-semibold text-ink/85">
+						{active.subtitle}
+					</p>
+					<span className="tag">{active.duration}</span>
+				</div>
+				<p className="mt-4 text-sm leading-relaxed text-mute sm:text-base">
 					{active.detail}
 				</p>
-				<div className="mt-5 rounded-2xl border border-cyan-200/25 bg-cyan-200/10 p-4">
-					<p className="font-tech text-[0.62rem] uppercase tracking-[0.2em] text-cyan-100/85">
-						Expected outcome
+				<div className="mt-5 rounded-[14px] border border-line bg-white/[0.03] p-4">
+					<p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-violet-bright">
+						Deliverable
 					</p>
-					<p className="mt-2 text-sm text-cyan-50">{active.outcome}</p>
+					<p className="mt-2 text-sm text-ink/90">{active.outcome}</p>
 				</div>
 			</aside>
 
 			<div className="space-y-24 pb-6">
 				{steps.map((step, index) => (
-					<article
+					<div
 						key={step.id}
 						ref={(element) => {
 							refs.current[index] = element;
 						}}
 						data-step-index={index}
-						className={`panel-glass scrolly-step rounded-3xl p-6 sm:p-7 ${
+						className={`panel scrolly-step rounded-[22px] p-6 sm:p-7 ${
 							activeIndex === index ? "is-active" : ""
 						}`}
 					>
-						<p className="font-tech text-[0.62rem] uppercase tracking-[0.2em] text-indigo-100/62">
-							Stage {`0${index + 1}`}
-						</p>
-						<h4 className="mt-3 font-heading text-3xl font-semibold text-white">
+						<div className="flex items-center justify-between gap-3">
+							<p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-mute">
+								Stage {`0${index + 1}`}
+							</p>
+							<span className="tag">{step.duration}</span>
+						</div>
+						<h4 className="mt-3 font-heading text-3xl font-semibold text-ink">
 							{step.title}
 						</h4>
-						<p className="mt-2 text-sm font-semibold text-cyan-100">
+						<p className="mt-2 text-sm font-semibold text-ink/85">
 							{step.subtitle}
 						</p>
-						<p className="mt-4 text-sm leading-relaxed text-indigo-100/74 sm:text-base">
+						<p className="mt-4 text-sm leading-relaxed text-mute sm:text-base">
 							{step.detail}
 						</p>
-					</article>
+					</div>
 				))}
 			</div>
 		</div>

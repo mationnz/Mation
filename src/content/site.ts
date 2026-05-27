@@ -1,35 +1,42 @@
+export type RoutePath =
+	| "/"
+	| "/what-we-build"
+	| "/approach"
+	| "/work"
+	| "/about"
+	| "/security"
+	| "/insights"
+	| "/contact";
+
 export type NavLink = {
 	label: string;
-	to:
-		| "/"
-		| "/product"
-		| "/solutions"
-		| "/architecture"
-		| "/security"
-		| "/services"
-		| "/resources"
-		| "/company"
-		| "/contact";
+	to: RoutePath;
 };
 
+/** Primary header navigation — kept lean. */
 export const navLinks: NavLink[] = [
-	{ label: "Home", to: "/" },
-	{ label: "Product", to: "/product" },
-	{ label: "Solutions", to: "/solutions" },
-	{ label: "Architecture", to: "/architecture" },
-	{ label: "Security", to: "/security" },
-	{ label: "Services", to: "/services" },
-	{ label: "Resources", to: "/resources" },
-	{ label: "Company", to: "/company" },
+	{ label: "What we build", to: "/what-we-build" },
+	{ label: "Approach", to: "/approach" },
+	{ label: "Work", to: "/work" },
+	{ label: "About", to: "/about" },
+];
+
+/** Full sitemap used in the footer. */
+export const footerLinks: NavLink[] = [
+	{ label: "What we build", to: "/what-we-build" },
+	{ label: "Approach", to: "/approach" },
+	{ label: "Work", to: "/work" },
+	{ label: "About", to: "/about" },
+	{ label: "Security & governance", to: "/security" },
+	{ label: "Insights", to: "/insights" },
 	{ label: "Contact", to: "/contact" },
 ];
 
 export const mationMeta = {
 	name: "Mation",
-	tagline:
-		"Turn conversations into measurable business outcomes.",
+	tagline: "The operating system your business actually runs on.",
 	description:
-		"Mation eliminates manual admin and disconnected tools, giving your team a single platform to automate operations, ensure compliance, and drive growth.",
+		"Mation is a software-engineering partner that builds bespoke systems — unifying your tools, data, and workflows into one operating system, engineered around exactly how you operate and powered by AI.",
 	email: "hello@mation.nz",
 	phone: "+64 9 889 4006",
 	location: "Auckland, New Zealand",

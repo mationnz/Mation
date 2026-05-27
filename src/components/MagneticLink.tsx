@@ -15,7 +15,7 @@ export default function MagneticLink({
 }: MagneticLinkProps) {
 	const shellRef = useRef<HTMLSpanElement>(null);
 
-	const handleMouseMove = (event: React.MouseEvent<HTMLSpanElement>) => {
+	const handleMouseMove = (event: React.MouseEvent<HTMLAnchorElement>) => {
 		const shell = shellRef.current;
 		if (!shell) {
 			return;
@@ -40,13 +40,13 @@ export default function MagneticLink({
 	};
 
 	return (
-		<span
-			ref={shellRef}
-			className="magnetic-shell"
-			onMouseMove={handleMouseMove}
-			onMouseLeave={handleMouseLeave}
-		>
-			<Link to={to} className={`magnetic-target ${className}`.trim()}>
+		<span ref={shellRef} className="magnetic-shell">
+			<Link
+				to={to}
+				className={`magnetic-target ${className}`.trim()}
+				onMouseMove={handleMouseMove}
+				onMouseLeave={handleMouseLeave}
+			>
 				{children}
 			</Link>
 		</span>

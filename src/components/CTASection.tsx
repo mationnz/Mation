@@ -11,18 +11,18 @@ type CTASectionProps = {
 export default function CTASection({
 	title,
 	description,
-	primaryLabel = "Book a demo",
-	secondaryLabel = "See how it works",
+	primaryLabel = "Book a discovery call",
+	secondaryLabel = "See our approach",
 }: CTASectionProps) {
 	return (
 		<section className="site-shell section-shell">
-			<div className="panel-glass relative overflow-hidden rounded-3xl p-8 sm:p-10 lg:p-12">
-				<div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle,var(--brand-cyan),transparent_70%)] opacity-25 blur-3xl" />
-				<p className="kicker">Next Move</p>
-				<h2 className="mt-4 max-w-2xl text-balance font-heading text-3xl font-semibold text-white sm:text-4xl">
+			<div className="panel ticked relative overflow-hidden rounded-[22px] p-8 sm:p-12">
+				<div className="pointer-events-none absolute -right-28 -top-28 h-72 w-72 rounded-full bg-[radial-gradient(circle,var(--color-violet),transparent_70%)] opacity-20 blur-3xl" />
+				<p className="kicker">Start here</p>
+				<h2 className="mt-5 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.6rem] sm:leading-[1.05]">
 					{title}
 				</h2>
-				<p className="mt-4 max-w-2xl text-pretty text-base text-indigo-100/80 sm:text-lg">
+				<p className="mt-4 max-w-2xl text-pretty text-base text-mute sm:text-lg">
 					{description}
 				</p>
 				<div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -34,7 +34,7 @@ export default function CTASection({
 						{primaryLabel}
 					</MagneticLink>
 					<MagneticLink
-						to="/product"
+						to="/approach"
 						className="button-secondary inline-flex items-center gap-2"
 					>
 						{secondaryLabel}
