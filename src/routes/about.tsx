@@ -168,13 +168,13 @@ function AboutPage() {
 			{/* Hero */}
 			<section className="glow section-shell pt-10 sm:pt-14">
 				<div className="site-wide">
-					<div className="dimline reveal-up mb-10">
-						Mation — the people behind the system · est. Auckland NZ
-					</div>
+					<p className="kicker reveal-up mb-8">
+						The people behind the system · Auckland, NZ
+					</p>
 					<div className="max-w-4xl space-y-7">
 						<span className="pill reveal-up">
-							<MapPin className="h-3.5 w-3.5 text-violet-bright" /> Auckland,
-							New Zealand
+							<MapPin className="h-3.5 w-3.5 text-violet" /> Auckland, New
+							Zealand
 						</span>
 						<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4rem]">
 							Senior engineers who build the{" "}
@@ -202,9 +202,7 @@ function AboutPage() {
 
 			{/* We are / we are not */}
 			<section className="site-wide section-shell pt-0">
-				<p className="section-index reveal-scroll mb-4">
-					<b>01</b> &nbsp;/&nbsp; What we are
-				</p>
+				<p className="kicker reveal-scroll mb-4">What we are</p>
 				<h2 className="reveal-scroll mb-8 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 					A different kind of software partner.
 				</h2>
@@ -214,14 +212,14 @@ function AboutPage() {
 						<ul className="mt-5 space-y-3.5">
 							{weAre.map((item) => (
 								<li key={item} className="flex items-start gap-3 text-ink/90">
-									<Check className="mt-0.5 h-5 w-5 shrink-0 text-violet-bright" />
+									<Check className="mt-0.5 h-5 w-5 shrink-0 text-violet" />
 									<span>{item}</span>
 								</li>
 							))}
 						</ul>
 					</div>
 					<div className="panel-line p-7">
-						<p className="kicker !text-mute before:!bg-[var(--color-line)]">
+						<p className="kicker !text-mute before:!bg-border-strong">
 							We are not
 						</p>
 						<ul className="mt-5 space-y-3.5">
@@ -240,19 +238,23 @@ function AboutPage() {
 			<section className="site-wide section-shell pt-0">
 				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
 					<div className="reveal-scroll mb-10 flex flex-wrap items-center justify-between gap-4">
-						<p className="section-index">
-							<b>·</b> &nbsp;/&nbsp; What the partnership means
-						</p>
-						<span className="bp-coord hidden sm:block">
-							FIG.A · OWNERSHIP MODEL
+						<p className="kicker">What the partnership means</p>
+						<span className="hidden text-sm text-mute sm:block">
+							The ownership model, in three numbers
 						</span>
 					</div>
 					<div className="reveal-stagger grid gap-10 sm:grid-cols-3">
-						{stats.map((stat) => (
+						{stats.map((stat, idx) => (
 							<div key={stat.label}>
 								<div className="font-heading text-[clamp(3.2rem,7vw,5rem)] font-semibold leading-none tracking-[-0.04em] text-ink">
-									<span className="gradient-ink">{stat.value}</span>
+									{stat.value}
 								</div>
+								<span
+									aria-hidden
+									className={`mt-4 block h-[3px] w-12 rounded-full ${
+										idx === 1 ? "bg-warm" : "bg-violet"
+									}`}
+								/>
 								<p className="mt-3 max-w-[16rem] text-sm leading-snug text-mute">
 									{stat.label}
 								</p>
@@ -266,29 +268,20 @@ function AboutPage() {
 			<section className="site-wide section-shell pt-0">
 				<div className="reveal-scroll mb-8 flex flex-wrap items-end justify-between gap-4">
 					<div>
-						<p className="section-index mb-4">
-							<b>02</b> &nbsp;/&nbsp; Principles
-						</p>
+						<p className="kicker mb-4">Principles</p>
 						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 							The convictions that shape what we build.
 						</h2>
 					</div>
-					<p className="dimline hidden max-w-xs md:flex">Conviction · craft</p>
+					<p className="hidden max-w-xs text-sm text-mute md:block">
+						Conviction and craft, in equal measure.
+					</p>
 				</div>
-				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] sm:grid-cols-2 lg:grid-cols-3">
+				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
 					{principles.map((principle) => (
-						<div key={principle.title} className="group bg-panel p-6">
-							<div className="relative mb-5 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-								<span
-									aria-hidden
-									className="pointer-events-none absolute inset-0 opacity-40"
-									style={{
-										backgroundImage:
-											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-										backgroundSize: "8px 8px",
-									}}
-								/>
-								<principle.icon className="relative h-5 w-5" />
+						<div key={principle.title} className="group bg-surface p-6">
+							<div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
+								<principle.icon className="h-5 w-5" />
 							</div>
 							<h3 className="font-heading text-lg font-semibold text-ink">
 								{principle.title}
@@ -303,9 +296,7 @@ function AboutPage() {
 
 			{/* How we engage */}
 			<section className="site-wide section-shell pt-0">
-				<p className="section-index reveal-scroll mb-4">
-					<b>03</b> &nbsp;/&nbsp; How we engage
-				</p>
+				<p className="kicker reveal-scroll mb-4">How we engage</p>
 				<h2 className="reveal-scroll mb-8 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 					A partnership, not a project queue.
 				</h2>
@@ -315,20 +306,12 @@ function AboutPage() {
 							key={item.title}
 							className="panel panel-hover group relative p-7"
 						>
-							<span className="bp-coord absolute right-5 top-5">
-								{String(idx + 1).padStart(2, "0")}
-							</span>
-							<div className="relative mb-5 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-								<span
-									aria-hidden
-									className="pointer-events-none absolute inset-0 opacity-40"
-									style={{
-										backgroundImage:
-											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-										backgroundSize: "8px 8px",
-									}}
-								/>
-								<item.icon className="relative h-5 w-5" />
+							<span
+								aria-hidden
+								className={`card-node${idx === 0 ? " is-warm" : ""}`}
+							/>
+							<div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
+								<item.icon className="h-5 w-5" />
 							</div>
 							<h3 className="font-heading text-lg font-semibold text-ink">
 								{item.title}
@@ -345,29 +328,20 @@ function AboutPage() {
 			<section className="site-wide section-shell pt-0">
 				<div className="reveal-scroll mb-8 flex flex-wrap items-end justify-between gap-4">
 					<div>
-						<p className="section-index mb-4">
-							<b>04</b> &nbsp;/&nbsp; The people who build it
-						</p>
+						<p className="kicker mb-4">The people who build it</p>
 						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 							Small, senior, and close to the work.
 						</h2>
 					</div>
 					<span className="tag">Bios to be added</span>
 				</div>
-				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] md:grid-cols-3">
+				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border md:grid-cols-3">
 					{team.map((member) => (
-						<div key={member.role} className="bg-panel p-7">
-							<div className="bracket mb-5 inline-block">
-								<div
-									aria-hidden
-									className="flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-white/[0.03] font-mono text-sm text-violet-bright"
-								>
-									[ ]
-								</div>
+						<div key={member.role} className="bg-surface p-7">
+							<div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
+								<Users aria-hidden className="h-5 w-5" />
 							</div>
-							<p className="font-mono text-xs uppercase tracking-[0.14em] text-violet-bright">
-								{member.role}
-							</p>
+							<p className="text-sm font-semibold text-violet">{member.role}</p>
 							<p className="mt-2 font-heading text-lg font-semibold text-ink/70">
 								[Name — placeholder]
 							</p>
@@ -385,20 +359,20 @@ function AboutPage() {
 
 			{/* Security & data ownership */}
 			<section className="glow site-wide section-shell pt-0">
-				<p className="section-index reveal-scroll mb-4">
-					<b>05</b> &nbsp;/&nbsp; Security & data ownership
+				<p className="kicker reveal-scroll mb-4">
+					Security &amp; data ownership
 				</p>
 				<div className="panel ticked relative overflow-hidden rounded-[22px] p-8 sm:p-12">
-					<span className="bp-coord absolute right-6 top-6 hidden sm:block">
-						FIG.B · GOVERNANCE
+					<span className="absolute right-6 top-6 hidden text-sm text-mute sm:block">
+						How your data stays governed
 					</span>
 					<div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
 						<div className="reveal-scroll">
-							<div className="mb-5 inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
+							<div className="mb-5 inline-flex rounded-xl border border-border bg-surface-violet p-3 text-violet">
 								<ShieldCheck className="h-5 w-5" />
 							</div>
 							<h2 className="font-heading text-2xl font-semibold text-ink sm:text-3xl">
-								Enterprise-grade, and yours to keep.
+								Serious security — and yours to keep.
 							</h2>
 							<p className="mt-4 max-w-xl text-pretty text-ink/85">
 								Security, access control, and auditability are part of the build
@@ -410,13 +384,13 @@ function AboutPage() {
 								<ArrowRight className="h-4 w-4" />
 							</Link>
 						</div>
-						<ul className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] sm:grid-cols-2">
+						<ul className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border sm:grid-cols-2">
 							{dataPoints.map((point) => (
 								<li
 									key={point}
-									className="ticked flex items-start gap-3 bg-panel p-5 text-sm leading-relaxed text-ink/85"
+									className="flex items-start gap-3 bg-surface p-5 text-sm leading-relaxed text-ink/85"
 								>
-									<Check className="mt-0.5 h-4 w-4 shrink-0 text-violet-bright" />
+									<Check className="mt-0.5 h-4 w-4 shrink-0 text-violet" />
 									<span>{point}</span>
 								</li>
 							))}

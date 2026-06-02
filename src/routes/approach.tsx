@@ -88,7 +88,7 @@ const engineeringPillars = [
 	{
 		icon: Layers,
 		title: "Reliable, scalable foundations",
-		desc: "Standard, well-understood architecture that holds up under load and grows with the business — no bespoke magic to maintain.",
+		desc: "Proven, well-understood foundations that hold up under load and grow with you — nothing fragile or one-off to maintain.",
 	},
 	{
 		icon: Repeat,
@@ -133,10 +133,10 @@ const blueprintDeliverables = [
 
 // The architecture we design FOR each client — a bespoke layered figure.
 const archLayers = [
-	{ tag: "EXPERIENCE", label: "Internal tools & dashboards" },
-	{ tag: "AUTOMATION", label: "Workflows & AI agents" },
-	{ tag: "DATA", label: "One unified model of your business" },
-	{ tag: "INTEGRATION", label: "Your existing tools, connected" },
+	{ tag: "Experience", label: "Internal tools & dashboards" },
+	{ tag: "Automation", label: "Workflows & AI agents" },
+	{ tag: "Data", label: "One unified model of your business" },
+	{ tag: "Integration", label: "Your existing tools, connected" },
 ];
 
 // Commercial models — mirrors the /plans treatment; detail lives there.
@@ -150,9 +150,9 @@ function ApproachPage() {
 			{/* Hero */}
 			<section className="glow section-shell pt-10 sm:pt-14">
 				<div className="site-wide">
-					<div className="dimline reveal-up mb-10">
+					<p className="kicker reveal-up mb-10">
 						Approach — discovery to a system you own
-					</div>
+					</p>
 					<div className="grid items-center gap-12 lg:grid-cols-[1.06fr_0.94fr]">
 						<div className="space-y-7">
 							<span className="pill reveal-up">
@@ -177,53 +177,39 @@ function ApproachPage() {
 									What we build
 								</MagneticLink>
 							</div>
-							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
+							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-mute">
 								<li className="flex items-center gap-2">
-									<Check className="h-3.5 w-3.5 text-violet-bright" /> Senior,
-									embedded engineers
+									<Check className="h-4 w-4 text-violet" /> Senior, embedded
+									engineers
 								</li>
 								<li className="flex items-center gap-2">
-									<Check className="h-3.5 w-3.5 text-violet-bright" />{" "}
-									Accountable for outcomes
+									<Check className="h-4 w-4 text-violet" /> Accountable for
+									outcomes
 								</li>
 								<li className="flex items-center gap-2">
-									<Check className="h-3.5 w-3.5 text-violet-bright" /> You own
-									everything we ship
+									<Check className="h-4 w-4 text-violet" /> You own everything
+									we ship
 								</li>
 							</ul>
 						</div>
 
 						{/* Hero figure — the four-stage engagement, at a glance */}
 						<div className="reveal-up delay-2 relative">
-							<div className="bracket">
-								<div className="panel ticked relative overflow-hidden rounded-[22px] p-6 sm:p-7">
-									<div
-										aria-hidden
-										className="pointer-events-none absolute inset-0 opacity-60"
-										style={{
-											backgroundImage:
-												"linear-gradient(rgba(123,97,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.06) 1px, transparent 1px)",
-											backgroundSize: "32px 32px",
-											maskImage:
-												"radial-gradient(circle at 50% 40%, #000 30%, transparent 92%)",
-										}}
-									/>
-									<div className="relative flex items-center justify-between">
-										<p className="bp-coord">FIG.01 · THE ENGAGEMENT</p>
-										<span className="flex items-center gap-1.5 text-xs text-mute">
-											<span className="live-dot" />
-											<span className="font-mono text-[0.62rem] uppercase tracking-[0.18em]">
-												Live
-											</span>
-										</span>
-									</div>
-									<ol className="relative mt-5 space-y-px">
-										{engagementHeads.map((stage, i) => (
-											<li
-												key={stage.n}
-												className="flex items-center gap-4 rounded-[10px] border border-line bg-panel-2/60 p-3.5"
-											>
-												<span className="font-mono text-sm text-violet-bright">
+							<figure className="figure-plate ticked">
+								<figcaption className="flex items-center justify-between">
+									<p className="font-heading text-base font-semibold text-ink">
+										How an engagement works
+									</p>
+									<span className="flex items-center gap-1.5 text-xs text-mute">
+										<span className="live-dot" />
+										Live
+									</span>
+								</figcaption>
+								<ol className="mt-5 space-y-2.5">
+									{engagementHeads.map((stage, i) => (
+										<li key={stage.n}>
+											<div className="flex items-center gap-4 rounded-[12px] border border-border bg-surface px-4 py-3.5">
+												<span className="font-display text-lg font-medium text-violet">
 													{stage.n}
 												</span>
 												<div className="min-w-0">
@@ -234,19 +220,21 @@ function ApproachPage() {
 														{stage.note}
 													</p>
 												</div>
-												{i < engagementHeads.length - 1 && (
-													<ArrowRight className="ml-auto h-4 w-4 shrink-0 rotate-90 text-violet/60" />
-												)}
-											</li>
-										))}
-									</ol>
-								</div>
-							</div>
-							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
-								<span className="bp-coord">4 stages → 1 system</span>
-							</div>
-							<p className="bp-coord mt-3 text-center">
-								FIG.01 · ENGAGEMENT — DISCOVERY → RUN
+											</div>
+											{i < engagementHeads.length - 1 && (
+												<div
+													aria-hidden
+													className={`mx-auto h-3 w-px bg-gradient-to-b to-transparent ${
+														i === 1 ? "from-warm/60" : "from-violet/45"
+													}`}
+												/>
+											)}
+										</li>
+									))}
+								</ol>
+							</figure>
+							<p className="plate-caption">
+								Four stages, from first conversation to a system you run.
 							</p>
 						</div>
 					</div>
@@ -303,7 +291,7 @@ function ApproachPage() {
 			<section className="site-wide section-shell pt-0">
 				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
 					<div className="flex items-start gap-4">
-						<div className="hidden shrink-0 rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright sm:inline-flex">
+						<div className="hidden shrink-0 rounded-xl border border-border bg-surface-2 p-3 text-violet sm:inline-flex">
 							<Handshake className="h-5 w-5" />
 						</div>
 						<div>
@@ -320,22 +308,17 @@ function ApproachPage() {
 					</p>
 				</div>
 				<div className="reveal-stagger grid gap-5 sm:grid-cols-2">
-					{teamPrinciples.map((item) => (
+					{teamPrinciples.map((item, i) => (
 						<article
 							key={item.title}
 							className="panel panel-hover group p-6 sm:p-7"
 						>
-							<div className="relative mb-4 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-								<span
-									aria-hidden
-									className="pointer-events-none absolute inset-0 opacity-40"
-									style={{
-										backgroundImage:
-											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-										backgroundSize: "8px 8px",
-									}}
-								/>
-								<item.icon className="relative h-5 w-5" />
+							<span
+								className={`card-node${i % 3 === 1 ? " is-warm" : ""}`}
+								aria-hidden
+							/>
+							<div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-2 text-violet">
+								<item.icon className="h-5 w-5" />
 							</div>
 							<h3 className="font-heading text-lg font-semibold text-ink">
 								{item.title}
@@ -364,22 +347,17 @@ function ApproachPage() {
 				</div>
 				<div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
 					<div className="reveal-stagger grid gap-5 sm:grid-cols-2">
-						{engineeringPillars.map((pillar) => (
+						{engineeringPillars.map((pillar, i) => (
 							<article
 								key={pillar.title}
 								className="panel panel-hover group p-6"
 							>
-								<div className="relative mb-4 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-									<span
-										aria-hidden
-										className="pointer-events-none absolute inset-0 opacity-40"
-										style={{
-											backgroundImage:
-												"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-											backgroundSize: "8px 8px",
-										}}
-									/>
-									<pillar.icon className="relative h-5 w-5" />
+								<span
+									className={`card-node${i % 3 === 2 ? " is-warm" : ""}`}
+									aria-hidden
+								/>
+								<div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-2 text-violet">
+									<pillar.icon className="h-5 w-5" />
 								</div>
 								<h3 className="font-heading text-base font-semibold text-ink">
 									{pillar.title}
@@ -393,55 +371,44 @@ function ApproachPage() {
 
 					{/* Bespoke layered figure — the system stack */}
 					<div className="reveal-scroll relative">
-						<div className="bracket">
-							<div className="panel ticked relative overflow-hidden rounded-[22px] p-6 sm:p-7">
-								<div
-									aria-hidden
-									className="pointer-events-none absolute inset-0 opacity-50"
-									style={{
-										backgroundImage:
-											"linear-gradient(rgba(123,97,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.06) 1px, transparent 1px)",
-										backgroundSize: "32px 32px",
-										maskImage:
-											"radial-gradient(circle at 50% 50%, #000 20%, transparent 90%)",
-									}}
-								/>
-								<div className="relative flex items-center justify-between">
-									<p className="bp-coord">FIG.02 · THE SYSTEM, LAYERED</p>
-									<span className="bp-coord">4 LAYERS</span>
-								</div>
-								<div className="relative mt-5 space-y-2.5">
-									{archLayers.map((layer, i) => (
-										<div key={layer.tag}>
-											<div className="flex items-center gap-3 rounded-[12px] border border-line bg-panel-2 px-4 py-3.5">
-												<span className="font-mono text-[0.6rem] text-violet/70">
-													L{archLayers.length - i}
-												</span>
-												<div className="min-w-0">
-													<p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-violet-bright">
-														{layer.tag}
-													</p>
-													<p className="mt-1 text-sm text-ink">{layer.label}</p>
-												</div>
+						<figure className="figure-plate ticked">
+							<figcaption className="flex items-center justify-between">
+								<p className="font-heading text-base font-semibold text-ink">
+									The system, layer by layer
+								</p>
+								<span className="text-xs text-mute">Built around you</span>
+							</figcaption>
+							<div className="mt-5 space-y-2.5">
+								{archLayers.map((layer, i) => (
+									<div key={layer.tag}>
+										<div className="flex items-center gap-3 rounded-[12px] border border-border bg-surface px-4 py-3.5">
+											<span className="font-display text-sm font-medium text-violet">
+												L{archLayers.length - i}
+											</span>
+											<div className="min-w-0">
+												<p className="text-xs font-semibold text-violet-ink">
+													{layer.tag}
+												</p>
+												<p className="mt-1 text-sm text-ink">{layer.label}</p>
 											</div>
-											{i < archLayers.length - 1 && (
-												<div
-													aria-hidden
-													className="mx-auto h-3 w-px bg-gradient-to-b from-violet/50 to-violet/10"
-												/>
-											)}
 										</div>
-									))}
-								</div>
-								<div className="relative mt-5 flex items-center gap-2 border-t border-line pt-4 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-mute">
-									<ShieldCheck className="h-3.5 w-3.5 text-violet-bright" />
-									Governed & observable end-to-end
-								</div>
+										{i < archLayers.length - 1 && (
+											<div
+												aria-hidden
+												className="mx-auto h-3 w-px bg-gradient-to-b from-violet/45 to-transparent"
+											/>
+										)}
+									</div>
+								))}
 							</div>
-						</div>
-						<div className="absolute -right-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
-							<span className="bp-coord">Built around you</span>
-						</div>
+							<div className="mt-5 flex items-center gap-2 border-t border-border pt-4 text-xs text-mute">
+								<ShieldCheck className="h-3.5 w-3.5 text-violet" />
+								Governed and observable end to end
+							</div>
+						</figure>
+						<p className="plate-caption">
+							One layered system, engineered around how you operate.
+						</p>
 					</div>
 				</div>
 			</section>
@@ -462,22 +429,17 @@ function ApproachPage() {
 					</p>
 				</div>
 				<div className="reveal-stagger grid gap-5 md:grid-cols-3">
-					{philosophy.map((item) => (
+					{philosophy.map((item, i) => (
 						<article
 							key={item.title}
 							className="panel panel-hover group p-6 sm:p-7"
 						>
-							<div className="relative mb-5 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-								<span
-									aria-hidden
-									className="pointer-events-none absolute inset-0 opacity-40"
-									style={{
-										backgroundImage:
-											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-										backgroundSize: "8px 8px",
-									}}
-								/>
-								<item.icon className="relative h-5 w-5" />
+							<span
+								className={`card-node${i === 1 ? " is-warm" : ""}`}
+								aria-hidden
+							/>
+							<div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-2 text-violet">
+								<item.icon className="h-5 w-5" />
 							</div>
 							<h3 className="font-heading text-lg font-semibold text-ink">
 								{item.title}
@@ -490,11 +452,11 @@ function ApproachPage() {
 				</div>
 
 				{/* Oversized ownership statement — reinforces, doesn't add claims */}
-				<div className="reveal-scroll mt-5 grid items-center gap-8 rounded-[22px] border border-line bg-panel/40 px-7 py-9 sm:grid-cols-[auto_1fr] sm:px-10">
-					<div className="font-heading text-[clamp(2.6rem,6vw,4.5rem)] font-semibold leading-none tracking-[-0.04em]">
-						<span className="gradient-ink">100%</span>
+				<div className="reveal-scroll mt-5 grid items-center gap-8 rounded-[22px] border border-border bg-surface-2 px-7 py-9 sm:grid-cols-[auto_1fr] sm:px-10">
+					<div className="metric-value">
+						<span className="text-violet-ink">100%</span>
 					</div>
-					<p className="max-w-xl text-pretty text-ink/85">
+					<p className="max-w-xl text-pretty text-ink-soft">
 						Yours — the code, the data, and the infrastructure, handed over in
 						full. The system runs on your terms, long after we ship.
 					</p>
@@ -524,33 +486,33 @@ function ApproachPage() {
 									<ArrowRight className="h-4 w-4" />
 								</MagneticLink>
 								<span className="tag">
-									<MapIcon className="h-3.5 w-3.5 text-violet-bright" />
+									<MapIcon className="h-3.5 w-3.5 text-violet" />
 									Fixed scope · fixed price
 								</span>
 							</div>
 						</div>
-						<div className="rounded-[14px] border border-line bg-panel-2/50 p-6 sm:p-7">
+						<div className="rounded-[14px] border border-border bg-surface-2 p-6 sm:p-7">
 							<div className="flex items-center justify-between">
-								<div className="flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-violet-bright">
+								<div className="flex items-center gap-2 text-sm font-semibold text-violet-ink">
 									<FileText className="h-4 w-4" />
 									You walk away with
 								</div>
 								<div className="flex items-baseline gap-2 leading-none">
-									<span className="font-heading text-[clamp(2.6rem,6vw,4.5rem)] font-semibold leading-none tracking-[-0.04em]">
-										<span className="gradient-ink">
+									<span className="metric-value">
+										<span className="text-violet-ink">
 											{blueprintDeliverables.length.toString().padStart(2, "0")}
 										</span>
 									</span>
-									<span className="bp-coord">deliverables</span>
+									<span className="text-sm text-mute">deliverables</span>
 								</div>
 							</div>
 							<ul className="mt-5 space-y-3.5">
 								{blueprintDeliverables.map((item) => (
 									<li
 										key={item}
-										className="flex items-start gap-3 text-sm text-ink/90"
+										className="flex items-start gap-3 text-sm text-ink-soft"
 									>
-										<Check className="mt-0.5 h-5 w-5 shrink-0 text-violet-bright" />
+										<Check className="mt-0.5 h-5 w-5 shrink-0 text-violet" />
 										<span>{item}</span>
 									</li>
 								))}
@@ -588,9 +550,13 @@ function ApproachPage() {
 					{offer.models.map((model, i) => {
 						const Icon = modelIcons[i];
 						return (
-							<article key={model.name} className="panel panel-hover p-7">
+							<article key={model.name} className="panel panel-hover group p-7">
+								<span
+									className={`card-node${i === 1 ? " is-warm" : ""}`}
+									aria-hidden
+								/>
 								<div className="flex items-center justify-between">
-									<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+									<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-2 text-violet">
 										<Icon className="h-5 w-5" />
 									</div>
 									<span className="tag">{model.tag}</span>
@@ -614,7 +580,7 @@ function ApproachPage() {
 					className="reveal-scroll panel panel-hover group flex flex-col items-start gap-5 p-7 sm:flex-row sm:items-center sm:justify-between"
 				>
 					<div className="flex items-start gap-4">
-						<div className="inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
+						<div className="inline-flex rounded-xl border border-border bg-surface-2 p-3 text-violet">
 							<ShieldCheck className="h-5 w-5" />
 						</div>
 						<div>
@@ -622,7 +588,7 @@ function ApproachPage() {
 								<b>08</b> &nbsp;/&nbsp; Security
 							</p>
 							<h3 className="font-heading text-lg font-semibold text-ink">
-								Enterprise-grade governance, built in.
+								Your data protected, every action tracked.
 							</h3>
 							<p className="mt-1 max-w-xl text-sm leading-relaxed text-mute">
 								Access control, audit trails, secure data handling, and data

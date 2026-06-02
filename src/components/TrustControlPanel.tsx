@@ -29,36 +29,43 @@ const controlLabels: Record<ControlKey, string> = {
 export default function TrustControlPanel() {
 	const [controls, setControls] = useState<Controls>(initialControls);
 
-	const exposure = useMemo(() => {
-		let score = 0.71;
-		if (controls.humanApproval) score -= 0.17;
-		if (controls.policyRestrictions) score -= 0.15;
-		if (controls.leastPrivilege) score -= 0.11;
-		if (controls.scopedReach) score -= 0.13;
-		if (controls.auditTrail) score -= 0.1;
-		return Math.max(0.05, score);
+	const protection = useMemo(() => {
+		let score = 0.29;
+		if (controls.humanApproval) score += 0.17;
+		if (controls.policyRestrictions) score += 0.15;
+		if (controls.leastPrivilege) score += 0.11;
+		if (controls.scopedReach) score += 0.13;
+		if (controls.auditTrail) score += 0.1;
+		return Math.min(0.95, score);
 	}, [controls]);
 
 	const activeCount = Object.values(controls).filter(Boolean).length;
+	const allOn = activeCount === 5;
 
 	return (
 		<div className="grid gap-4 text-left lg:grid-cols-[0.57fr_0.43fr]">
 			<div className="panel rounded-[18px] p-6 sm:p-7">
 				<div className="mb-5 flex items-center justify-between gap-3">
-					<p className="kicker">Controls we build in</p>
-					<div className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-violet-bright">
+					<p className="kicker">Safeguards we build in</p>
+					<div
+						className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold ${
+							allOn
+								? "border-[var(--color-success)] text-[var(--color-success)]"
+								: "border-border text-mute"
+						}`}
+					>
 						<ShieldCheck className="h-3.5 w-3.5" />
-						{activeCount}/5 active
+						{activeCount}/5 on
 					</div>
 				</div>
 
-				<div className="flex flex-col gap-px overflow-hidden rounded-[12px] border border-line bg-[var(--color-line)]">
+				<div className="flex flex-col gap-px overflow-hidden rounded-[12px] border border-border bg-border">
 					{(Object.keys(controls) as ControlKey[]).map((key) => (
 						<div
 							key={key}
-							className="flex items-center justify-between gap-4 bg-panel p-4"
+							className="flex items-center justify-between gap-4 bg-surface p-4"
 						>
-							<p className="text-sm text-ink/85">{controlLabels[key]}</p>
+							<p className="text-sm text-ink-soft">{controlLabels[key]}</p>
 							<button
 								type="button"
 								onClick={() =>
@@ -79,33 +86,30 @@ export default function TrustControlPanel() {
 			</div>
 
 			<div className="panel rounded-[18px] p-6 sm:p-7">
-				<p className="font-mono text-[0.66rem] uppercase tracking-[0.2em] text-mute">
-					Exposure with controls on
-				</p>
-				<p className="mt-4 metric-value">{(exposure * 100).toFixed(0)}%</p>
+				<p className="kicker">More safeguards, less risk</p>
+				<p className="mt-4 metric-value">{(protection * 100).toFixed(0)}%</p>
 				<p className="mt-2 text-sm text-mute">
-					The more guardrails on, the less surface area exposed.
+					A live read on how protected you are — every safeguard you turn on
+					closes off more risk.
 				</p>
 
 				<div className="trust-meter mt-5">
-					<div style={{ width: `${100 - exposure * 100}%` }} />
+					<div style={{ width: `${protection * 100}%` }} />
 				</div>
 
-				<div className="mt-6 rounded-[12px] border border-line bg-white/[0.02] p-4">
-					<p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-mute">
-						Audit stream
-					</p>
-					<div className="mt-3 space-y-2 text-sm text-ink/82">
+				<div className="mt-6 rounded-[12px] border border-border bg-canvas-2 p-4">
+					<p className="kicker">Audit stream</p>
+					<div className="mt-3 space-y-2 text-sm text-ink-soft">
 						<p className="flex items-start gap-2">
-							<LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0 text-violet-bright" />
+							<LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-success)]" />
 							Policy check passed before the action ran
 						</p>
 						<p className="flex items-start gap-2">
-							<LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0 text-violet-bright" />
+							<LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-success)]" />
 							Approval requested for a change above threshold
 						</p>
 						<p className="flex items-start gap-2">
-							<LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0 text-violet-bright" />
+							<LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-success)]" />
 							Every step recorded against the user who ran it
 						</p>
 					</div>

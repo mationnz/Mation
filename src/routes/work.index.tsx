@@ -52,13 +52,13 @@ function WorkIndexPage() {
 			{/* Hero */}
 			<section className="glow section-shell">
 				<div className="site-wide">
-					<div className="dimline reveal-up mb-10">
-						Mation — selected work · sample cases by sector
-					</div>
+					<p className="kicker reveal-up mb-6">
+						Selected work · sample cases by sector
+					</p>
 					<div className="grid items-end gap-12 lg:grid-cols-[1.1fr_0.9fr]">
 						<div className="max-w-3xl space-y-7">
 							<span className="pill reveal-up">
-								<FlaskConical className="h-3.5 w-3.5 text-violet-bright" />
+								<FlaskConical className="h-3.5 w-3.5 text-violet" />
 								Selected work
 							</span>
 							<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4rem]">
@@ -100,7 +100,7 @@ function WorkIndexPage() {
 			<section className="site-wide section-shell pt-0">
 				<div className="reveal-up panel-line flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
 					<div className="flex items-start gap-4">
-						<div className="inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
+						<div className="inline-flex rounded-xl border border-border bg-surface-2 p-3 text-violet">
 							<FlaskConical className="h-5 w-5" />
 						</div>
 						<div>
@@ -123,9 +123,7 @@ function WorkIndexPage() {
 			{/* Filter + grid */}
 			<section className="site-wide section-shell pt-0">
 				<div className="reveal-scroll mb-8 flex flex-wrap items-end justify-between gap-4">
-					<p className="section-index">
-						<b>01</b> &nbsp;/&nbsp; Case studies
-					</p>
+					<p className="kicker">Case studies</p>
 					<div className="flex flex-wrap gap-2">
 						{industries.map((industry) => {
 							const active = industry === filter;
@@ -136,8 +134,8 @@ function WorkIndexPage() {
 									onClick={() => setFilter(industry)}
 									className={`tag transition-colors duration-200 ${
 										active
-											? "border-[rgba(166,146,255,0.55)] text-ink"
-											: "hover:border-[var(--line-strong)] hover:text-ink"
+											? "border-violet text-ink"
+											: "hover:border-border-strong hover:text-ink"
 									}`}
 									aria-pressed={active}
 								>
@@ -150,7 +148,7 @@ function WorkIndexPage() {
 
 				<div className="reveal-stagger grid auto-rows-fr gap-5 md:grid-cols-2 lg:grid-cols-3">
 					{visible.map((study, i) => {
-						// The first card reads as a feature tile (wider, bracketed).
+						// The first card reads as a feature tile (wider, coral-tabbed).
 						const featured = i === 0;
 						return (
 							<Link
@@ -158,25 +156,24 @@ function WorkIndexPage() {
 								to="/work/$slug"
 								params={{ slug: study.slug }}
 								className={`panel panel-hover group relative flex flex-col p-6 sm:p-7 ${
-									featured ? "md:col-span-2 lg:col-span-2" : ""
+									featured ? "ticked md:col-span-2 lg:col-span-2" : ""
 								}`}
 							>
-								{/* figure / sector coordinate badge */}
-								<span className="bp-coord absolute right-5 top-5">
-									{`CASE.${String(i + 1).padStart(2, "0")}`}
-								</span>
+								{/* Card corner node — coral on the featured tile, violet otherwise */}
+								<span
+									aria-hidden
+									className={`card-node ${featured ? "is-warm" : ""}`}
+								/>
 
-								<div className="flex flex-wrap items-center gap-2 pr-16">
+								<div className="flex flex-wrap items-center gap-2 pr-10">
 									<span className="tag">{study.industry}</span>
-									<span className="font-mono text-xs text-mute">
-										{study.year}
-									</span>
+									<span className="text-xs text-mute">{study.year}</span>
 									{study.isPlaceholder ? (
-										<span className="tag !text-violet-bright">Sample case</span>
+										<span className="tag !text-violet">Sample case</span>
 									) : null}
 								</div>
 
-								<p className="mt-4 font-mono text-xs uppercase tracking-[0.12em] text-mute">
+								<p className="mt-4 text-sm font-medium text-mute">
 									{study.client}
 								</p>
 								<h3
@@ -202,8 +199,8 @@ function WorkIndexPage() {
 
 									{/* Feature tiles surface a second proof point */}
 									{featured && study.results[1] ? (
-										<div className="hidden border-l border-line pl-5 sm:block">
-											<div className="font-heading text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-none tracking-[-0.03em] text-ink/90">
+										<div className="hidden border-l border-border pl-5 sm:block">
+											<div className="font-heading text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-none tracking-[-0.03em] text-ink-soft">
 												{study.results[1].metric}
 											</div>
 											<p className="mt-2 max-w-[12rem] text-xs leading-snug text-mute">
@@ -217,34 +214,20 @@ function WorkIndexPage() {
 
 								<div className="flex items-center justify-between gap-4">
 									<span className="bp-coord">
-										{`${study.results.length} results · measured`}
+										{`${study.results.length} results, measured`}
 									</span>
 									<span className="button-ghost shrink-0">
 										Read case
 										<ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
 									</span>
 								</div>
-
-								{/* Blueprint bracket marks on the feature tile */}
-								{featured ? (
-									<>
-										<span
-											aria-hidden
-											className="pointer-events-none absolute left-3 top-3 h-4 w-4 border-l border-t border-[rgba(166,146,255,0.4)]"
-										/>
-										<span
-											aria-hidden
-											className="pointer-events-none absolute bottom-3 right-3 h-4 w-4 border-b border-r border-[rgba(166,146,255,0.4)]"
-										/>
-									</>
-								) : null}
 							</Link>
 						);
 					})}
 
 					{visible.length === 0 ? (
 						<div className="panel-line flex items-center gap-3 p-6 text-mute md:col-span-2 lg:col-span-3">
-							<Minus className="h-4 w-4 text-violet-bright" />
+							<Minus className="h-4 w-4 text-violet" />
 							<p className="text-sm">No cases in this sector yet.</p>
 						</div>
 					) : null}

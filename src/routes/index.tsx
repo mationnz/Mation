@@ -163,7 +163,7 @@ function HomePage() {
 			<section className="glow section-shell pt-10 sm:pt-14">
 				<div className="site-wide">
 					<div className="dimline reveal-up mb-10">
-						Mation — bespoke systems · est. Auckland NZ
+						Bespoke systems · Auckland, NZ
 					</div>
 					<div className="grid items-center gap-12 lg:grid-cols-[1.04fr_0.96fr]">
 						<div className="space-y-7">
@@ -190,33 +190,33 @@ function HomePage() {
 									See how we work
 								</MagneticLink>
 							</div>
-							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
+							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-mute">
 								<li className="flex items-center gap-2">
-									<Check className="h-3.5 w-3.5 text-violet-bright" /> No
-									off-the-shelf product
+									<Check className="h-4 w-4 text-violet" /> No off-the-shelf
+									product
 								</li>
 								<li className="flex items-center gap-2">
-									<Check className="h-3.5 w-3.5 text-violet-bright" /> Senior
-									engineers, end-to-end
+									<Check className="h-4 w-4 text-violet" /> Senior engineers,
+									end-to-end
 								</li>
 								<li className="flex items-center gap-2">
-									<Check className="h-3.5 w-3.5 text-violet-bright" />{" "}
-									Enterprise-grade governance
+									<Check className="h-4 w-4 text-violet" /> Serious security,
+									built in
 								</li>
 							</ul>
 						</div>
 
-						<div className="reveal-up delay-2 relative">
-							<div className="bracket">
+						<figure className="reveal-up delay-2 relative m-0">
+							<div className="figure-plate">
 								<SystemMap />
 							</div>
-							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
-								<span className="bp-coord">12 tools → 1</span>
+							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-border bg-surface px-3 py-2 text-sm font-medium text-ink-soft shadow-[var(--shadow-xs)] sm:block">
+								12 tools, 1 system
 							</div>
-							<p className="bp-coord mt-3 text-center">
-								FIG.01 · SYSTEM TOPOLOGY — SCATTERED → UNIFIED
-							</p>
-						</div>
+							<figcaption className="plate-caption">
+								From scattered tools to one system.
+							</figcaption>
+						</figure>
 					</div>
 				</div>
 			</section>
@@ -232,23 +232,22 @@ function HomePage() {
 			{/* Problem */}
 			<section className="site-wide section-shell pt-10">
 				<div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
-					<div className="reveal-scroll">
-						<p className="section-index mb-4">
-							<b>01</b> &nbsp;/&nbsp; The problem
-						</p>
-						<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.7rem] sm:leading-[1.06]">
+					<div className="reveal-scroll chapter">
+						<span className="chapter-no">No. 01</span>
+						<p className="kicker mt-3">The problem</p>
+						<h2 className="mt-4 font-heading text-3xl font-semibold text-ink sm:text-[2.7rem] sm:leading-[1.06]">
 							Most businesses don’t need more software. They need it to{" "}
 							<span className="gradient-ink">work as one.</span>
 						</h2>
 					</div>
-					<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] sm:grid-cols-2">
+					<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border sm:grid-cols-2">
 						{problems.map((p) => (
-							<div key={p.k} className="bg-panel p-6">
+							<div key={p.k} className="bg-surface p-6">
 								<div className="flex items-center gap-3">
-									<span className="font-mono text-xs text-violet-bright">
+									<span className="font-heading text-lg font-semibold text-violet">
 										{p.k}
 									</span>
-									<Minus className="h-3 w-8 text-violet-bright/40" />
+									<Minus className="h-3 w-8 text-warm/50" />
 								</div>
 								<h3 className="mt-4 font-heading text-lg font-semibold text-ink">
 									{p.t}
@@ -262,12 +261,11 @@ function HomePage() {
 
 			{/* Approach */}
 			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll mb-12 flex flex-wrap items-end justify-between gap-4">
+				<div className="reveal-scroll chapter mb-12 flex flex-wrap items-end justify-between gap-4">
 					<div>
-						<p className="section-index mb-4">
-							<b>02</b> &nbsp;/&nbsp; How we work
-						</p>
-						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+						<span className="chapter-no">No. 02</span>
+						<p className="kicker mt-3">How we work</p>
+						<h2 className="mt-4 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 							We learn how you run, then build the system that runs it.
 						</h2>
 					</div>
@@ -282,33 +280,24 @@ function HomePage() {
 
 			{/* What we build */}
 			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
+				<div className="reveal-scroll chapter mb-10 flex flex-wrap items-end justify-between gap-4">
 					<div>
-						<p className="section-index mb-4">
-							<b>03</b> &nbsp;/&nbsp; What we build
-						</p>
-						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+						<span className="chapter-no">No. 03</span>
+						<p className="kicker mt-3">What we build</p>
+						<h2 className="mt-4 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 							One partner for every layer of your operating system.
 						</h2>
 					</div>
 					<p className="dimline hidden max-w-xs md:flex">
-						Modular · compounding
+						Built to grow with you
 					</p>
 				</div>
 				<div className="reveal-stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 					{capabilities.map((cap) => (
 						<article key={cap.title} className="panel panel-hover group p-6">
-							<div className="relative mb-5 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-								<span
-									aria-hidden
-									className="pointer-events-none absolute inset-0 opacity-40"
-									style={{
-										backgroundImage:
-											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-										backgroundSize: "8px 8px",
-									}}
-								/>
-								<cap.icon className="relative h-5 w-5" />
+							<span className="card-node" aria-hidden />
+							<div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-violet text-violet">
+								<cap.icon className="h-5 w-5" />
 							</div>
 							<h3 className="font-heading text-lg font-semibold text-ink">
 								{cap.title}
@@ -320,9 +309,10 @@ function HomePage() {
 					))}
 					<Link
 						to="/what-we-build"
-						className="panel panel-hover group flex flex-col justify-between bg-[radial-gradient(circle_at_80%_-10%,rgba(123,97,255,0.12),transparent_55%)] p-6"
+						className="panel panel-hover group flex flex-col justify-between bg-surface-violet p-6"
 					>
-						<ArrowUpRight className="h-6 w-6 text-violet-bright transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+						<span className="card-node" aria-hidden />
+						<ArrowUpRight className="h-6 w-6 text-violet transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
 						<span className="mt-8 font-heading text-lg font-semibold text-ink">
 							Explore everything we build
 						</span>
@@ -332,11 +322,10 @@ function HomePage() {
 
 			{/* Velocity */}
 			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll mb-12">
-					<p className="section-index mb-4">
-						<b>04</b> &nbsp;/&nbsp; Velocity
-					</p>
-					<h2 className="max-w-3xl font-heading text-3xl font-semibold text-ink sm:text-[2.5rem] sm:leading-[1.08]">
+				<div className="reveal-scroll chapter mb-12">
+					<span className="chapter-no">No. 04</span>
+					<p className="kicker mt-3">Velocity</p>
+					<h2 className="mt-4 max-w-3xl font-heading text-3xl font-semibold text-ink sm:text-[2.5rem] sm:leading-[1.08]">
 						Prototype in days. Launch in weeks. Results in months.{" "}
 						<span className="gradient-ink">Profit for years.</span>
 					</h2>
@@ -348,12 +337,13 @@ function HomePage() {
 
 			{/* Plans & guarantee */}
 			<section className="site-wide section-shell pt-4">
-				<p className="section-index reveal-scroll mb-4">
-					<b>05</b> &nbsp;/&nbsp; Flexible by design
-				</p>
+				<div className="reveal-scroll chapter mb-10">
+					<span className="chapter-no">No. 05</span>
+					<p className="kicker mt-3">Flexible by design</p>
+				</div>
 				<div className="reveal-stagger grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
 					<article className="panel p-7 sm:p-8">
-						<p className="bp-coord">Plans</p>
+						<p className="kicker">Plans</p>
 						<h3 className="mt-3 font-heading text-2xl font-semibold text-ink sm:text-[1.8rem]">
 							Start small. Scale as it proves out.
 						</h3>
@@ -375,8 +365,8 @@ function HomePage() {
 							See plans & pricing <ArrowRight className="h-4 w-4" />
 						</Link>
 					</article>
-					<article className="panel-line flex flex-col justify-center p-7 sm:p-8">
-						<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-[rgba(166,146,255,0.5)] bg-white/[0.03] text-violet-bright">
+					<article className="panel-line ticked flex flex-col justify-center p-7 sm:p-8">
+						<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-violet text-violet">
 							<ShieldCheck className="h-6 w-6" />
 						</div>
 						<h3 className="mt-5 font-heading text-2xl font-semibold leading-tight text-ink">
@@ -393,16 +383,23 @@ function HomePage() {
 			{/* Proof — oversized stats */}
 			<section className="glow site-wide section-shell pt-4">
 				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
-					<p className="section-index mb-10">
-						<b>06</b> &nbsp;/&nbsp; What working with us means
-					</p>
+					<div className="chapter mb-10">
+						<span className="chapter-no">No. 06</span>
+						<p className="kicker mt-3">What working with us means</p>
+					</div>
 					<div className="reveal-stagger grid gap-10 sm:grid-cols-3">
-						{metrics.map((m) => (
+						{metrics.map((m, i) => (
 							<div key={m.label}>
 								<div className="font-heading text-[clamp(3.2rem,7vw,5rem)] font-semibold leading-none tracking-[-0.04em] text-ink">
-									<span className="gradient-ink">{m.value}</span>
+									{m.value}
 								</div>
-								<p className="mt-3 max-w-[16rem] text-sm leading-snug text-mute">
+								<span
+									aria-hidden
+									className={`mt-4 block h-[3px] w-12 rounded-full ${
+										i === 1 ? "bg-warm" : "bg-violet"
+									}`}
+								/>
+								<p className="mt-4 max-w-[16rem] text-sm leading-snug text-mute">
 									{m.label}
 								</p>
 							</div>
@@ -423,26 +420,27 @@ function HomePage() {
 
 			{/* Positioning — we are / we aren't */}
 			<section className="site-wide section-shell pt-4">
-				<p className="section-index reveal-scroll mb-4">
-					<b>07</b> &nbsp;/&nbsp; What we are
-				</p>
-				<h2 className="reveal-scroll mb-8 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-					A different kind of software partner.
-				</h2>
+				<div className="reveal-scroll chapter mb-8">
+					<span className="chapter-no">No. 07</span>
+					<p className="kicker mt-3">What we are</p>
+					<h2 className="mt-4 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+						A different kind of software partner.
+					</h2>
+				</div>
 				<div className="reveal-stagger grid gap-5 md:grid-cols-2">
 					<div className="panel p-7">
 						<p className="kicker">We are</p>
 						<ul className="mt-5 space-y-3.5">
 							{weAre.map((item) => (
 								<li key={item} className="flex items-start gap-3 text-ink/90">
-									<Check className="mt-0.5 h-5 w-5 shrink-0 text-violet-bright" />
+									<Check className="mt-0.5 h-5 w-5 shrink-0 text-violet" />
 									<span>{item}</span>
 								</li>
 							))}
 						</ul>
 					</div>
 					<div className="panel-line p-7">
-						<p className="kicker !text-mute before:!bg-[var(--color-line)]">
+						<p className="kicker !text-mute before:!bg-[var(--border-strong)]">
 							We are not
 						</p>
 						<ul className="mt-5 space-y-3.5">
@@ -464,12 +462,12 @@ function HomePage() {
 					className="panel panel-hover group flex flex-col items-start gap-5 p-7 sm:flex-row sm:items-center sm:justify-between"
 				>
 					<div className="flex items-start gap-4">
-						<div className="inline-flex rounded-xl border border-line bg-white/[0.03] p-3 text-violet-bright">
+						<div className="inline-flex rounded-xl bg-surface-violet p-3 text-violet">
 							<ShieldCheck className="h-5 w-5" />
 						</div>
 						<div>
 							<h3 className="font-heading text-lg font-semibold text-ink">
-								Enterprise-grade by default
+								Security and oversight, built in
 							</h3>
 							<p className="mt-1 max-w-xl text-sm leading-relaxed text-mute">
 								Security, access control, auditability, and data ownership built

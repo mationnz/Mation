@@ -40,9 +40,9 @@ function InsightsPage() {
 			{/* Hero */}
 			<section className="glow section-shell pt-10 sm:pt-14">
 				<div className="site-wide">
-					<div className="dimline reveal-up mb-10">
-						Mation — field notes from the build · Auckland NZ
-					</div>
+					<p className="kicker reveal-up mb-10">
+						Field notes from the build · Auckland, NZ
+					</p>
 					<div className="max-w-3xl space-y-7">
 						<span className="pill reveal-up">
 							<span className="live-dot" /> Insights
@@ -75,7 +75,7 @@ function InsightsPage() {
 							</li>
 						))}
 					</ul>
-					<p className="dimline mt-8 hidden lg:flex">Written from the work</p>
+					<p className="kicker mt-8 hidden lg:flex">Written from the work</p>
 				</aside>
 
 				{/* Article grid */}
@@ -85,7 +85,9 @@ function InsightsPage() {
 							<b>{String(articles.length).padStart(2, "0")}</b> &nbsp;/&nbsp;
 							Latest writing
 						</p>
-						<span className="bp-coord hidden sm:block">IDX · ALL PIECES</span>
+						<span className="text-sm text-mute hidden sm:block">
+							All articles
+						</span>
 					</div>
 					<div className="reveal-stagger grid gap-5 sm:grid-cols-2">
 						{articles.map((article, idx) => (
@@ -97,25 +99,20 @@ function InsightsPage() {
 							>
 								<span
 									aria-hidden
-									className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-bright/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+									className={`card-node${idx % 3 === 0 ? " is-warm" : ""}`}
 								/>
 								<div className="mb-4 flex items-center justify-between gap-3">
 									<span className="tag">{article.category}</span>
-									<span className="bp-coord">
-										{String(idx + 1).padStart(2, "0")}
-									</span>
 								</div>
-								<h2 className="font-heading text-xl font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-violet-bright">
+								<h2 className="font-heading text-xl font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-violet">
 									{article.title}
 								</h2>
 								<p className="mt-2.5 line-clamp-3 text-sm leading-relaxed text-mute">
 									{article.excerpt}
 								</p>
 								<div className="mt-auto flex items-center justify-between gap-3 pt-5">
-									<span className="font-mono text-xs uppercase tracking-[0.12em] text-violet-bright">
-										{article.readTime}
-									</span>
-									<span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.1em] text-mute transition-colors duration-200 group-hover:text-ink">
+									<span className="text-sm text-mute">{article.readTime}</span>
+									<span className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft transition-colors duration-200 group-hover:text-violet">
 										Read
 										<ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
 									</span>

@@ -4,9 +4,10 @@ import { ArrowRight } from "lucide-react";
  * CaseTransformDiagram — a bespoke "before → after" figure for a case study.
  *
  * Renders the scattered tools/processes a business started with resolving into
- * one unified system. Driven entirely by props derived from existing case data
- * (no invented facts). Pure markup + CSS — no SMIL, no JS, no timers — so it is
- * reduced-motion-safe by construction. Stacks vertically on small screens.
+ * one unified system, framed as a captioned figure plate. Driven entirely by
+ * props derived from existing case data (no invented facts). Pure markup + CSS —
+ * no SMIL, no JS, no timers — so it is reduced-motion-safe by construction.
+ * Stacks vertically on small screens.
  */
 export default function CaseTransformDiagram({
 	figure,
@@ -14,7 +15,7 @@ export default function CaseTransformDiagram({
 	after,
 	outcome,
 }: {
-	/** Mono figure tag, e.g. "FIG.02 — BEFORE → AFTER". */
+	/** Sentence-case figure label, e.g. "Before, after". */
 	figure: string;
 	/** The scattered, disconnected starting points (sector-generic). */
 	before: string[];
@@ -24,76 +25,106 @@ export default function CaseTransformDiagram({
 	outcome: string;
 }) {
 	return (
-		<div className="panel ticked relative overflow-hidden rounded-[22px] p-6 sm:p-7">
-			<div
-				aria-hidden
-				className="pointer-events-none absolute inset-0 opacity-60"
-				style={{
-					backgroundImage:
-						"linear-gradient(rgba(123,97,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.06) 1px, transparent 1px)",
-					backgroundSize: "32px 32px",
-					maskImage:
-						"radial-gradient(circle at 50% 46%, #000 28%, transparent 92%)",
-				}}
-			/>
+		<figure className="figure-plate relative m-0">
+			<span aria-hidden className="card-node" />
 
-			<div className="relative flex items-center justify-between">
-				<p className="bp-coord">{figure}</p>
-				<span className="bp-coord">{before.length} → 1</span>
+			<div className="flex items-center justify-between gap-3">
+				<p className="kicker">{figure}</p>
+				<span className="text-sm text-mute">{before.length} → 1</span>
 			</div>
 
-			<div className="relative mt-5 grid items-center gap-5 sm:grid-cols-[1fr_auto_1fr]">
+			<div className="mt-5 grid items-center gap-5 sm:grid-cols-[1fr_auto_1fr]">
 				{/* BEFORE — scattered, disconnected */}
 				<div>
-					<p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-mute">
-						Before · scattered
-					</p>
+					<p className="text-sm font-semibold text-mute">Before — scattered</p>
 					<ul className="mt-3 space-y-2">
-						{before.map((item) => (
+						{before.map((item, i) => (
 							<li
 								key={item}
-								className="flex items-center gap-2.5 rounded-[10px] border border-line bg-panel-2/50 px-3 py-2"
+								className="flex items-center gap-2.5 rounded-[10px] border border-border bg-canvas-2 px-3 py-2"
 							>
 								<span
 									aria-hidden
-									className="h-1.5 w-1.5 shrink-0 rounded-full bg-mute/60"
+									className="h-1.5 w-1.5 shrink-0 rounded-full"
+									style={{
+										// every third dot resolves toward coral — the two
+										// systems visibly converging into one
+										background:
+											i % 3 === 2 ? "var(--warm)" : "var(--faint)",
+									}}
 								/>
-								<span className="truncate text-xs text-mute">{item}</span>
+								<span className="truncate text-sm text-ink-soft">{item}</span>
 							</li>
 						))}
 					</ul>
 				</div>
 
-				{/* Connector — arrow on desktop, divider on mobile */}
+				{/* Connector — hand-routed hairline arc on desktop, divider on mobile */}
 				<div className="flex items-center justify-center" aria-hidden>
-					<span className="hidden h-9 w-9 items-center justify-center rounded-full border border-[rgba(166,146,255,0.5)] bg-canvas text-violet-bright sm:inline-flex">
-						<ArrowRight className="h-4 w-4" />
+					<span className="relative hidden h-12 w-16 items-center justify-center sm:inline-flex">
+						<svg
+							viewBox="0 0 64 48"
+							fill="none"
+							className="absolute inset-0 h-full w-full"
+							aria-hidden
+						>
+							<title>Scattered work routing into one system</title>
+							{/* organic curves drawing the scattered inputs into one line */}
+							<path
+								d="M2 12 C 26 12, 30 24, 50 24"
+								stroke="var(--border-strong)"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								fill="none"
+							/>
+							<path
+								d="M2 24 C 24 24, 30 24, 50 24"
+								stroke="var(--warm)"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								fill="none"
+							/>
+							<path
+								d="M2 36 C 26 36, 30 24, 50 24"
+								stroke="var(--border-strong)"
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								fill="none"
+							/>
+						</svg>
+						<span className="relative flex h-8 w-8 items-center justify-center rounded-full border border-violet/40 bg-surface text-violet">
+							<ArrowRight className="h-4 w-4" />
+						</span>
 					</span>
-					<span className="my-1 h-6 w-px bg-gradient-to-b from-violet/50 to-violet/10 sm:hidden" />
+					<span className="my-1 h-6 w-px bg-border-strong sm:hidden" />
 				</div>
 
 				{/* AFTER — one unified system */}
-				<div className="relative overflow-hidden rounded-[14px] border border-[rgba(166,146,255,0.45)] bg-panel-2 p-5">
+				<div className="relative overflow-hidden rounded-[14px] border border-violet/35 bg-surface-violet p-5">
 					<span
 						aria-hidden
-						className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[radial-gradient(circle,var(--color-violet),transparent_70%)] opacity-25 blur-2xl"
+						className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full opacity-40 blur-2xl"
+						style={{
+							background:
+								"radial-gradient(circle, var(--warm-tint), transparent 70%)",
+						}}
 					/>
-					<p className="relative font-mono text-[0.62rem] uppercase tracking-[0.2em] text-violet-bright">
-						After · unified
+					<p className="relative text-sm font-semibold text-warm-ink">
+						After — unified
 					</p>
 					<p className="relative mt-2 font-heading text-lg font-semibold leading-snug text-ink">
 						{after}
 					</p>
-					<p className="relative mt-2 text-xs text-mute">
+					<p className="relative mt-2 text-sm text-mute">
 						One record, one source of truth.
 					</p>
 				</div>
 			</div>
 
-			<div className="relative mt-5 flex items-center gap-2 border-t border-line pt-4 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-mute">
+			<figcaption className="mt-5 flex items-center gap-2 border-t border-border pt-4 text-sm text-mute">
 				<span className="live-dot" />
 				{outcome}
-			</div>
-		</div>
+			</figcaption>
+		</figure>
 	);
 }

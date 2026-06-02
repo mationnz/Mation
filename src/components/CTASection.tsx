@@ -19,7 +19,7 @@ export default function CTASection({
 	return (
 		<section className="glow site-shell section-shell">
 			<div className="panel ticked relative overflow-hidden rounded-[22px] p-8 sm:p-12">
-				<div className="pointer-events-none absolute -right-28 -top-28 h-72 w-72 rounded-full bg-[radial-gradient(circle,var(--color-violet),transparent_70%)] opacity-20 blur-3xl" />
+				<div className="pointer-events-none absolute -right-28 -top-28 h-72 w-72 rounded-full bg-[radial-gradient(circle,var(--warm-tint),transparent_70%)] opacity-70 blur-3xl" />
 				<p className="kicker">Start here</p>
 				<h2 className="mt-5 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.6rem] sm:leading-[1.05]">
 					{title}
@@ -43,16 +43,16 @@ export default function CTASection({
 						<ArrowRight className="h-4 w-4" />
 					</MagneticLink>
 				</div>
-				<div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line pt-6 font-mono text-xs uppercase tracking-[0.1em] text-mute">
+				<div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-border pt-6 text-sm text-mute">
 					<span className="flex items-center gap-2">
-						<CalendarClock className="h-3.5 w-3.5 text-violet-bright" />
+						<CalendarClock className="h-3.5 w-3.5 text-violet" />
 						{offer.meetingShort}
 					</span>
 					<Link
 						to="/plans"
 						className="link-underline flex items-center gap-2 text-mute hover:text-ink"
 					>
-						<ShieldCheck className="h-3.5 w-3.5 text-violet-bright" />
+						<ShieldCheck className="h-3.5 w-3.5 text-violet" />
 						{offer.guaranteeShort}
 					</Link>
 				</div>

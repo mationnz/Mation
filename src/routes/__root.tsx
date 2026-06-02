@@ -27,7 +27,13 @@ export const Route = createRootRoute({
 			},
 			{
 				name: "theme-color",
-				content: "#07060e",
+				media: "(prefers-color-scheme: light)",
+				content: "#faf6ef",
+			},
+			{
+				name: "theme-color",
+				media: "(prefers-color-scheme: dark)",
+				content: "#1c1822",
 			},
 			{
 				property: "og:title",
@@ -84,8 +90,15 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang="en" data-theme="light" suppressHydrationWarning>
 			<head>
+				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: pre-paint theme script prevents a flash of the wrong theme */}
+				<script
+					dangerouslySetInnerHTML={{
+						__html:
+							"(function(){try{var t=localStorage.getItem('theme');if(!t){t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();",
+					}}
+				/>
 				<HeadContent />
 			</head>
 			<body>

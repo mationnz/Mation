@@ -5,7 +5,7 @@ import BrandMark from "./BrandMark";
 
 export default function Footer() {
 	return (
-		<footer className="relative mt-8 border-t border-line">
+		<footer className="relative mt-8 border-t border-border">
 			<div className="site-wide grid gap-12 py-16 lg:grid-cols-[1.5fr_1fr_1fr]">
 				<div className="space-y-5">
 					<Link
@@ -14,7 +14,7 @@ export default function Footer() {
 						aria-label="Mation — home"
 					>
 						<BrandMark size={30} />
-						<span className="font-heading text-xl font-semibold tracking-tight text-ink">
+						<span className="font-display text-xl font-medium tracking-tight text-ink">
 							Mation
 						</span>
 					</Link>
@@ -25,7 +25,7 @@ export default function Footer() {
 						href="https://mation.nz"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="inline-flex items-center gap-1.5 text-sm font-medium text-violet-bright transition hover:text-ink"
+						className="inline-flex items-center gap-1.5 text-sm font-medium text-violet transition hover:text-ink"
 					>
 						mation.nz
 						<ArrowUpRight className="h-4 w-4" />
@@ -53,7 +53,7 @@ export default function Footer() {
 					<p className="kicker">Contact</p>
 					<ul className="mt-5 space-y-3 text-sm text-mute">
 						<li className="flex items-center gap-2.5">
-							<Mail className="h-4 w-4 text-violet-bright" />
+							<Mail className="h-4 w-4 text-violet" />
 							<a
 								href={`mailto:${mationMeta.email}`}
 								className="transition hover:text-ink"
@@ -62,7 +62,7 @@ export default function Footer() {
 							</a>
 						</li>
 						<li className="flex items-center gap-2.5">
-							<Phone className="h-4 w-4 text-violet-bright" />
+							<Phone className="h-4 w-4 text-violet" />
 							<a
 								href={`tel:${mationMeta.phone.replace(/\s+/g, "")}`}
 								className="transition hover:text-ink"
@@ -71,20 +71,18 @@ export default function Footer() {
 							</a>
 						</li>
 						<li className="flex items-center gap-2.5">
-							<MapPin className="h-4 w-4 text-violet-bright" />
+							<MapPin className="h-4 w-4 text-violet" />
 							<span>{mationMeta.location}</span>
 						</li>
 					</ul>
 				</div>
 			</div>
 
-			<div className="site-wide flex flex-col gap-3 border-t border-line py-6 font-mono text-xs text-mute sm:flex-row sm:items-center sm:justify-between">
+			<div className="site-wide flex flex-col gap-3 border-t border-border py-6 text-sm text-mute sm:flex-row sm:items-center sm:justify-between">
 				<span>
 					© {new Date().getFullYear()} Mation — {mationMeta.location}
 				</span>
-				<span className="tracking-[0.16em] uppercase">
-					Bespoke software · built around your business
-				</span>
+				<span>Bespoke software · built around your business</span>
 			</div>
 		</footer>
 	);

@@ -118,7 +118,7 @@ function ArticlePage() {
 						Insights
 					</Link>
 					<ChevronRight className="h-3 w-3" />
-					<span className="max-w-xs truncate text-ink/85">{article.title}</span>
+					<span className="max-w-xs truncate text-ink">{article.title}</span>
 				</nav>
 			</section>
 
@@ -127,18 +127,18 @@ function ArticlePage() {
 				<div className="site-shell mx-auto max-w-3xl space-y-6">
 					<div className="reveal-up flex items-center justify-between gap-3">
 						<span className="tag">{article.category}</span>
-						<span className="bp-coord">DOC · {article.readTime}</span>
+						<span className="text-sm text-mute">{article.readTime}</span>
 					</div>
 
 					<h1 className="reveal-up font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
 						{article.title}
 					</h1>
 
-					<p className="reveal-up delay-1 border-l-2 border-[var(--color-violet)] pl-5 text-xl leading-relaxed text-ink/85">
+					<p className="reveal-up delay-1 border-l-2 border-[var(--color-violet)] pl-5 text-xl leading-relaxed text-ink-soft">
 						{article.excerpt}
 					</p>
 
-					<div className="reveal-up delay-2 flex flex-wrap items-center gap-6 border-t border-line pt-4 font-mono text-xs uppercase tracking-[0.1em] text-mute">
+					<div className="reveal-up delay-2 flex flex-wrap items-center gap-6 border-t border-border pt-4 text-sm text-mute">
 						<span className="inline-flex items-center gap-1.5">
 							<User className="h-3.5 w-3.5" />
 							{article.author}
@@ -166,7 +166,7 @@ function ArticlePage() {
 			{related.length > 0 && (
 				<section className="site-wide section-shell pt-0">
 					<div className="site-shell mx-auto mb-12 max-w-3xl">
-						<div className="dimline">End of article · keep reading</div>
+						<p className="kicker">End of article · keep reading</p>
 					</div>
 					<p className="section-index reveal-scroll mb-6">
 						<b>{String(related.length).padStart(2, "0")}</b> &nbsp;/&nbsp;
@@ -178,16 +178,16 @@ function ArticlePage() {
 								key={rel.slug}
 								to="/insights/$slug"
 								params={{ slug: rel.slug }}
-								className="panel panel-hover group flex flex-col p-6"
+								className="panel panel-hover group relative flex flex-col p-6"
 							>
 								<div className="mb-4 flex items-center justify-between gap-3">
 									<span className="tag">{rel.category}</span>
-									<ArrowUpRight className="h-4 w-4 shrink-0 text-mute transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-violet-bright" />
+									<ArrowUpRight className="h-4 w-4 shrink-0 text-mute transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-violet" />
 								</div>
-								<h3 className="font-heading text-base font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-violet-bright">
+								<h3 className="font-heading text-base font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-violet">
 									{rel.title}
 								</h3>
-								<span className="mt-auto pt-4 font-mono text-xs uppercase tracking-[0.12em] text-violet-bright">
+								<span className="mt-auto pt-4 text-sm text-mute">
 									{rel.readTime}
 								</span>
 							</Link>
@@ -251,12 +251,12 @@ function renderArticle(lines: string[]) {
 			blocks.push(
 				<ul
 					key={start}
-					className="my-5 ml-5 list-disc space-y-2 marker:text-violet-bright"
+					className="my-5 ml-5 list-disc space-y-2 marker:text-violet"
 				>
 					{items.map((item) => (
 						<li
 							key={item}
-							className="text-base leading-relaxed text-ink/85 sm:text-lg"
+							className="text-base leading-relaxed text-ink-soft sm:text-lg"
 							// biome-ignore lint: rendered article content
 							dangerouslySetInnerHTML={{ __html: formatInlineMarkdown(item) }}
 						/>
@@ -303,7 +303,7 @@ function Block({ line }: { line: string }) {
 	// Standalone emphasis line (single asterisks only — not **bold**)
 	if (line.startsWith("*") && line.endsWith("*") && !line.startsWith("**")) {
 		return (
-			<p className="my-4 border-l-2 border-line pl-5 text-base italic leading-relaxed text-mute sm:text-lg">
+			<p className="my-4 border-l-2 border-border pl-5 text-base italic leading-relaxed text-mute sm:text-lg">
 				{line.replace(/^\*+|\*+$/g, "")}
 			</p>
 		);
@@ -311,7 +311,7 @@ function Block({ line }: { line: string }) {
 
 	return (
 		<p
-			className="mb-5 text-base leading-relaxed text-ink/85 sm:text-lg"
+			className="mb-5 text-base leading-relaxed text-ink-soft sm:text-lg"
 			// biome-ignore lint: rendered article content
 			dangerouslySetInnerHTML={{ __html: formatInlineMarkdown(line) }}
 		/>
@@ -342,7 +342,7 @@ function TableBlock({ rows }: { rows: string[] }) {
 						{header.map((cell) => (
 							<th
 								key={cell}
-								className="border-b border-line px-3 py-2 font-mono text-xs uppercase tracking-[0.08em] text-violet-bright"
+								className="border-b border-border px-3 py-2 text-sm font-semibold text-violet-ink"
 							>
 								{cell}
 							</th>
@@ -355,7 +355,7 @@ function TableBlock({ rows }: { rows: string[] }) {
 							{row.map((cell, ci) => (
 								<td
 									key={`${row[0]}-${ci}`}
-									className="border-b border-line px-3 py-2 align-top text-ink/85"
+									className="border-b border-border px-3 py-2 align-top text-ink-soft"
 									// biome-ignore lint: rendered article content
 									dangerouslySetInnerHTML={{
 										__html: formatInlineMarkdown(cell),
@@ -379,6 +379,6 @@ function formatInlineMarkdown(text: string): string {
 		.replace(/\*(.+?)\*/g, "<em>$1</em>")
 		.replace(
 			/`(.+?)`/g,
-			'<code class="rounded bg-white/[0.04] border border-line px-1.5 py-0.5 font-mono text-sm text-violet-bright">$1</code>',
+			'<code class="rounded bg-surface-2 border border-border px-1.5 py-0.5 font-mono text-sm text-violet-ink">$1</code>',
 		);
 }

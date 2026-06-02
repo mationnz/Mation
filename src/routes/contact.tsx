@@ -6,6 +6,7 @@ import {
 	CheckCircle2,
 	Compass,
 	LineChart,
+	Lock,
 	Mail,
 	Map as MapIcon,
 	MapPin,
@@ -46,9 +47,8 @@ export const Route = createFileRoute("/contact")({
 });
 
 const inputClass =
-	"mt-2 w-full rounded-[10px] border border-line bg-panel px-4 py-3 text-ink outline-none transition placeholder:text-mute/60 focus:border-[rgba(166,146,255,0.55)] focus:ring-2 focus:ring-[rgba(123,97,255,0.25)]";
-const labelClass =
-	"block font-mono text-xs uppercase tracking-[0.14em] text-mute";
+	"mt-2 w-full rounded-[var(--radius-sm)] border border-border bg-surface px-4 py-3 text-ink outline-none transition placeholder:text-faint focus:border-violet focus:ring-2 focus:ring-[var(--ring)] focus:ring-offset-0";
+const labelClass = "block text-sm font-medium text-ink-soft";
 
 const engagements = [
 	{
@@ -155,58 +155,63 @@ function ContactPage() {
 							</p>
 
 							<div className="reveal-up delay-3 mt-8">
-								<p className="bp-coord mb-3">Reach us directly</p>
-								<div className="grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)]">
+								<p className="kicker mb-3">Reach us directly</p>
+								<div className="grid gap-px overflow-hidden rounded-[var(--radius)] border border-border bg-border">
 									<a
 										href={`mailto:${mationMeta.email}`}
-										className="panel-hover flex items-center gap-3 bg-panel p-5"
+										className="panel-hover flex items-center gap-3 bg-surface p-5"
 									>
-										<Mail className="h-4 w-4 shrink-0 text-violet-bright" />
-										<span className="text-sm text-ink/85">
+										<Mail className="h-4 w-4 shrink-0 text-violet" />
+										<span className="text-sm text-ink-soft">
 											{mationMeta.email}
 										</span>
 									</a>
 									<a
 										href={`tel:${mationMeta.phone.replace(/\s+/g, "")}`}
-										className="panel-hover flex items-center gap-3 bg-panel p-5"
+										className="panel-hover flex items-center gap-3 bg-surface p-5"
 									>
-										<Phone className="h-4 w-4 shrink-0 text-violet-bright" />
-										<span className="text-sm text-ink/85">
+										<Phone className="h-4 w-4 shrink-0 text-violet" />
+										<span className="text-sm text-ink-soft">
 											{mationMeta.phone}
 										</span>
 									</a>
-									<div className="flex items-center gap-3 bg-panel p-5">
-										<MapPin className="h-4 w-4 shrink-0 text-violet-bright" />
-										<span className="text-sm text-ink/85">
+									<div className="flex items-center gap-3 bg-surface p-5">
+										<MapPin className="h-4 w-4 shrink-0 text-violet" />
+										<span className="text-sm text-ink-soft">
 											{mationMeta.location}
 										</span>
 									</div>
 								</div>
 							</div>
 
-							<ul className="reveal-up delay-4 mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
+							<ul className="reveal-up delay-4 mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-mute">
 								<li className="flex items-center gap-2">
-									<CheckCircle2 className="h-3.5 w-3.5 text-violet-bright" /> In
-									person or via Teams
+									<CheckCircle2 className="h-4 w-4 text-violet" /> In person or
+									via Teams
 								</li>
 								<li className="flex items-center gap-2">
-									<CheckCircle2 className="h-3.5 w-3.5 text-violet-bright" /> No
+									<CheckCircle2 className="h-4 w-4 text-violet" /> No
 									obligations
 								</li>
 								<li className="flex items-center gap-2">
-									<CheckCircle2 className="h-3.5 w-3.5 text-violet-bright" />{" "}
-									Reply within one business day
+									<CheckCircle2 className="h-4 w-4 text-violet" /> Reply within
+									one business day
 								</li>
 							</ul>
 
 							<p className="reveal-up delay-4 mt-6 max-w-xl text-sm leading-relaxed text-mute">
 								Engagements run from{" "}
-								<span className="text-ink/85">{offer.priceLow}</span> to{" "}
-								<span className="text-ink/85">{offer.priceHigh}</span>, on a
-								plan that suits you —{" "}
+								<span className="font-medium text-ink-soft">
+									{offer.priceLow}
+								</span>{" "}
+								to{" "}
+								<span className="font-medium text-ink-soft">
+									{offer.priceHigh}
+								</span>
+								, on a plan that suits you —{" "}
 								<MagneticLink
 									to="/plans"
-									className="text-violet-bright underline-offset-4 hover:underline"
+									className="font-medium text-violet-ink underline-offset-4 hover:underline"
 								>
 									see the flexible plans
 								</MagneticLink>
@@ -215,12 +220,12 @@ function ContactPage() {
 						</div>
 
 						<div className="reveal-up delay-2 relative">
-							<div className="panel ticked rounded-[22px] p-7 sm:p-8">
+							<div className="panel ticked rounded-[var(--radius-lg)] p-7 sm:p-8">
 								{status === "sent" ? (
 									<div
 										aria-atomic="true"
 										aria-live="polite"
-										className="panel-line rounded-[14px] p-6 sm:p-7"
+										className="panel-line rounded-[var(--radius)] p-6 sm:p-7"
 									>
 										<p className="kicker">Request received</p>
 										<h2
@@ -245,11 +250,14 @@ function ContactPage() {
 									</div>
 								) : (
 									<form className="space-y-5" onSubmit={handleSubmit}>
-										<div className="flex items-center justify-between">
+										<div className="flex flex-wrap items-center justify-between gap-2">
 											<p className="section-index">
 												<b>01</b> &nbsp;/&nbsp; About you
 											</p>
-											<span className="bp-coord">REQ-FORM · SECURE</span>
+											<span className="inline-flex items-center gap-1.5 text-xs text-mute">
+												<Lock className="h-3.5 w-3.5 text-violet" />
+												Private — goes straight to our team
+											</span>
 										</div>
 
 										<div className="grid gap-5 sm:grid-cols-2">
@@ -409,12 +417,12 @@ function ContactPage() {
 										{status === "error" ? (
 											<p
 												aria-live="polite"
-												className="rounded-[10px] border border-[rgba(232,90,95,0.4)] bg-[rgba(232,90,95,0.08)] px-4 py-3 text-sm text-ink/85"
+												className="rounded-[var(--radius-sm)] border border-[var(--color-danger)] bg-surface-warm px-4 py-3 text-sm text-ink-soft"
 											>
 												Sorry — that didn’t send. Please email{" "}
 												<a
 													href={`mailto:${mationMeta.email}`}
-													className="text-violet-bright underline-offset-4 hover:underline"
+													className="font-medium text-violet-ink underline-offset-4 hover:underline"
 												>
 													{mationMeta.email}
 												</a>{" "}
@@ -438,8 +446,10 @@ function ContactPage() {
 									</form>
 								)}
 							</div>
-							<div className="absolute -right-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
-								<span className="bp-coord">1 business day</span>
+							<div className="absolute -right-3 -top-3 hidden rounded-[var(--radius-sm)] border border-border bg-surface px-3 py-2 shadow-[var(--shadow-sm)] sm:block">
+								<span className="inline-flex items-center gap-1.5 text-xs font-medium text-mute">
+									<span className="live-dot" aria-hidden="true" />1 business day
+								</span>
 							</div>
 						</div>
 					</div>
@@ -492,17 +502,9 @@ function ContactPage() {
 				<div className="reveal-stagger grid gap-5 md:grid-cols-3">
 					{engagements.map((option) => (
 						<article key={option.title} className="panel panel-hover group p-7">
-							<div className="relative mb-5 inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-								<span
-									aria-hidden
-									className="pointer-events-none absolute inset-0 opacity-40"
-									style={{
-										backgroundImage:
-											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-										backgroundSize: "8px 8px",
-									}}
-								/>
-								<option.icon className="relative h-5 w-5" />
+							<span aria-hidden className="card-node" />
+							<div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-[var(--radius-sm)] border border-border bg-surface-violet text-violet">
+								<option.icon className="h-5 w-5" />
 							</div>
 							<h2 className="font-heading text-xl font-semibold text-ink">
 								{option.title}
@@ -515,7 +517,7 @@ function ContactPage() {
 				</div>
 				<div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
 					<p className="flex items-center gap-2 text-sm text-mute">
-						<CheckCircle2 className="h-4 w-4 text-violet-bright" />
+						<CheckCircle2 className="h-4 w-4 shrink-0 text-violet" />
 						Not sure which fits? Send the form and we'll suggest the right
 						starting point.
 					</p>

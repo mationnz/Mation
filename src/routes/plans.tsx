@@ -122,15 +122,15 @@ function PlansPage() {
 			{/* Hero */}
 			<section className="glow section-shell pt-10 sm:pt-14">
 				<div className="site-wide">
-					<div className="dimline reveal-up mb-10">
-						Plans — start small · scale as it proves out
-					</div>
+					<p className="kicker reveal-up mb-10">
+						Plans — start small, scale as it proves out
+					</p>
 					<div className="grid items-end gap-12 lg:grid-cols-[1.05fr_0.95fr]">
 						<div className="max-w-2xl space-y-7">
 							<span className="pill reveal-up">Flexible plans</span>
 							<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4rem]">
 								Flexible plans to fit{" "}
-								<span className="gradient-ink">your needs.</span>
+								<span className="text-violet-ink">your needs.</span>
 							</h1>
 							<p className="reveal-up delay-2 text-lg leading-relaxed text-mute sm:text-xl">
 								Start small, get results, then scale it across your business —
@@ -148,16 +148,17 @@ function PlansPage() {
 							</div>
 						</div>
 						<div className="reveal-up delay-2">
-							<div className="bracket panel ticked relative overflow-hidden rounded-[22px] p-8">
-								<p className="bp-coord">Engagements range</p>
-								<div className="mt-3 font-heading text-[clamp(2.6rem,7vw,4.5rem)] font-semibold leading-none tracking-[-0.04em]">
-									<span className="gradient-ink">{offer.priceLow}</span>
+							<div className="panel panel-hover ticked relative overflow-hidden rounded-[22px] p-8">
+								<span className="card-node is-warm" aria-hidden="true" />
+								<p className="kicker">The range of engagements</p>
+								<div className="mt-4 font-heading text-[clamp(2.6rem,7vw,4.5rem)] font-semibold leading-none tracking-[-0.03em] text-violet-ink">
+									{offer.priceLow}
 								</div>
-								<p className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-mute">
-									to {offer.priceHigh}
+								<p className="mt-2 text-sm text-mute">
+									up to {offer.priceHigh}
 								</p>
 								<hr className="hairline my-6" />
-								<p className="text-sm leading-relaxed text-ink/85">
+								<p className="text-sm leading-relaxed text-ink-soft">
 									Pilotable and scoped to you. Begin with a small, high-value
 									pilot — then scale only once it’s proven its worth.
 								</p>
@@ -175,7 +176,7 @@ function PlansPage() {
 					</p>
 					<h2 className="max-w-3xl font-heading text-3xl font-semibold text-ink sm:text-[2.5rem] sm:leading-[1.08]">
 						Prototype in days. Launch in weeks. Results in months.{" "}
-						<span className="gradient-ink">Profit for years.</span>
+						<span className="text-violet-ink">Profit for years.</span>
 					</h2>
 				</div>
 				<div className="reveal-scroll">
@@ -194,7 +195,7 @@ function PlansPage() {
 							Start small. Scale as it proves out.
 						</h2>
 					</div>
-					<p className="dimline hidden max-w-xs md:flex">
+					<p className="kicker hidden max-w-xs md:flex">
 						Every engagement scoped to you
 					</p>
 				</div>
@@ -203,33 +204,31 @@ function PlansPage() {
 						<article
 							key={tier.name}
 							className={`panel panel-hover relative flex flex-col p-7 ${
-								tier.featured
-									? "bg-[radial-gradient(circle_at_80%_-10%,rgba(123,97,255,0.14),transparent_55%)]"
-									: ""
+								tier.featured ? "ticked bg-surface-violet" : ""
 							}`}
 						>
 							{tier.featured ? (
-								<span className="bp-coord absolute right-6 top-6">
-									Start here
-								</span>
-							) : null}
-							<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+								<p className="kicker absolute right-6 top-6">Start here</p>
+							) : (
+								<span className="card-node" aria-hidden="true" />
+							)}
+							<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-2 text-violet">
 								<tier.icon className="h-5 w-5" />
 							</div>
 							<h3 className="mt-5 font-heading text-xl font-semibold text-ink">
 								{tier.name}
 							</h3>
-							<div className="mt-3 font-heading text-[2rem] font-semibold leading-none tracking-[-0.03em]">
-								<span className="gradient-ink">{tier.price}</span>
+							<div className="mt-3 font-heading text-[2rem] font-semibold leading-none tracking-[-0.03em] text-violet-ink">
+								{tier.price}
 							</div>
 							<p className="mt-2 text-sm text-mute">{tier.tagline}</p>
-							<ul className="mt-6 space-y-3 border-t border-line pt-6">
+							<ul className="mt-6 space-y-3 border-t border-border pt-6">
 								{tier.points.map((point) => (
 									<li
 										key={point}
-										className="flex items-start gap-3 text-sm leading-relaxed text-ink/85"
+										className="flex items-start gap-3 text-sm leading-relaxed text-ink-soft"
 									>
-										<Check className="mt-0.5 h-4 w-4 shrink-0 text-violet-bright" />
+										<Check className="mt-0.5 h-4 w-4 shrink-0 text-violet" />
 										<span>{point}</span>
 									</li>
 								))}
@@ -253,9 +252,13 @@ function PlansPage() {
 					{offer.models.map((model, i) => {
 						const Icon = modelIcons[i];
 						return (
-							<article key={model.name} className="panel panel-hover p-7">
+							<article
+								key={model.name}
+								className="panel panel-hover relative p-7"
+							>
+								<span className="card-node" aria-hidden="true" />
 								<div className="flex items-center justify-between">
-									<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-white/[0.03] text-violet-bright">
+									<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-2 text-violet">
 										<Icon className="h-5 w-5" />
 									</div>
 									<span className="tag">{model.tag}</span>
@@ -294,7 +297,7 @@ function PlansPage() {
 						</h2>
 						<p className="mt-4 max-w-2xl text-mute">{offer.meeting}</p>
 					</div>
-					<p className="dimline hidden max-w-xs md:flex">
+					<p className="kicker hidden max-w-xs md:flex">
 						In-person or Teams · no obligation
 					</p>
 				</div>

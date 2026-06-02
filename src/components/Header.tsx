@@ -3,6 +3,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { navLinks } from "../content/site";
 import BrandMark from "./BrandMark";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +76,7 @@ export default function Header() {
 			<header
 				className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
 					scrolled
-						? "border-line bg-[rgba(7,6,14,0.82)] backdrop-blur-xl"
+						? "border-border paper-glass"
 						: "border-transparent bg-transparent"
 				}`}
 			>
@@ -86,7 +87,7 @@ export default function Header() {
 						aria-label="Mation — home"
 					>
 						<BrandMark size={30} />
-						<span className="font-heading text-[1.2rem] font-semibold tracking-tight text-ink">
+						<span className="font-display text-[1.35rem] font-medium tracking-tight text-ink">
 							Mation
 						</span>
 					</Link>
@@ -96,7 +97,7 @@ export default function Header() {
 							<Link
 								key={link.to}
 								to={link.to}
-								className="text-[0.92rem] font-medium text-mute transition-colors duration-200 hover:text-ink"
+								className="text-[0.95rem] font-medium text-mute transition-colors duration-200 hover:text-ink"
 								activeProps={{ className: "!text-ink" }}
 							>
 								{link.label}
@@ -105,6 +106,7 @@ export default function Header() {
 					</nav>
 
 					<div className="flex items-center gap-3">
+						<ThemeToggle />
 						<Link
 							to="/contact"
 							className="button-primary hidden md:inline-flex"
@@ -116,7 +118,7 @@ export default function Header() {
 							ref={toggleRef}
 							type="button"
 							onClick={() => setIsOpen((value) => !value)}
-							className="inline-flex rounded-lg border border-line bg-white/[0.02] p-2 text-mute transition hover:border-[rgba(166,146,255,0.5)] hover:text-ink lg:hidden"
+							className="inline-flex rounded-lg border border-border bg-surface p-2 text-mute transition hover:border-violet hover:text-ink lg:hidden"
 							aria-label={isOpen ? "Close menu" : "Open menu"}
 							aria-expanded={isOpen}
 							aria-controls={menuId}
@@ -136,7 +138,7 @@ export default function Header() {
 				aria-hidden={!isOpen}
 				tabIndex={-1}
 				aria-label="Close menu"
-				className={`fixed inset-0 z-40 bg-black/70 backdrop-blur-sm transition lg:hidden ${
+				className={`fixed inset-0 z-40 bg-[rgba(20,16,28,0.55)] backdrop-blur-sm transition lg:hidden ${
 					isOpen
 						? "pointer-events-auto opacity-100"
 						: "pointer-events-none opacity-0"
@@ -150,13 +152,13 @@ export default function Header() {
 				inert={!isOpen}
 				aria-hidden={!isOpen}
 				onKeyDown={trapFocus}
-				className={`fixed right-0 top-0 z-50 h-full w-[86vw] max-w-sm border-l border-line bg-[rgba(8,7,18,0.98)] p-7 transition-transform duration-300 ease-out lg:hidden ${
+				className={`fixed right-0 top-0 z-50 h-full w-[86vw] max-w-sm border-l border-border bg-surface p-7 shadow-[var(--shadow-lg)] transition-transform duration-300 ease-out lg:hidden ${
 					isOpen ? "translate-x-0" : "translate-x-full"
 				}`}
 			>
 				<div className="mb-10 mt-16 flex items-center gap-2.5">
 					<BrandMark size={30} />
-					<span className="font-heading text-xl font-semibold text-ink">
+					<span className="font-display text-xl font-medium text-ink">
 						Mation
 					</span>
 				</div>
@@ -166,9 +168,9 @@ export default function Header() {
 							key={link.to}
 							to={link.to}
 							onClick={() => setIsOpen(false)}
-							className="block rounded-xl border border-line bg-white/[0.02] px-4 py-3 text-sm font-medium text-mute transition hover:border-[rgba(166,146,255,0.45)] hover:text-ink"
+							className="block rounded-xl border border-border bg-surface-2 px-4 py-3 text-sm font-medium text-ink-soft transition hover:border-violet hover:text-ink"
 							activeProps={{
-								className: "!border-[rgba(166,146,255,0.45)] !text-ink",
+								className: "!border-violet !text-ink",
 							}}
 						>
 							{link.label}

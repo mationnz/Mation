@@ -28,6 +28,8 @@ export default function ToolsMarquee() {
 	const row = [...TOOLS, ...TOOLS].map((label, i) => ({
 		label,
 		id: `${label}-${i}`,
+		// Two-ink rhythm: every third marker picks up coral, the rest violet.
+		warm: i % 3 === 2,
 	}));
 
 	return (
@@ -35,7 +37,11 @@ export default function ToolsMarquee() {
 			<div className="marquee-track">
 				{row.map((item) => (
 					<span key={item.id} className="marquee-chip">
-						<span className="h-1.5 w-1.5 rounded-full bg-[var(--color-violet-bright)]" />
+						<span
+							className={`h-1.5 w-1.5 rounded-full ${
+								item.warm ? "bg-warm" : "bg-violet"
+							}`}
+						/>
 						{item.label}
 					</span>
 				))}

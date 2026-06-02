@@ -153,7 +153,7 @@ const capabilities: Capability[] = [
 		n: "05",
 		icon: Database,
 		title: "The unified data layer",
-		what: "One model of your business — the ontology of how you operate.",
+		what: "One shared model of your business — a single, agreed definition of how you operate.",
 		when: "When every tool defines a customer, job, or invoice in its own way.",
 		changes:
 			"Every system speaks the same language, and your data becomes an asset.",
@@ -273,42 +273,40 @@ function WhatWeBuildPage() {
 			{/* Hero */}
 			<section className="glow section-shell">
 				<div className="site-wide">
-					<div className="dimline reveal-up mb-10">
-						What we build — one bespoke system, five layers
-					</div>
-					<div className="grid items-center gap-12 lg:grid-cols-[1.06fr_0.94fr]">
-						<div className="space-y-7">
-							<p className="kicker reveal-up">What we build</p>
-							<h1 className="reveal-up delay-1 display text-[2.6rem] text-ink sm:text-6xl lg:text-[3.9rem]">
-								We don't sell a product. We build the{" "}
-								<span className="gradient-ink">
-									system your business needs.
-								</span>
-							</h1>
-							<p className="reveal-up delay-2 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
-								No two businesses run the same way, so no two systems should. We
-								engineer software around exactly how you operate — your tools,
-								your data, your workflows, unified into one — with AI as the
-								engine underneath.
-							</p>
-							<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
-								<MagneticLink to="/contact" className="button-primary">
-									Book a free exploration meeting
-									<ArrowRight className="h-4 w-4" />
-								</MagneticLink>
-								<MagneticLink to="/approach" className="button-secondary">
-									See our approach
-								</MagneticLink>
+					<div className="reveal-scroll">
+						<div className="grid items-center gap-12 lg:grid-cols-[1.06fr_0.94fr]">
+							<div className="space-y-7">
+								<p className="kicker reveal-up">What we build</p>
+								<h1 className="reveal-up delay-1 display text-[2.6rem] text-ink sm:text-6xl lg:text-[3.9rem]">
+									We don't sell a product. We build the{" "}
+									<span className="gradient-ink">
+										system your business needs.
+									</span>
+								</h1>
+								<p className="reveal-up delay-2 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
+									No two businesses run the same way, so no two systems should.
+									We engineer software around exactly how you operate — your
+									tools, your data, your workflows, unified into one — with AI
+									as the engine underneath.
+								</p>
+								<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
+									<MagneticLink to="/contact" className="button-primary">
+										Book a free exploration meeting
+										<ArrowRight className="h-4 w-4" />
+									</MagneticLink>
+									<MagneticLink to="/approach" className="button-secondary">
+										See our approach
+									</MagneticLink>
+								</div>
 							</div>
-						</div>
 
-						<div className="reveal-up delay-2 relative">
-							<div className="bracket">
+							<figure className="reveal-up delay-2 figure-plate relative m-0">
 								<CapabilityStack layers={heroLayers} />
-							</div>
-							<div className="absolute -right-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
-								<span className="bp-coord">Engineered around you</span>
-							</div>
+								<figcaption className="plate-caption">
+									One bespoke system, built around you — five layers working as
+									one.
+								</figcaption>
+							</figure>
 						</div>
 					</div>
 				</div>
@@ -316,12 +314,11 @@ function WhatWeBuildPage() {
 
 			{/* Capabilities */}
 			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
+				<div className="chapter reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
 					<div className="max-w-2xl">
-						<p className="section-index mb-4">
-							<b>01</b> &nbsp;/&nbsp; Capabilities
-						</p>
-						<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+						<span className="chapter-no mb-3">01</span>
+						<p className="kicker">The system, layer by layer</p>
+						<h2 className="mt-4 font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 							Five ways we build the system you run on.
 						</h2>
 						<p className="mt-4 text-pretty text-mute">
@@ -329,36 +326,28 @@ function WhatWeBuildPage() {
 							engineered for your business — not a product you adopt.
 						</p>
 					</div>
-					<p className="dimline hidden max-w-xs md:flex">
-						Combined · not à la carte
+					<p className="kicker hidden self-end md:inline-flex">
+						One joined-up system, not a menu
 					</p>
 				</div>
 
-				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)]">
+				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border">
 					{capabilities.map((cap) => (
 						<article
 							key={cap.n}
-							className="group relative bg-panel p-7 transition-colors duration-200 hover:bg-panel-2/40 sm:p-9 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-10"
+							className="panel-hover group relative bg-surface p-7 transition-colors duration-200 hover:bg-surface-2/50 sm:p-9 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-10"
 						>
-							<span className="bp-coord absolute right-6 top-6 hidden sm:block">
-								FIG.{cap.n}
-							</span>
+							<span
+								aria-hidden
+								className={`card-node ${cap.n === "05" ? "is-warm" : ""}`}
+							/>
 							<div>
 								<div className="flex items-center gap-4">
-									<span className="font-mono text-sm text-violet-bright">
+									<span className="font-display text-xl font-medium text-violet">
 										{cap.n}
 									</span>
-									<span className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-										<span
-											aria-hidden
-											className="pointer-events-none absolute inset-0 opacity-40"
-											style={{
-												backgroundImage:
-													"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-												backgroundSize: "8px 8px",
-											}}
-										/>
-										<cap.icon className="relative h-5 w-5" />
+									<span className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
+										<cap.icon className="h-5 w-5" />
 									</span>
 								</div>
 								<h3 className="mt-5 font-heading text-2xl font-semibold text-ink">
@@ -366,15 +355,15 @@ function WhatWeBuildPage() {
 								</h3>
 								<dl className="mt-5 space-y-4">
 									<div>
-										<dt className="font-mono text-xs uppercase tracking-[0.16em] text-violet-bright/90">
+										<dt className="text-xs font-semibold text-warm-ink">
 											What it is
 										</dt>
-										<dd className="mt-1.5 text-[0.95rem] leading-relaxed text-ink/85">
+										<dd className="mt-1.5 text-[0.95rem] leading-relaxed text-ink-soft">
 											{cap.what}
 										</dd>
 									</div>
 									<div>
-										<dt className="font-mono text-xs uppercase tracking-[0.16em] text-mute">
+										<dt className="text-xs font-semibold text-mute">
 											When you need it
 										</dt>
 										<dd className="mt-1.5 text-[0.95rem] leading-relaxed text-mute">
@@ -382,24 +371,24 @@ function WhatWeBuildPage() {
 										</dd>
 									</div>
 									<div>
-										<dt className="font-mono text-xs uppercase tracking-[0.16em] text-mute">
+										<dt className="text-xs font-semibold text-mute">
 											What changes for you
 										</dt>
-										<dd className="mt-1.5 text-[0.95rem] leading-relaxed text-ink/85">
+										<dd className="mt-1.5 text-[0.95rem] leading-relaxed text-ink-soft">
 											{cap.changes}
 										</dd>
 									</div>
 								</dl>
 							</div>
 
-							<ul className="mt-7 flex flex-col gap-px self-start overflow-hidden rounded-[12px] border border-line bg-[var(--color-line)] lg:mt-0">
+							<ul className="mt-7 flex flex-col gap-px self-start overflow-hidden rounded-[12px] border border-border bg-border lg:mt-0">
 								{cap.points.map((point) => (
 									<li
 										key={point.label}
-										className="flex items-start gap-3 bg-panel p-4"
+										className="flex items-start gap-3 bg-surface p-4"
 									>
-										<point.icon className="mt-0.5 h-4 w-4 shrink-0 text-violet-bright" />
-										<span className="text-sm leading-relaxed text-ink/80">
+										<point.icon className="mt-0.5 h-4 w-4 shrink-0 text-violet" />
+										<span className="text-sm leading-relaxed text-ink-soft">
 											{point.label}
 										</span>
 									</li>
@@ -412,12 +401,11 @@ function WhatWeBuildPage() {
 
 			{/* Who it's for */}
 			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-6">
+				<div className="chapter reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-6">
 					<div className="max-w-2xl">
-						<p className="section-index mb-4">
-							<b>02</b> &nbsp;/&nbsp; Who it's for
-						</p>
-						<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
+						<span className="chapter-no mb-3">02</span>
+						<p className="kicker">Everything we build</p>
+						<h2 className="mt-4 font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 							What we'd build for you.
 						</h2>
 						<p className="mt-4 text-pretty text-mute">
@@ -426,30 +414,22 @@ function WhatWeBuildPage() {
 						</p>
 					</div>
 					<div className="shrink-0">
-						<div className="font-heading text-[clamp(2.6rem,6vw,4.5rem)] font-semibold leading-none tracking-[-0.04em]">
-							<span className="gradient-ink">5</span>
+						<div className="font-display text-[clamp(2.6rem,6vw,4.5rem)] font-medium leading-none text-violet">
+							5
 						</div>
-						<p className="bp-coord mt-2">Teams it earns its keep</p>
+						<p className="mt-2 text-sm text-mute">Teams it earns its keep</p>
 					</div>
 				</div>
 
-				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] md:grid-cols-2 lg:grid-cols-3">
+				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
 					{audiences.map((aud) => (
 						<article
 							key={aud.role}
-							className="group bg-panel p-7 transition-colors duration-200 hover:bg-panel-2/40"
+							className="panel-hover group relative bg-surface p-7 transition-colors duration-200 hover:bg-surface-2/50"
 						>
-							<div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-								<span
-									aria-hidden
-									className="pointer-events-none absolute inset-0 opacity-40"
-									style={{
-										backgroundImage:
-											"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-										backgroundSize: "8px 8px",
-									}}
-								/>
-								<aud.icon className="relative h-5 w-5" />
+							<span aria-hidden className="card-node" />
+							<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
+								<aud.icon className="h-5 w-5" />
 							</div>
 							<h3 className="mt-5 font-heading text-lg font-semibold text-ink">
 								{aud.role}
@@ -458,19 +438,18 @@ function WhatWeBuildPage() {
 								{aud.scenario}
 							</p>
 							<hr className="hairline my-4" />
-							<p className="font-mono text-xs uppercase tracking-[0.16em] text-violet-bright/90">
-								We'd build
-							</p>
-							<p className="mt-2 text-sm leading-relaxed text-ink/85">
+							<p className="text-xs font-semibold text-warm-ink">We'd build</p>
+							<p className="mt-2 text-sm leading-relaxed text-ink-soft">
 								{aud.build}
 							</p>
 						</article>
 					))}
 					<Link
 						to="/work"
-						className="panel-hover group flex flex-col justify-between bg-panel bg-[radial-gradient(circle_at_80%_-10%,rgba(123,97,255,0.12),transparent_55%)] p-7"
+						className="panel-hover group relative flex flex-col justify-between bg-surface-violet p-7"
 					>
-						<ArrowRight className="h-6 w-6 text-violet-bright transition-transform duration-200 group-hover:translate-x-0.5" />
+						<span aria-hidden className="card-node is-warm" />
+						<ArrowRight className="h-6 w-6 text-violet transition-transform duration-200 group-hover:translate-x-0.5" />
 						<span className="mt-8 font-heading text-lg font-semibold text-ink">
 							See systems we've built
 						</span>
@@ -483,10 +462,8 @@ function WhatWeBuildPage() {
 				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
 					<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
 						<div>
-							<p className="section-index mb-4">
-								<b>03</b> &nbsp;/&nbsp; How a build comes together
-							</p>
-							<h2 className="max-w-xl font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
+							<p className="kicker">How a build comes together</p>
+							<h2 className="mt-4 max-w-xl font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
 								We learn how you run, then build the system that runs it.
 							</h2>
 						</div>
@@ -494,7 +471,7 @@ function WhatWeBuildPage() {
 							The full approach <ArrowRight className="h-4 w-4" />
 						</Link>
 					</div>
-					<p className="dimline mb-8">Discovery → live system</p>
+					<p className="dimline mb-8">From discovery to a live system</p>
 					<div className="reveal-scroll">
 						<ProcessFlow steps={buildSteps} />
 					</div>

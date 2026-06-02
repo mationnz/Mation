@@ -68,7 +68,7 @@ const pillars: Pillar[] = [
 		icon: Database,
 		title: "You own your data and code",
 		description:
-			"Your data stays yours and the code is yours to keep. No lock-in, no hostage situation.",
+			"Your data stays yours and the code is yours to keep. No lock-in — you can take it anywhere, anytime.",
 	},
 	{
 		n: "03",
@@ -142,14 +142,12 @@ function SecurityPage() {
 			{/* Hero */}
 			<section className="glow section-shell">
 				<div className="site-wide">
-					<div className="dimline reveal-up mb-10">
-						Mation — security & governance · built in, not bolted on
-					</div>
+					<p className="kicker reveal-up mb-8">Security &amp; governance</p>
 					<div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
 						<div className="space-y-7">
 							<span className="pill reveal-up">
-								<ShieldCheck className="h-3.5 w-3.5 text-violet-bright" />
-								Security & governance
+								<ShieldCheck className="h-3.5 w-3.5 text-violet" />
+								Built in, not bolted on
 							</span>
 							<h1 className="reveal-up delay-1 display text-[2.6rem] text-ink sm:text-6xl lg:text-[3.9rem]">
 								Protect your business while{" "}
@@ -170,63 +168,49 @@ function SecurityPage() {
 									See how we work
 								</MagneticLink>
 							</div>
-							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
+							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-mute">
 								<li className="flex items-center gap-2">
-									<Check className="h-3.5 w-3.5 text-violet-bright" /> Your data
-									stays yours
+									<Check className="h-4 w-4 text-violet" /> Your data stays
+									yours
 								</li>
 								<li className="flex items-center gap-2">
-									<Check className="h-3.5 w-3.5 text-violet-bright" /> You own
-									the code
+									<Check className="h-4 w-4 text-violet" /> You own the code
 								</li>
 								<li className="flex items-center gap-2">
-									<Check className="h-3.5 w-3.5 text-violet-bright" /> No
-									lock-in
+									<Check className="h-4 w-4 text-violet" /> No lock-in
 								</li>
 							</ul>
 						</div>
 
-						{/* Oversized exposure stat — the signature security visual */}
+						{/* Oversized protection stat — the signature security visual */}
 						<div className="reveal-up delay-2 relative">
-							<div className="bracket">
-								<div className="panel ticked relative overflow-hidden rounded-[22px] p-8 sm:p-9">
-									<div
-										aria-hidden
-										className="pointer-events-none absolute inset-0 opacity-60"
-										style={{
-											backgroundImage:
-												"linear-gradient(rgba(123,97,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.06) 1px, transparent 1px)",
-											backgroundSize: "32px 32px",
-											maskImage:
-												"radial-gradient(circle at 50% 30%, #000 30%, transparent 90%)",
-										}}
-									/>
-									<div className="relative">
-										<p className="bp-coord">Exposure with controls on</p>
-										<div className="mt-4 font-heading text-[clamp(4rem,9vw,6.5rem)] font-semibold leading-none tracking-[-0.04em] text-ink">
-											<span className="gradient-ink">5%</span>
-										</div>
-										<p className="mt-4 max-w-[18rem] text-sm leading-relaxed text-mute">
-											Every guardrail on — least privilege, scoped reach,
-											approvals, and full audit. The more controls, the less
-											surface area exposed.
-										</p>
-										<div className="trust-meter mt-6">
-											<div style={{ width: "95%" }} />
-										</div>
-										<div className="mt-4 flex items-center gap-2 font-mono text-xs text-violet-bright">
-											<ShieldCheck className="h-3.5 w-3.5" />5 / 5 controls
-											active
-										</div>
-									</div>
+							<figure className="figure-plate ticked relative overflow-hidden">
+								<div className="card-node is-warm" aria-hidden />
+								<p className="kicker">How protected you are</p>
+								<div className="mt-4 metric-value text-[clamp(4rem,9vw,6.5rem)]">
+									95%
 								</div>
+								<p className="mt-4 max-w-[18rem] text-sm leading-relaxed text-mute">
+									Every guardrail on — least privilege, scoped reach,
+									approvals, and full audit. The more controls, the more
+									protected you are.
+								</p>
+								<div className="trust-meter mt-6">
+									<div style={{ width: "95%" }} />
+								</div>
+								<div className="mt-4 flex items-center gap-2 text-sm font-medium text-violet-ink">
+									<ShieldCheck className="h-4 w-4 text-violet" />5 / 5 controls
+									active
+								</div>
+							</figure>
+							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-border bg-surface px-3 py-2 shadow-[var(--shadow-sm)] sm:block">
+								<span className="text-sm font-semibold text-warm-ink">
+									Risk cut by 90%
+								</span>
 							</div>
-							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-line bg-canvas px-3 py-2 sm:block">
-								<span className="bp-coord">Risk ↓ 90%</span>
-							</div>
-							<p className="bp-coord mt-3 text-center">
-								FIG.01 · SURFACE AREA — CONTROLS ENGAGED
-							</p>
+							<figcaption className="plate-caption">
+								More safeguards, less risk
+							</figcaption>
 						</div>
 					</div>
 				</div>
@@ -234,10 +218,9 @@ function SecurityPage() {
 
 			{/* Pillars */}
 			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll mb-10 max-w-2xl">
-					<p className="section-index mb-4">
-						<b>01</b> &nbsp;/&nbsp; What's built in
-					</p>
+				<div className="reveal-scroll chapter mb-10 max-w-2xl">
+					<span className="chapter-no">No. 01</span>
+					<p className="kicker mb-4 mt-2">What's built in</p>
 					<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 						Governance is part of the build, not a bolt-on.
 					</h2>
@@ -251,20 +234,14 @@ function SecurityPage() {
 				<div className="reveal-stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 					{pillars.map((pillar) => (
 						<article key={pillar.n} className="panel panel-hover group p-6">
-							<div className="flex items-center justify-between">
-								<div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-									<span
-										aria-hidden
-										className="pointer-events-none absolute inset-0 opacity-40"
-										style={{
-											backgroundImage:
-												"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-											backgroundSize: "8px 8px",
-										}}
-									/>
-									<pillar.icon className="relative h-5 w-5" />
+							<span className="card-node" aria-hidden />
+							<div className="flex items-center gap-4">
+								<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
+									<pillar.icon className="h-5 w-5" />
 								</div>
-								<span className="bp-coord">{pillar.n}</span>
+								<span className="font-display text-lg text-violet/60">
+									{pillar.n}
+								</span>
 							</div>
 							<h3 className="mt-5 font-heading text-lg font-semibold text-ink">
 								{pillar.title}
@@ -274,18 +251,9 @@ function SecurityPage() {
 							</p>
 						</article>
 					))}
-					<article className="panel group flex flex-col justify-between bg-[radial-gradient(circle_at_80%_-10%,rgba(123,97,255,0.12),transparent_55%)] p-6">
-						<div className="relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-line bg-white/[0.03] text-violet-bright">
-							<span
-								aria-hidden
-								className="pointer-events-none absolute inset-0 opacity-40"
-								style={{
-									backgroundImage:
-										"linear-gradient(rgba(123,97,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(123,97,255,0.18) 1px, transparent 1px)",
-									backgroundSize: "8px 8px",
-								}}
-							/>
-							<Scale className="relative h-5 w-5" />
+					<article className="panel group flex flex-col justify-between bg-surface-violet p-6">
+						<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface text-warm-ink">
+							<Scale className="h-5 w-5" />
 						</div>
 						<div className="mt-8">
 							<h3 className="font-heading text-lg font-semibold text-ink">
@@ -302,11 +270,9 @@ function SecurityPage() {
 
 			{/* Interactive governance illustration */}
 			<section className="glow site-wide section-shell pt-0">
-				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
+				<div className="figure-plate ticked overflow-hidden">
 					<div className="reveal-scroll mb-8 max-w-2xl">
-						<p className="section-index mb-4">
-							<b>02</b> &nbsp;/&nbsp; Safety at every step
-						</p>
+						<p className="kicker mb-4">Safety at every step</p>
 						<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
 							You decide what the system can do — and we can prove it did only
 							that.
@@ -323,12 +289,11 @@ function SecurityPage() {
 
 			{/* Rollout approach + FAQ */}
 			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll mb-12 max-w-2xl">
-					<p className="section-index mb-4">
-						<b>03</b> &nbsp;/&nbsp; How we roll out safely
-					</p>
+				<div className="reveal-scroll chapter mb-12 max-w-2xl">
+					<span className="chapter-no">No. 02</span>
+					<p className="kicker mb-4 mt-2">How we roll out safely</p>
 					<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
-						We earn trust before we widen reach.
+						We earn trust before we widen access.
 					</h2>
 					<p className="mt-4 text-pretty text-mute">
 						Nothing goes straight to full access. We expand capability one
@@ -347,9 +312,7 @@ function SecurityPage() {
 
 				<div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
 					<div className="reveal-scroll">
-						<p className="section-index mb-4">
-							<b>04</b> &nbsp;/&nbsp; Straight answers
-						</p>
+						<p className="kicker mb-4">Straight answers</p>
 						<h3 className="font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
 							The questions we get asked first.
 						</h3>
@@ -358,25 +321,25 @@ function SecurityPage() {
 							start. Need one we haven't listed?
 						</p>
 						<p className="mt-6 flex items-start gap-3 text-sm leading-relaxed text-mute">
-							<GitPullRequestArrow className="mt-0.5 h-4 w-4 shrink-0 text-violet-bright" />
+							<GitPullRequestArrow className="mt-0.5 h-4 w-4 shrink-0 text-violet" />
 							Have a control your auditors require? Tell us and we'll build to
 							it.
 						</p>
 					</div>
 
-					<dl className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] sm:grid-cols-2">
+					<dl className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border sm:grid-cols-2">
 						{faqs.map((faq) => (
-							<div key={faq.q} className="bg-panel p-6">
+							<div key={faq.q} className="bg-surface p-6">
 								<div className="flex items-center gap-3">
-									<span className="inline-flex rounded-lg border border-line bg-white/[0.03] p-2 text-violet-bright">
+									<span className="inline-flex rounded-lg border border-border bg-surface-violet p-2 text-violet">
 										<Eye className="h-4 w-4" />
 									</span>
 									<dt className="text-[0.95rem] font-medium text-ink">
 										{faq.q}
 									</dt>
 								</div>
-								<dd className="mt-4 flex items-center gap-2 font-mono text-sm text-violet-bright">
-									<Check className="h-4 w-4" /> {faq.a}
+								<dd className="mt-4 flex items-center gap-2 text-sm font-medium text-violet-ink">
+									<Check className="h-4 w-4 text-violet" /> {faq.a}
 								</dd>
 							</div>
 						))}

@@ -45,9 +45,7 @@ function CaseStudyPage() {
 				<InteractiveAura />
 				<section className="section-shell">
 					<div className="site-shell max-w-2xl space-y-6">
-						<p className="section-index">
-							<b>404</b> &nbsp;/&nbsp; Case study
-						</p>
+						<p className="kicker">Case study not found</p>
 						<h1 className="font-heading text-4xl font-semibold text-ink sm:text-5xl">
 							We couldn't find that case study.
 						</h1>
@@ -82,54 +80,52 @@ function CaseStudyPage() {
 						<div className="max-w-3xl space-y-7">
 							<nav
 								aria-label="Breadcrumb"
-								className="reveal-up flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] text-mute"
+								className="reveal-up flex items-center gap-2 text-sm font-medium text-mute"
 							>
 								<Link to="/work" className="link-underline">
 									Work
 								</Link>
 								<ChevronRight className="h-3.5 w-3.5" />
-								<span className="text-ink/70">{study.industry}</span>
+								<span className="text-ink-soft">{study.industry}</span>
 							</nav>
 
 							<div className="reveal-up flex flex-wrap items-center gap-2">
 								<span className="tag">{study.industry}</span>
 								<span className="tag">{study.year}</span>
 								{study.isPlaceholder ? (
-									<span className="tag !text-violet-bright">Sample case</span>
+									<span className="tag !text-violet">Sample case</span>
 								) : null}
 							</div>
 
 							<h1 className="reveal-up delay-1 display text-[2.4rem] text-ink sm:text-5xl lg:text-[3.4rem]">
 								{study.summary}
 							</h1>
-							<p className="reveal-up delay-2 font-mono text-xs uppercase tracking-[0.12em] text-mute">
+							<p className="reveal-up delay-2 text-sm font-medium text-mute">
 								{study.client}
 							</p>
 						</div>
 
 						{/* Headline result, oversized — the case in one number */}
-						<div className="reveal-up delay-2">
-							<div className="bracket">
-								<div className="panel ticked relative overflow-hidden rounded-[22px] p-7 sm:p-8">
-									<span
-										aria-hidden
-										className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-[radial-gradient(circle,var(--color-violet),transparent_70%)] opacity-25 blur-2xl"
-									/>
-									<p className="bp-coord relative">FIG.01 · Headline result</p>
-									<div className="relative mt-4 font-heading text-[clamp(2.4rem,5.5vw,4rem)] font-semibold leading-none tracking-[-0.04em]">
-										<span className="gradient-ink">
-											{study.results[0]?.metric}
-										</span>
-									</div>
-									<p className="relative mt-3 text-sm leading-snug text-mute">
-										{study.results[0]?.label}
-									</p>
+						<figure className="reveal-up delay-2">
+							<div className="panel ticked relative overflow-hidden rounded-[22px] p-7 sm:p-8">
+								<span
+									aria-hidden
+									className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-[radial-gradient(circle,var(--violet),transparent_70%)] opacity-20 blur-2xl"
+								/>
+								<p className="kicker relative">The result that mattered</p>
+								<div className="relative mt-4 font-heading text-[clamp(2.4rem,5.5vw,4rem)] font-semibold leading-none tracking-[-0.04em]">
+									<span className="gradient-ink">
+										{study.results[0]?.metric}
+									</span>
 								</div>
+								<p className="relative mt-3 text-sm leading-snug text-mute">
+									{study.results[0]?.label}
+								</p>
 							</div>
-							<p className="bp-coord mt-3 text-center">
-								FIG.01 · OUTCOME — MEASURED, NOT CLAIMED
-							</p>
-						</div>
+							<figcaption className="plate-caption">
+								A real, measured outcome.
+							</figcaption>
+						</figure>
 					</div>
 				</div>
 			</section>
@@ -138,7 +134,7 @@ function CaseStudyPage() {
 			{study.isPlaceholder ? (
 				<section className="site-wide section-shell pt-0">
 					<div className="panel-line flex items-start gap-4 p-5">
-						<div className="inline-flex rounded-xl border border-line bg-white/[0.03] p-2.5 text-violet-bright">
+						<div className="inline-flex rounded-xl border border-border bg-surface-2 p-2.5 text-violet">
 							<FlaskConical className="h-4 w-4" />
 						</div>
 						<p className="text-sm leading-relaxed text-mute">
@@ -155,19 +151,20 @@ function CaseStudyPage() {
 
 			{/* The business & its problem + before→after diagram */}
 			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll mb-10 max-w-2xl">
-					<p className="section-index mb-4">
-						<b>01</b> &nbsp;/&nbsp; The problem
-					</p>
+				<div className="chapter reveal-scroll mb-10 max-w-2xl">
+					<span className="chapter-no">No. 01</span>
+					<p className="kicker mt-2 mb-3">The problem</p>
 					<h2 className="font-heading text-2xl font-semibold text-ink sm:text-3xl">
 						The business & where it was stuck
 					</h2>
 				</div>
 				<div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-					<p className="text-lg leading-relaxed text-ink/85">{study.problem}</p>
+					<p className="lede text-lg leading-relaxed text-ink-soft">
+						{study.problem}
+					</p>
 					<div className="reveal-scroll">
 						<CaseTransformDiagram
-							figure="FIG.02 — BEFORE → AFTER"
+							figure="From scattered tools to one system"
 							before={study.capabilities}
 							after="One system, built around how they operate"
 							outcome="Unified into one system they own"
@@ -178,22 +175,21 @@ function CaseStudyPage() {
 
 			{/* What we built */}
 			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll mb-8 max-w-2xl">
-					<p className="section-index mb-4">
-						<b>02</b> &nbsp;/&nbsp; What we built
-					</p>
+				<div className="chapter reveal-scroll mb-8 max-w-2xl">
+					<span className="chapter-no">No. 02</span>
+					<p className="kicker mt-2 mb-3">What we built</p>
 					<h2 className="font-heading text-2xl font-semibold text-ink sm:text-3xl">
 						One system, engineered around how they operate.
 					</h2>
 				</div>
-				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-line bg-[var(--color-line)] sm:grid-cols-2">
+				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border sm:grid-cols-2">
 					{study.whatWeBuilt.map((item, i) => (
-						<div key={item} className="relative bg-panel p-6">
+						<div key={item} className="relative bg-surface p-6">
 							<span className="bp-coord absolute right-4 top-4">
 								{`0${i + 1}`}
 							</span>
-							<Check className="h-5 w-5 shrink-0 text-violet-bright" />
-							<p className="mt-3 text-[0.95rem] leading-relaxed text-ink/85">
+							<Check className="h-5 w-5 shrink-0 text-violet" />
+							<p className="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">
 								{item}
 							</p>
 						</div>
@@ -205,11 +201,14 @@ function CaseStudyPage() {
 			<section className="glow site-wide section-shell pt-0">
 				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
 					<div className="mb-10 flex flex-wrap items-end justify-between gap-4">
-						<p className="section-index">
-							<b>03</b> &nbsp;/&nbsp; The results
-						</p>
+						<div>
+							<p className="kicker mb-2">The results</p>
+							<h2 className="font-heading text-2xl font-semibold text-ink sm:text-3xl">
+								Before and after, measured.
+							</h2>
+						</div>
 						<span className="bp-coord">
-							{`${study.results.length} metrics · before → after`}
+							{`${study.results.length} measured before & after`}
 						</span>
 					</div>
 					<div className="reveal-stagger grid gap-10 sm:grid-cols-3">
@@ -231,11 +230,11 @@ function CaseStudyPage() {
 			{study.quote ? (
 				<section className="site-wide section-shell pt-0">
 					<figure className="reveal-scroll panel-line p-8 sm:p-12">
-						<Quote className="h-7 w-7 text-violet-bright" />
+						<Quote className="h-7 w-7 text-warm-ink" />
 						<blockquote className="mt-5 max-w-3xl text-pretty font-heading text-2xl font-semibold leading-snug text-ink sm:text-[1.9rem]">
 							“{study.quote.text}”
 						</blockquote>
-						<figcaption className="mt-6 font-mono text-xs uppercase tracking-[0.12em] text-mute">
+						<figcaption className="mt-6 text-sm font-medium text-mute">
 							{study.quote.name} · {study.quote.role}
 						</figcaption>
 					</figure>
@@ -245,9 +244,7 @@ function CaseStudyPage() {
 			{/* Capabilities / approach */}
 			<section className="site-wide section-shell pt-0">
 				<div className="reveal-scroll">
-					<p className="section-index mb-4">
-						<b>04</b> &nbsp;/&nbsp; Capabilities
-					</p>
+					<p className="kicker mb-4">Capabilities</p>
 					<h2 className="mb-6 max-w-2xl font-heading text-2xl font-semibold text-ink sm:text-3xl">
 						What this build drew on.
 					</h2>
@@ -265,9 +262,7 @@ function CaseStudyPage() {
 			{related.length > 0 ? (
 				<section className="site-wide section-shell pt-0">
 					<div className="reveal-scroll mb-8 flex flex-wrap items-end justify-between gap-4">
-						<p className="section-index">
-							<b>05</b> &nbsp;/&nbsp; More work
-						</p>
+						<p className="kicker">More work</p>
 						<Link to="/work" className="button-ghost">
 							All work <ArrowRight className="h-4 w-4" />
 						</Link>
@@ -280,10 +275,11 @@ function CaseStudyPage() {
 								params={{ slug: other.slug }}
 								className="panel panel-hover group relative flex flex-col p-6 sm:p-7"
 							>
-								<div className="flex items-center justify-between gap-3">
+								<span aria-hidden className="card-node" />
+								<div className="flex items-center justify-between gap-3 pr-6">
 									<span className="tag">{other.industry}</span>
 									{other.isPlaceholder ? (
-										<span className="tag !text-violet-bright">Sample</span>
+										<span className="tag !text-violet">Sample</span>
 									) : null}
 								</div>
 								<h3 className="mt-4 font-heading text-lg font-semibold leading-snug text-ink">
