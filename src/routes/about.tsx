@@ -200,6 +200,54 @@ function AboutPage() {
 				</div>
 			</section>
 
+			{/* Biography / manifesto */}
+			<section className="site-wide section-shell pt-0">
+				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12 lg:p-16">
+					<p className="kicker reveal-scroll mb-6">Who we are</p>
+					<h2 className="reveal-scroll max-w-3xl font-heading text-3xl font-semibold text-ink sm:text-[2.6rem] sm:leading-[1.1]">
+						The next generation of business{" "}
+						<span className="gradient-ink">starts here</span>.
+					</h2>
+					<div className="reveal-stagger mt-8 max-w-3xl space-y-6 text-lg leading-relaxed text-mute">
+						<p>
+							At Mation, we’re building the operating system for modern
+							organisations.
+						</p>
+						<p>
+							We believe technology should adapt to the way people work — not
+							the other way around. That’s why we partner with ambitious teams to
+							design intelligent ecosystems that bring people, processes, data,
+							and technology together into one connected environment.
+						</p>
+						<p>
+							By combining AI, custom software, and intelligent automation, we
+							eliminate complexity, streamline operations, and create the
+							capacity for organisations to innovate, grow, and scale with
+							confidence.
+						</p>
+						<p>
+							Our mission is to create the digital home where modern work happens
+							— a place where every workflow, every project, every customer, and
+							every decision is seamlessly connected through systems designed
+							around the way your organisation operates.
+						</p>
+						<p>
+							We don’t believe in one-size-fits-all solutions. We believe every
+							organisation deserves technology that is purpose-built to unlock its
+							full potential.
+						</p>
+						<p className="text-pretty text-xl font-medium text-ink sm:text-2xl">
+							We don’t just improve the way organisations work. We transform the
+							way they operate. We redefine what’s possible.
+						</p>
+						<p className="text-lg font-semibold text-ink">
+							Welcome to the future of work.{" "}
+							<span className="gradient-ink">Welcome to Mation.</span>
+						</p>
+					</div>
+				</div>
+			</section>
+
 			{/* We are / we are not */}
 			<section className="site-wide section-shell pt-0">
 				<p className="kicker reveal-scroll mb-4">What we are</p>

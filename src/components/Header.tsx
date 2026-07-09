@@ -1,9 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
-import { navLinks } from "../content/site";
 import BrandMark from "./BrandMark";
-import ThemeToggle from "./ThemeToggle";
+
+const primaryNav = [
+	{ label: "Home", to: "/" },
+	{ label: "Solutions", to: "/what-we-build" },
+	{ label: "Platform", to: "/approach" },
+	{ label: "Case Studies", to: "/work" },
+	{ label: "About", to: "/about" },
+	{ label: "Contact", to: "/contact" },
+] as const;
 
 export default function Header() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -77,27 +84,27 @@ export default function Header() {
 				className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
 					scrolled
 						? "border-border paper-glass"
-						: "border-transparent bg-transparent"
+						: "border-border/70 bg-canvas/90 backdrop-blur-xl"
 				}`}
 			>
-				<div className="site-wide flex h-20 items-center justify-between gap-6">
+				<div className="site-wide flex h-16 items-center justify-between gap-6">
 					<Link
 						to="/"
 						className="group inline-flex items-center gap-2.5"
 						aria-label="Mation — home"
 					>
-						<BrandMark size={30} />
-						<span className="font-display text-[1.35rem] font-medium tracking-tight text-ink">
+						<BrandMark size={18} />
+						<span className="font-display text-sm font-semibold text-ink">
 							Mation
 						</span>
 					</Link>
 
-					<nav className="hidden items-center gap-7 lg:flex">
-						{navLinks.map((link) => (
+					<nav className="hidden items-center gap-8 lg:flex">
+						{primaryNav.map((link) => (
 							<Link
 								key={link.to}
 								to={link.to}
-								className="text-[0.95rem] font-medium text-mute transition-colors duration-200 hover:text-ink"
+								className="text-xs font-semibold text-mute transition-colors duration-200 hover:text-ink"
 								activeProps={{ className: "!text-ink" }}
 							>
 								{link.label}
@@ -106,12 +113,11 @@ export default function Header() {
 					</nav>
 
 					<div className="flex items-center gap-3">
-						<ThemeToggle />
 						<Link
 							to="/contact"
-							className="button-primary hidden md:inline-flex"
+							className="button-primary hidden !rounded-full !px-5 !py-2.5 !text-xs md:inline-flex"
 						>
-							Book a free session
+							Start the build
 							<ArrowUpRight className="h-4 w-4" />
 						</Link>
 						<button
@@ -157,13 +163,13 @@ export default function Header() {
 				}`}
 			>
 				<div className="mb-10 mt-16 flex items-center gap-2.5">
-					<BrandMark size={30} />
-					<span className="font-display text-xl font-medium text-ink">
+					<BrandMark size={24} />
+					<span className="font-display text-lg font-semibold text-ink">
 						Mation
 					</span>
 				</div>
 				<nav className="space-y-2.5">
-					{navLinks.map((link) => (
+					{primaryNav.map((link) => (
 						<Link
 							key={link.to}
 							to={link.to}
@@ -182,7 +188,7 @@ export default function Header() {
 					onClick={() => setIsOpen(false)}
 					className="button-primary mt-7 inline-flex w-full justify-center"
 				>
-					Book a free session
+					Start the build
 				</Link>
 			</aside>
 		</>

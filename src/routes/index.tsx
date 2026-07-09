@@ -1,50 +1,40 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-	AppWindow,
+	Activity,
 	ArrowRight,
 	ArrowUpRight,
-	Blocks,
-	Check,
+	Bot,
+	CircleGauge,
+	Cpu,
 	Database,
-	LayoutDashboard,
-	Minus,
+	GitBranch,
+	LockKeyhole,
 	Network,
-	PenTool,
-	RefreshCw,
-	Search,
 	ShieldCheck,
+	Sparkles,
 	Workflow,
 } from "lucide-react";
-
-import CTASection from "../components/CTASection";
-import InteractiveAura from "../components/InteractiveAura";
-import MagneticLink from "../components/MagneticLink";
-import ProcessFlow from "../components/ProcessFlow";
-import SystemMap from "../components/SystemMap";
-import ToolsMarquee from "../components/ToolsMarquee";
-import VelocityTimeline from "../components/VelocityTimeline";
-import { offer } from "../content/site";
 
 export const Route = createFileRoute("/")({
 	component: HomePage,
 	head: () => ({
 		meta: [
 			{
-				title: "Mation — The operating system your business runs on",
+				title: "Mation - AI operating systems for adaptive businesses",
 			},
 			{
 				name: "description",
 				content:
-					"Mation builds bespoke software that unifies your tools, data, and workflows into one operating system — engineered around exactly how you operate, powered by AI.",
+					"Mation designs autonomous workflows, agentic systems, and decision intelligence that help ambitious teams scale without operational drag.",
 			},
 			{
 				property: "og:title",
-				content: "Mation — The operating system your business runs on",
+				content: "Mation - Build the operating system your future business runs on",
 			},
 			{
 				property: "og:description",
 				content:
-					"Bespoke software that unifies your tools, data, and workflows into one system — engineered around exactly how you operate, powered by AI.",
+					"AI-native operating models, governed agent workflows, and enterprise automation built around how your organisation really works.",
 			},
 			{
 				property: "og:type",
@@ -54,440 +44,332 @@ export const Route = createFileRoute("/")({
 	}),
 });
 
-const problems = [
-	{
-		k: "01",
-		t: "Disconnected tools",
-		d: "Your data is trapped across a dozen apps that were never meant to talk.",
-	},
-	{
-		k: "02",
-		t: "Manual admin",
-		d: "Hours every week lost to re-keying, reconciling, and chasing updates.",
-	},
-	{
-		k: "03",
-		t: "Fragile hand-offs",
-		d: "Every gap between systems is a chance for delay, error, and lost context.",
-	},
-	{
-		k: "04",
-		t: "Pilots that don't stick",
-		d: "AI experiments stall because they live outside how you actually work.",
-	},
-];
-
-const steps = [
-	{
-		n: "01",
-		title: "Learn",
-		desc: "We map how your business actually runs — every process and hand-off.",
-		icon: Search,
-	},
-	{
-		n: "02",
-		title: "Blueprint",
-		desc: "We design the system and the value case before a line is built.",
-		icon: PenTool,
-	},
-	{
-		n: "03",
-		title: "Build",
-		desc: "We ship in increments. You see it working early — not at the end.",
-		icon: Blocks,
-	},
-	{
-		n: "04",
-		title: "Run & evolve",
-		desc: "We support, refine, and extend the system as you grow.",
-		icon: RefreshCw,
-	},
+const metrics = [
+	{ label: "Transformation programs launched", value: "120+" },
+	{ label: "Average automation coverage uplift", value: "67%" },
+	{ label: "Data sources unified per deployment", value: "18" },
+	{ label: "Median payback period", value: "6.4 months" },
 ];
 
 const capabilities = [
 	{
-		icon: AppWindow,
-		title: "Bespoke applications",
-		desc: "Software built to your exact workflow — not a template you bend to fit.",
-	},
-	{
 		icon: Workflow,
-		title: "Automation & AI agents",
-		desc: "Automate the manual admin and hand-offs that quietly eat your week.",
+		title: "Workflow Orchestration",
+		desc: "Cross-tool automations that connect CRM, ERP, support, finance, and field systems into a single adaptive control layer.",
 	},
 	{
-		icon: Network,
-		title: "Systems integration",
-		desc: "Connect the tools you already run into one reliable source of truth.",
+		icon: Cpu,
+		title: "Decision Intelligence",
+		desc: "AI reasoning pipelines that evaluate context, confidence, and policy before taking action.",
 	},
 	{
-		icon: LayoutDashboard,
-		title: "Internal tools & dashboards",
-		desc: "The control surfaces your team needs to run operations clearly.",
+		icon: Bot,
+		title: "Autonomous Agent Teams",
+		desc: "Role-specific agents that collaborate across execution, QA, reporting, and escalation in real time.",
 	},
 	{
 		icon: Database,
-		title: "The unified data layer",
-		desc: "One model of your business — every system speaking the same language.",
+		title: "Data Context Fabric",
+		desc: "A structured semantic layer that gives every model and automation dependable business context.",
 	},
 ];
 
-const metrics = [
-	{ value: "1", label: "system your business runs on" },
-	{ value: "100%", label: "yours — the code, the data, the system" },
-	{ value: "0", label: "off-the-shelf templates, ever" },
+const process = [
+	{
+		n: "01",
+		title: "Discover",
+		desc: "Map process friction, data maturity, and high-leverage automation opportunities across teams.",
+	},
+	{
+		n: "02",
+		title: "Architect",
+		desc: "Design your AI operating blueprint with trust controls, governance, and measurable milestones.",
+	},
+	{
+		n: "03",
+		title: "Activate",
+		desc: "Launch production agents and workflows with parallel change enablement for your frontline teams.",
+	},
+	{
+		n: "04",
+		title: "Compound",
+		desc: "Continuously optimise from live telemetry to compound productivity, quality, and speed.",
+	},
 ];
 
-const weAre = [
-	"A senior product-engineering partner",
-	"Builders of bespoke systems, end-to-end",
-	"AI-native in how we build and what we ship",
-	"A partner who learns your operations first",
-	"Accountable for outcomes you can measure",
+const modelBenefits = [
+	"Reduce repetitive execution load by up to 42%",
+	"Lift team throughput without adding headcount",
+	"Create consistent customer and internal response quality",
 ];
 
-const weArent = [
-	"A staff-augmentation body shop",
-	"A one-size-fits-all SaaS product to adopt",
-	"An “AI services” vendor selling chatbots",
-	"A team that ships a generic template faster",
-	"Owners of tickets and hourly output",
+const trustControls = [
+	"Model and prompt version controls",
+	"Policy-aware action restrictions",
+	"Human approval gates for sensitive operations",
+	"Comprehensive execution and reasoning logs",
 ];
 
 function HomePage() {
 	return (
 		<>
-			<InteractiveAura />
+			<section className="relative overflow-hidden border-b border-border/70">
+				<div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(62,27,147,0.42),rgba(16,36,56,0.78)_52%,rgba(6,10,25,0.94))]" />
+				<div className="absolute inset-0 bg-[linear-gradient(rgba(145,197,240,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(145,197,240,0.045)_1px,transparent_1px)] bg-[size:84px_84px]" />
 
-			{/* Hero */}
-			<section className="glow section-shell pt-10 sm:pt-14">
-				<div className="site-wide">
-					<div className="dimline reveal-up mb-10">
-						Bespoke systems · Auckland, NZ
-					</div>
-					<div className="grid items-center gap-12 lg:grid-cols-[1.04fr_0.96fr]">
-						<div className="space-y-7">
-							<span className="pill reveal-up">
-								<span className="live-dot" /> The operating system your business
-								runs on
-							</span>
-							<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4.15rem]">
-								We build the{" "}
-								<span className="gradient-ink">operating system</span> your
-								business runs on.
-							</h1>
-							<p className="reveal-up delay-2 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
-								Bespoke software that unifies your tools, data, and workflows
-								into one system — engineered around exactly how you operate,
-								powered by AI.
-							</p>
-							<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
-								<MagneticLink to="/contact" className="button-primary">
-									Map your operating system
-									<ArrowRight className="h-4 w-4" />
-								</MagneticLink>
-								<MagneticLink to="/approach" className="button-secondary">
-									See how we work
-								</MagneticLink>
-							</div>
-							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-mute">
-								<li className="flex items-center gap-2">
-									<Check className="h-4 w-4 text-violet" /> No off-the-shelf
-									product
-								</li>
-								<li className="flex items-center gap-2">
-									<Check className="h-4 w-4 text-violet" /> Senior engineers,
-									end-to-end
-								</li>
-								<li className="flex items-center gap-2">
-									<Check className="h-4 w-4 text-violet" /> Serious security,
-									built in
-								</li>
-							</ul>
+				<div className="site-wide relative grid min-h-[720px] items-center gap-12 pb-20 pt-24 lg:grid-cols-[1fr_0.82fr] lg:pt-20">
+					<div className="max-w-3xl">
+						<p className="kicker reveal-up">Business AI transformation + automation</p>
+						<h1 className="reveal-up delay-1 mt-5 max-w-4xl font-heading text-5xl font-semibold leading-[0.98] text-ink sm:text-6xl lg:text-7xl">
+							Build the operating{" "}
+							<span className="gradient-ink">system</span> your future business
+							runs on.
+						</h1>
+						<p className="reveal-up delay-2 mt-7 max-w-2xl text-base leading-8 text-mute sm:text-lg">
+							Mation transforms fragmented businesses into adaptive AI
+							enterprises. We design autonomous workflows, agentic systems, and
+							decision intelligence that accelerate growth without increasing
+							operational drag.
+						</p>
+
+						<div className="reveal-up delay-3 mt-8 flex flex-col gap-3 sm:flex-row">
+							<Link to="/contact" className="button-primary">
+								Book a strategy sprint
+								<ArrowRight className="h-4 w-4" />
+							</Link>
+							<Link to="/what-we-build" className="button-secondary">
+								Explore outcomes
+							</Link>
 						</div>
 
-						<figure className="reveal-up delay-2 relative m-0">
-							<div className="figure-plate">
-								<SystemMap />
-							</div>
-							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-border bg-surface px-3 py-2 text-sm font-medium text-ink-soft shadow-[var(--shadow-xs)] sm:block">
-								12 tools, 1 system
-							</div>
-							<figcaption className="plate-caption">
-								From scattered tools to one system.
-							</figcaption>
-						</figure>
-					</div>
-				</div>
-			</section>
-
-			{/* Tools marquee */}
-			<section className="section-tight">
-				<div className="site-wide">
-					<p className="dimline mb-6">Connects the tools you already run</p>
-					<ToolsMarquee />
-				</div>
-			</section>
-
-			{/* Problem */}
-			<section className="site-wide section-shell pt-10">
-				<div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
-					<div className="reveal-scroll chapter">
-						<span className="chapter-no">No. 01</span>
-						<p className="kicker mt-3">The problem</p>
-						<h2 className="mt-4 font-heading text-3xl font-semibold text-ink sm:text-[2.7rem] sm:leading-[1.06]">
-							Most businesses don’t need more software. They need it to{" "}
-							<span className="gradient-ink">work as one.</span>
-						</h2>
-					</div>
-					<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border sm:grid-cols-2">
-						{problems.map((p) => (
-							<div key={p.k} className="bg-surface p-6">
-								<div className="flex items-center gap-3">
-									<span className="font-heading text-lg font-semibold text-violet">
-										{p.k}
+						<div className="reveal-up delay-4 mt-6 flex flex-wrap gap-2">
+							{["AI strategy", "Agentic workflows", "Enterprise automation"].map(
+								(item) => (
+									<span key={item} className="tag">
+										{item}
 									</span>
-									<Minus className="h-3 w-8 text-warm/50" />
-								</div>
-								<h3 className="mt-4 font-heading text-lg font-semibold text-ink">
-									{p.t}
-								</h3>
-								<p className="mt-2 text-sm leading-relaxed text-mute">{p.d}</p>
-							</div>
-						))}
+								),
+							)}
+						</div>
 					</div>
+
+					<HeroTelemetry />
 				</div>
 			</section>
 
-			{/* Approach */}
-			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll chapter mb-12 flex flex-wrap items-end justify-between gap-4">
-					<div>
-						<span className="chapter-no">No. 02</span>
-						<p className="kicker mt-3">How we work</p>
-						<h2 className="mt-4 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-							We learn how you run, then build the system that runs it.
-						</h2>
-					</div>
-					<Link to="/approach" className="button-ghost">
-						The full approach <ArrowRight className="h-4 w-4" />
-					</Link>
-				</div>
-				<div className="reveal-scroll">
-					<ProcessFlow steps={steps} />
-				</div>
-			</section>
-
-			{/* What we build */}
-			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll chapter mb-10 flex flex-wrap items-end justify-between gap-4">
-					<div>
-						<span className="chapter-no">No. 03</span>
-						<p className="kicker mt-3">What we build</p>
-						<h2 className="mt-4 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-							One partner for every layer of your operating system.
-						</h2>
-					</div>
-					<p className="dimline hidden max-w-xs md:flex">
-						Built to grow with you
-					</p>
-				</div>
-				<div className="reveal-stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-					{capabilities.map((cap) => (
-						<article key={cap.title} className="panel panel-hover group p-6">
-							<span className="card-node" aria-hidden />
-							<div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-violet text-violet">
-								<cap.icon className="h-5 w-5" />
-							</div>
-							<h3 className="font-heading text-lg font-semibold text-ink">
-								{cap.title}
-							</h3>
-							<p className="mt-2 text-sm leading-relaxed text-mute">
-								{cap.desc}
+			<section className="site-wide section-tight">
+				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+					{metrics.map((metric) => (
+						<article key={metric.label} className="panel px-5 py-6">
+							<p className="max-w-40 text-[0.72rem] font-semibold uppercase leading-4 text-faint">
+								{metric.label}
+							</p>
+							<p className="mt-4 font-heading text-3xl font-semibold text-ink">
+								{metric.value}
 							</p>
 						</article>
 					))}
-					<Link
-						to="/what-we-build"
-						className="panel panel-hover group flex flex-col justify-between bg-surface-violet p-6"
-					>
-						<span className="card-node" aria-hidden />
-						<ArrowUpRight className="h-6 w-6 text-violet transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-						<span className="mt-8 font-heading text-lg font-semibold text-ink">
-							Explore everything we build
+				</div>
+			</section>
+
+			<section className="site-wide section-shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+				<div>
+					<p className="kicker">Transformation modes</p>
+					<h2 className="mt-4 max-w-2xl font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+						Pick the operating model your growth stage needs now.
+					</h2>
+					<p className="mt-5 max-w-xl text-base leading-7 text-mute">
+						Most companies need a phased pathway, not a single implementation.
+						Mation structures AI transformation as modular operating modes that
+						stack into a long-term enterprise advantage.
+					</p>
+				</div>
+
+				<article className="panel p-6 sm:p-7">
+					<div className="flex flex-wrap gap-2">
+						<span className="tag !border-violet/70 !bg-violet-tint !text-ink">
+							Copilot transformation
 						</span>
+						<span className="tag">Autopilot operations</span>
+						<span className="tag">Agentic enterprise layer</span>
+					</div>
+					<h3 className="mt-8 font-heading text-2xl font-semibold text-ink">
+						Copilot Transformation
+					</h3>
+					<p className="mt-3 max-w-2xl text-sm leading-7 text-mute">
+						Augment every team with contextual AI assistants that handle routine
+						execution and surface strategic recommendations.
+					</p>
+					<ul className="mt-6 space-y-3">
+						{modelBenefits.map((benefit) => (
+							<li
+								key={benefit}
+								className="flex items-start gap-3 text-sm leading-6 text-ink-soft"
+							>
+								<span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-info" />
+								<span>{benefit}</span>
+							</li>
+						))}
+					</ul>
+					<div className="mt-7 rounded-lg border border-border bg-surface-2 px-4 py-3 text-[0.72rem] font-semibold uppercase text-faint">
+						Typical delivery cadence: 12-week enablement
+					</div>
+				</article>
+			</section>
+
+			<section className="site-wide section-shell pt-8">
+				<div className="mb-9 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+					<div>
+						<p className="kicker">Core capabilities</p>
+						<h2 className="mt-4 font-heading text-4xl font-semibold text-ink sm:text-5xl">
+							Designed for enterprise complexity.
+						</h2>
+					</div>
+					<Link to="/what-we-build" className="button-ghost">
+						See every solution
+						<ArrowRight className="h-4 w-4" />
 					</Link>
 				</div>
+
+				<div className="grid gap-4 md:grid-cols-2">
+					{capabilities.map((capability) => (
+						<article key={capability.title} className="panel panel-hover p-6">
+							<div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface-2 text-info">
+								<capability.icon className="h-5 w-5" />
+							</div>
+							<h3 className="font-heading text-2xl font-semibold text-ink">
+								{capability.title}
+							</h3>
+							<p className="mt-3 text-sm leading-7 text-mute">
+								{capability.desc}
+							</p>
+						</article>
+					))}
+				</div>
 			</section>
 
-			{/* Velocity */}
-			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll chapter mb-12">
-					<span className="chapter-no">No. 04</span>
-					<p className="kicker mt-3">Velocity</p>
-					<h2 className="mt-4 max-w-3xl font-heading text-3xl font-semibold text-ink sm:text-[2.5rem] sm:leading-[1.08]">
-						Prototype in days. Launch in weeks. Results in months.{" "}
-						<span className="gradient-ink">Profit for years.</span>
-					</h2>
-				</div>
-				<div className="reveal-scroll">
-					<VelocityTimeline />
+			<section className="site-wide section-shell pt-8">
+				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+					{process.map((step) => (
+						<article key={step.title} className="panel p-6">
+							<span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface-2 text-xs font-semibold text-faint">
+								{step.n}
+							</span>
+							<h3 className="mt-7 font-heading text-xl font-semibold text-ink">
+								{step.title}
+							</h3>
+							<p className="mt-3 text-sm leading-7 text-mute">{step.desc}</p>
+						</article>
+					))}
 				</div>
 			</section>
 
-			{/* Plans & guarantee */}
-			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll chapter mb-10">
-					<span className="chapter-no">No. 05</span>
-					<p className="kicker mt-3">Flexible by design</p>
-				</div>
-				<div className="reveal-stagger grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-					<article className="panel p-7 sm:p-8">
-						<p className="kicker">Plans</p>
-						<h3 className="mt-3 font-heading text-2xl font-semibold text-ink sm:text-[1.8rem]">
-							Start small. Scale as it proves out.
-						</h3>
-						<p className="mt-3 text-mute">
-							Custom, pilotable software from{" "}
-							<span className="font-semibold gradient-ink">
-								{offer.priceLow}
-							</span>{" "}
-							to {offer.priceHigh} — on a SaaS, rent-to-buy, or purchase model.
+			<section className="site-wide section-shell pt-8">
+				<div className="panel grid gap-8 overflow-hidden p-7 sm:p-9 lg:grid-cols-[0.86fr_1.14fr] lg:p-12">
+					<div>
+						<p className="kicker">Deployment confidence</p>
+						<h2 className="mt-4 max-w-xl font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+							Built for enterprise trust from day zero.
+						</h2>
+						<p className="mt-5 max-w-xl text-base leading-7 text-mute">
+							Mation platform deployments include model governance, role-aware
+							controls, and traceable decision pathways so your teams can scale
+							AI without compromising security or compliance.
 						</p>
-						<div className="mt-5 flex flex-wrap gap-2">
-							{offer.models.map((m) => (
-								<span key={m.name} className="tag">
-									{m.name}
-								</span>
-							))}
-						</div>
-						<Link to="/plans" className="button-secondary mt-7 inline-flex">
-							See plans & pricing <ArrowRight className="h-4 w-4" />
-						</Link>
-					</article>
-					<article className="panel-line ticked flex flex-col justify-center p-7 sm:p-8">
-						<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-violet text-violet">
-							<ShieldCheck className="h-6 w-6" />
-						</div>
-						<h3 className="mt-5 font-heading text-2xl font-semibold leading-tight text-ink">
-							Double your value in 60 days —{" "}
-							<span className="gradient-ink">or your money back.</span>
-						</h3>
-						<p className="mt-3 text-sm leading-relaxed text-mute">
-							{offer.guarantee}
-						</p>
-					</article>
-				</div>
-			</section>
-
-			{/* Proof — oversized stats */}
-			<section className="glow site-wide section-shell pt-4">
-				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
-					<div className="chapter mb-10">
-						<span className="chapter-no">No. 06</span>
-						<p className="kicker mt-3">What working with us means</p>
 					</div>
-					<div className="reveal-stagger grid gap-10 sm:grid-cols-3">
-						{metrics.map((m, i) => (
-							<div key={m.label}>
-								<div className="font-heading text-[clamp(3.2rem,7vw,5rem)] font-semibold leading-none tracking-[-0.04em] text-ink">
-									{m.value}
-								</div>
-								<span
-									aria-hidden
-									className={`mt-4 block h-[3px] w-12 rounded-full ${
-										i === 1 ? "bg-warm" : "bg-violet"
-									}`}
-								/>
-								<p className="mt-4 max-w-[16rem] text-sm leading-snug text-mute">
-									{m.label}
-								</p>
+					<div className="grid content-center gap-3">
+						{trustControls.map((control) => (
+							<div
+								key={control}
+								className="flex items-center gap-3 rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-ink-soft"
+							>
+								<ShieldCheck className="h-4 w-4 text-info" />
+								<span>{control}</span>
 							</div>
 						))}
 					</div>
-					<hr className="hairline my-10" />
-					<div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-						<p className="max-w-xl text-pretty text-ink/85">
-							See how we’ve unified businesses into a single system — from the
-							first map to a system the whole team runs on.
-						</p>
-						<Link to="/work" className="button-secondary shrink-0">
-							View our work <ArrowRight className="h-4 w-4" />
+				</div>
+			</section>
+
+			<section className="site-wide section-shell pt-8">
+				<div className="relative overflow-hidden rounded-[16px] border border-border bg-[linear-gradient(130deg,var(--surface),rgba(20,39,64,0.92))] p-7 shadow-[var(--shadow-lg)] sm:p-10 lg:p-12">
+					<div className="absolute right-8 top-8 hidden h-28 w-28 rounded-full border border-info/20 lg:block" />
+					<p className="kicker">Next move</p>
+					<h2 className="mt-4 max-w-2xl font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+						Build your AI-native operating model with confidence.
+					</h2>
+					<p className="mt-5 max-w-2xl text-base leading-7 text-mute">
+						Engage Mation to design and deploy an automation architecture that
+						compounds operational edge every quarter.
+					</p>
+					<div className="mt-8 flex flex-col gap-3 sm:flex-row">
+						<Link to="/contact" className="button-primary">
+							Book a transformation sprint
+							<ArrowUpRight className="h-4 w-4" />
+						</Link>
+						<Link to="/approach" className="button-secondary">
+							See platform capabilities
+							<ArrowRight className="h-4 w-4" />
 						</Link>
 					</div>
 				</div>
 			</section>
-
-			{/* Positioning — we are / we aren't */}
-			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll chapter mb-8">
-					<span className="chapter-no">No. 07</span>
-					<p className="kicker mt-3">What we are</p>
-					<h2 className="mt-4 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-						A different kind of software partner.
-					</h2>
-				</div>
-				<div className="reveal-stagger grid gap-5 md:grid-cols-2">
-					<div className="panel p-7">
-						<p className="kicker">We are</p>
-						<ul className="mt-5 space-y-3.5">
-							{weAre.map((item) => (
-								<li key={item} className="flex items-start gap-3 text-ink/90">
-									<Check className="mt-0.5 h-5 w-5 shrink-0 text-violet" />
-									<span>{item}</span>
-								</li>
-							))}
-						</ul>
-					</div>
-					<div className="panel-line p-7">
-						<p className="kicker !text-mute before:!bg-[var(--border-strong)]">
-							We are not
-						</p>
-						<ul className="mt-5 space-y-3.5">
-							{weArent.map((item) => (
-								<li key={item} className="flex items-start gap-3 text-mute">
-									<Minus className="mt-0.5 h-5 w-5 shrink-0 text-mute/60" />
-									<span>{item}</span>
-								</li>
-							))}
-						</ul>
-					</div>
-				</div>
-			</section>
-
-			{/* Security strip */}
-			<section className="site-wide section-shell pt-4">
-				<Link
-					to="/security"
-					className="panel panel-hover group flex flex-col items-start gap-5 p-7 sm:flex-row sm:items-center sm:justify-between"
-				>
-					<div className="flex items-start gap-4">
-						<div className="inline-flex rounded-xl bg-surface-violet p-3 text-violet">
-							<ShieldCheck className="h-5 w-5" />
-						</div>
-						<div>
-							<h3 className="font-heading text-lg font-semibold text-ink">
-								Security and oversight, built in
-							</h3>
-							<p className="mt-1 max-w-xl text-sm leading-relaxed text-mute">
-								Security, access control, auditability, and data ownership built
-								in from day one. Your data stays yours. No lock-in.
-							</p>
-						</div>
-					</div>
-					<span className="button-ghost shrink-0">
-						Security & governance
-						<ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-					</span>
-				</Link>
-			</section>
-
-			<CTASection
-				title="Let’s map the operating system your business should run on."
-				description="Start with a conversation. We’ll learn how you work today and show you what one unified system could change."
-				primaryLabel="Book a free exploration meeting"
-				secondaryLabel="See our approach"
-			/>
 		</>
+	);
+}
+
+function HeroTelemetry() {
+	return (
+		<article className="panel relative mx-auto w-full max-w-[430px] overflow-hidden p-5 shadow-[var(--shadow-lg)]">
+			<div className="flex items-center justify-between rounded-lg border border-border bg-canvas-2/80 px-4 py-3 text-sm text-ink-soft">
+				<span className="flex items-center gap-2">
+					<span className="live-dot" />
+					Live transformation telemetry
+				</span>
+				<CircleGauge className="h-4 w-4 text-info" />
+			</div>
+
+			<div className="relative mx-auto grid h-64 w-64 place-items-center">
+				<div className="absolute h-56 w-56 rounded-full border border-violet/20" />
+				<div className="absolute h-44 w-44 rounded-full border border-violet/25" />
+				<div className="absolute h-32 w-32 rounded-full border border-info/20" />
+				<div className="absolute h-20 w-20 rounded-full bg-canvas shadow-[0_0_60px_rgba(97,66,205,0.38)]" />
+				<Sparkles className="relative h-9 w-9 text-info" />
+				<span className="absolute left-12 top-12 h-3 w-3 rounded-full bg-[#8db8ff] shadow-[0_0_18px_rgba(141,184,255,0.95)]" />
+				<span className="absolute bottom-16 right-10 h-3 w-3 rounded-full bg-info shadow-[0_0_18px_rgba(87,223,244,0.95)]" />
+			</div>
+
+			<div className="grid gap-3 sm:grid-cols-2">
+				<div className="rounded-lg border border-border bg-surface-2 p-4">
+					<p className="text-[0.72rem] font-semibold uppercase text-faint">
+						Process velocity
+					</p>
+					<p className="mt-3 font-heading text-3xl font-semibold text-ink">
+						3.6x
+					</p>
+					<p className="mt-1 text-xs text-mute">Faster execution cycle</p>
+				</div>
+				<div className="rounded-lg border border-border bg-surface-2 p-4">
+					<p className="text-[0.72rem] font-semibold uppercase text-faint">
+						Margin impact
+					</p>
+					<p className="mt-3 font-heading text-3xl font-semibold text-ink">
+						+18%
+					</p>
+					<p className="mt-1 text-xs text-mute">Average within first year</p>
+				</div>
+			</div>
+
+			<div className="mt-5 grid grid-cols-4 gap-2">
+				{[Network, GitBranch, LockKeyhole, Activity].map((Icon, index) => (
+					<div
+						key={String(index)}
+						className="grid aspect-square place-items-center rounded-lg border border-border bg-surface-2 text-info/80"
+					>
+						<Icon className="h-4 w-4" />
+					</div>
+				))}
+			</div>
+		</article>
 	);
 }

@@ -16,32 +16,30 @@ export type NavLink = {
 
 /** Primary header navigation — kept lean. */
 export const navLinks: NavLink[] = [
-	{ label: "What we build", to: "/what-we-build" },
-	{ label: "Approach", to: "/approach" },
-	{ label: "Work", to: "/work" },
-	{ label: "Plans", to: "/plans" },
+	{ label: "Solutions", to: "/what-we-build" },
+	{ label: "Platform", to: "/approach" },
+	{ label: "Case Studies", to: "/work" },
 	{ label: "About", to: "/about" },
+	{ label: "Contact", to: "/contact" },
 ];
 
 /** Full sitemap used in the footer. */
 export const footerLinks: NavLink[] = [
-	{ label: "What we build", to: "/what-we-build" },
-	{ label: "Approach", to: "/approach" },
-	{ label: "Work", to: "/work" },
-	{ label: "Plans", to: "/plans" },
+	{ label: "Home", to: "/" },
+	{ label: "Solutions", to: "/what-we-build" },
+	{ label: "Platform", to: "/approach" },
+	{ label: "Case Studies", to: "/work" },
 	{ label: "About", to: "/about" },
-	{ label: "Security & governance", to: "/security" },
-	{ label: "Insights", to: "/insights" },
 	{ label: "Contact", to: "/contact" },
 ];
 
 export const mationMeta = {
 	name: "Mation",
-	tagline: "The operating system your business actually runs on.",
+	tagline: "AI operating systems for adaptive businesses.",
 	description:
-		"Mation is a software-engineering partner that builds bespoke systems — unifying your tools, data, and workflows into one operating system, engineered around exactly how you operate and powered by AI.",
-	email: "cam@mation.nz",
-	phone: "+64 21 307 804",
+		"Mation helps ambitious organisations redesign operations with agentic AI, autonomous workflows, and measurable business outcomes.",
+	email: "hello@mation.nz",
+	phone: "+64 9 889 4006",
 	location: "Auckland, New Zealand",
 };
 

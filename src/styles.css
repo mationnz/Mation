@@ -4,12 +4,9 @@
 @import "@fontsource-variable/fraunces";
 
 /*
-  Mation — "The Field Journal" design system
-  Light-default warm paper + warm-dark charcoal. A studio notebook, not a
-  blueprint: Fraunces serif display over Geist body, a two-ink palette
-  (violet anchor + terracotta coral), hanging chapter numerals and hairline
-  margin rules in place of grids and CAD coordinates. SSR-safe light/dark
-  keyed off [data-theme] on <html>.
+  Mation - AI platform design system
+  Dark-default enterprise cockpit: deep indigo canvas, violet-to-cyan brand
+  gradient, compact glass panels, and high-trust operational UI surfaces.
 */
 
 /* Dark variant keyed off [data-theme="dark"] on <html> — no media query, SSR-safe */
@@ -17,14 +14,14 @@
 
 /* ---------- Design contract: static tokens emitted as CSS vars ---------- */
 @theme {
-	--font-display: "Fraunces Variable", ui-serif, Georgia, "Times New Roman", serif;
+	--font-display: "Geist Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
 	--font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
 	--font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
 
 	--radius-xs: 6px;
-	--radius-sm: 10px;
-	--radius: 16px;
-	--radius-lg: 22px;
+	--radius-sm: 8px;
+	--radius: 14px;
+	--radius-lg: 16px;
 	--radius-pill: 999px;
 
 	--ease-paper: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -67,96 +64,54 @@
 	--color-emerald: var(--success);
 }
 
-/* ---------- LIGHT (default): warm paper ---------- */
+/* ---------- DARK PLATFORM (default) ---------- */
 :root {
-	color-scheme: light;
-	--canvas: #faf6ef;
-	--canvas-2: #f3ece0;
-	--surface: #fffdf9;
-	--surface-2: #fbf4e9;
-	--surface-violet: #efe9fb;
-	--surface-warm: #fbe7dd;
-	--ink: #241f2e;
-	--ink-soft: #3c3550;
-	--mute: #615b70;
-	--faint: #8c8699;
-	--border: #e7decf;
-	--border-strong: #d8ccb6;
-	--violet: #6a4bd8;
-	--violet-ink: #4f37ad;
-	--violet-tint: #efe9fb;
-	--warm: #e2613f;
-	--warm-ink: #b8492c;
-	--warm-tint: #fbe7dd;
-	--amber: #b5781a;
-	--amber-ink: #8a5a12;
-	--success: #2e7d55;
-	--danger: #c0392b;
-	--info: #2f6f92;
-	--ring: var(--violet);
+	color-scheme: dark;
+	--canvas: #070a18;
+	--canvas-2: #0b1024;
+	--surface: #101733;
+	--surface-2: #0c1228;
+	--surface-violet: rgba(97, 66, 205, 0.18);
+	--surface-warm: rgba(145, 197, 240, 0.12);
+	--ink: #f8fbff;
+	--ink-soft: #d7ddf6;
+	--mute: #9aa5c7;
+	--faint: #677399;
+	--border: rgba(116, 139, 203, 0.24);
+	--border-strong: rgba(145, 197, 240, 0.34);
+	--violet: #6d5cff;
+	--violet-ink: #91a5ff;
+	--violet-tint: rgba(109, 92, 255, 0.18);
+	--warm: #57dff4;
+	--warm-ink: #91c5f0;
+	--warm-tint: rgba(87, 223, 244, 0.12);
+	--amber: #f5c35a;
+	--amber-ink: #f5c35a;
+	--success: #6ee7a8;
+	--danger: #ff7474;
+	--info: #57dff4;
+	--ring: var(--info);
 
 	/* compat aliases for any stray var(--line) references */
 	--line: var(--border);
 	--line-strong: var(--border-strong);
 
-	/* atmosphere — paper, not blueprint */
-	--grain-opacity: 0.04;
-	--grain-blend: multiply;
-	--bloom: radial-gradient(58% 40% at 50% -8%, rgba(106, 75, 216, 0.1), transparent 70%),
-		radial-gradient(40% 30% at 86% 2%, rgba(226, 97, 63, 0.07), transparent 72%);
+	--grain-opacity: 0.035;
+	--grain-blend: screen;
+	--bloom: linear-gradient(120deg, rgba(49, 11, 94, 0.28), rgba(12, 28, 48, 0.36) 52%, transparent);
 
-	/* warm paper shadows (brown-violet base, never black) */
-	--shadow-xs: 0 1px 2px rgba(60, 45, 30, 0.06);
-	--shadow-sm: 0 2px 6px -2px rgba(60, 45, 30, 0.1);
-	--shadow: 0 10px 24px -12px rgba(60, 45, 30, 0.16), 0 2px 6px -3px rgba(60, 45, 30, 0.1);
-	--shadow-lg: 0 28px 60px -28px rgba(60, 45, 30, 0.24), 0 8px 20px -12px rgba(60, 45, 30, 0.14);
-	--shadow-violet: 0 16px 40px -20px rgba(106, 75, 216, 0.28);
-	--shadow-warm: 0 18px 44px -22px rgba(184, 73, 44, 0.3);
-	--card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+	--shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+	--shadow-sm: 0 8px 24px -18px rgba(0, 0, 0, 0.72);
+	--shadow: 0 22px 54px -30px rgba(0, 0, 0, 0.72), 0 10px 24px -18px rgba(56, 95, 190, 0.4);
+	--shadow-lg: 0 34px 80px -42px rgba(0, 0, 0, 0.86), 0 20px 48px -34px rgba(87, 223, 244, 0.32);
+	--shadow-violet: 0 16px 36px -18px rgba(109, 92, 255, 0.72);
+	--shadow-warm: 0 18px 44px -22px rgba(87, 223, 244, 0.45);
+	--card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 	--shadow-soft: var(--shadow-lg); /* deprecated alias */
 }
 
-/* ---------- WARM DARK: charcoal aubergine, never pure black ---------- */
 [data-theme="dark"] {
 	color-scheme: dark;
-	--canvas: #1c1822;
-	--canvas-2: #16131c;
-	--surface: #262130;
-	--surface-2: #2f2a3a;
-	--surface-violet: #2a2140;
-	--surface-warm: #33231f;
-	--ink: #f3eee6;
-	--ink-soft: #d9d2e2;
-	--mute: #a39cb2;
-	--faint: #7c7589;
-	--border: #322c3d;
-	--border-strong: #433b50;
-	--violet: #b5a0ff;
-	--violet-ink: #9c84f5;
-	--violet-tint: rgba(155, 132, 245, 0.16);
-	--warm: #f0805c;
-	--warm-ink: #f2997b;
-	--warm-tint: rgba(240, 128, 92, 0.15);
-	--amber: #e6a847;
-	--amber-ink: #e6a847;
-	--success: #5fc58c;
-	--danger: #e8705f;
-	--info: #6fb0d2;
-	--ring: var(--violet);
-
-	--grain-opacity: 0.05;
-	--grain-blend: screen;
-	--bloom: radial-gradient(58% 42% at 50% -6%, rgba(155, 132, 245, 0.18), transparent 70%),
-		radial-gradient(40% 30% at 86% 2%, rgba(240, 128, 92, 0.1), transparent 72%);
-
-	--shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
-	--shadow-sm: 0 2px 8px -3px rgba(0, 0, 0, 0.5);
-	--shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.55), 0 4px 12px -8px rgba(0, 0, 0, 0.45);
-	--shadow-lg: 0 30px 64px -28px rgba(0, 0, 0, 0.65), 0 10px 24px -14px rgba(0, 0, 0, 0.5);
-	--shadow-violet: 0 18px 44px -22px rgba(0, 0, 0, 0.55);
-	--shadow-warm: 0 18px 44px -22px rgba(0, 0, 0, 0.55);
-	--card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-	--shadow-soft: var(--shadow-lg);
 }
 
 * {
@@ -230,7 +185,7 @@ h6,
 	font-family: var(--font-display);
 	font-weight: 500;
 	font-optical-sizing: auto;
-	letter-spacing: -0.01em;
+	letter-spacing: 0;
 	line-height: 1.1;
 	text-wrap: balance;
 }
@@ -274,11 +229,10 @@ h6,
 	font-family: var(--font-display);
 	font-weight: 500;
 	font-optical-sizing: auto;
-	letter-spacing: -0.012em;
+	letter-spacing: 0;
 	line-height: 1.02;
 }
 
-/* Kicker — hairline coral rule + small-caps Geist label (was mono uppercase pill) */
 .kicker {
 	margin: 0;
 	display: inline-flex;
@@ -288,16 +242,16 @@ h6,
 	font-size: 0.82rem;
 	font-weight: 600;
 	font-variant-caps: all-small-caps;
-	letter-spacing: 0.06em;
+	letter-spacing: 0;
 	text-transform: none;
-	color: var(--warm-ink);
+	color: var(--info);
 }
 
 .kicker::before {
 	content: "";
 	width: 1.6rem;
 	height: 1px;
-	background: var(--warm);
+	background: var(--info);
 }
 
 /* Section index "01 / The problem" — numeral in serif violet, label in warm sans */
@@ -318,7 +272,10 @@ h6,
 
 /* Inline headline emphasis — solid violet ink (no white→violet gradient) */
 .gradient-ink {
-	color: var(--violet-ink);
+	background: linear-gradient(90deg, var(--violet-ink), var(--info));
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
 }
 
 .text-mute {
@@ -400,7 +357,7 @@ h6,
 	position: relative;
 	border: 1px solid var(--border);
 	border-radius: var(--radius);
-	background: var(--surface);
+	background: linear-gradient(180deg, rgba(18, 27, 58, 0.92), rgba(12, 17, 39, 0.94));
 	box-shadow: var(--shadow-sm), var(--card-inset);
 }
 
@@ -477,13 +434,13 @@ h6,
 
 /* Header paper-glass */
 .paper-glass {
-	background: rgba(250, 246, 239, 0.82);
+	background: rgba(7, 10, 24, 0.82);
 	backdrop-filter: blur(16px);
 	-webkit-backdrop-filter: blur(16px);
 }
 
 [data-theme="dark"] .paper-glass {
-	background: rgba(28, 24, 34, 0.82);
+	background: rgba(7, 10, 24, 0.82);
 }
 
 /* ---------- Buttons ---------- */
@@ -493,14 +450,14 @@ h6,
 	justify-content: center;
 	gap: 0.5rem;
 	border-radius: var(--radius-sm);
-	border: 1px solid var(--violet-ink);
+	border: 1px solid rgba(145, 197, 240, 0.32);
 	padding: 0.78rem 1.35rem;
-	color: #fffdf9;
+	color: #ffffff;
 	font-family: var(--font-sans);
 	font-size: 0.94rem;
 	font-weight: 600;
-	letter-spacing: -0.005em;
-	background: var(--violet);
+	letter-spacing: 0;
+	background: linear-gradient(90deg, var(--violet), #5a7dff 56%, var(--info));
 	box-shadow:
 		inset 0 1px 0 rgba(255, 255, 255, 0.22),
 		var(--shadow-violet);
@@ -517,9 +474,9 @@ h6,
 
 /* In dark, the violet lifts — flip the label to dark ink for AA */
 [data-theme="dark"] .button-primary {
-	background: var(--violet-ink);
-	border-color: var(--violet);
-	color: #1c1822;
+	background: linear-gradient(90deg, var(--violet), #5a7dff 56%, var(--info));
+	border-color: rgba(145, 197, 240, 0.32);
+	color: #ffffff;
 	box-shadow:
 		inset 0 1px 0 rgba(255, 255, 255, 0.12),
 		var(--shadow-violet);
@@ -537,8 +494,8 @@ h6,
 	font-family: var(--font-sans);
 	font-size: 0.94rem;
 	font-weight: 600;
-	letter-spacing: -0.005em;
-	background: var(--surface);
+	letter-spacing: 0;
+	background: rgba(7, 10, 24, 0.34);
 	box-shadow: var(--shadow-xs);
 	transition:
 		transform 200ms var(--ease-paper),
@@ -559,7 +516,7 @@ h6,
 	font-family: var(--font-sans);
 	font-size: 0.9rem;
 	font-weight: 600;
-	letter-spacing: -0.005em;
+	letter-spacing: 0;
 	color: var(--ink-soft);
 	transition: color 180ms var(--ease-paper);
 }
@@ -575,7 +532,7 @@ h6,
 	gap: 0.45rem;
 	border-radius: var(--radius-pill);
 	border: 1px solid var(--border);
-	background: var(--surface);
+	background: rgba(16, 23, 51, 0.78);
 	padding: 0.42rem 0.85rem;
 	font-family: var(--font-sans);
 	font-size: 0.8rem;
@@ -598,7 +555,7 @@ h6,
 	letter-spacing: 0;
 	text-transform: none;
 	color: var(--mute);
-	background: var(--surface-2);
+	background: rgba(12, 18, 40, 0.82);
 }
 
 .metric-value {
@@ -616,8 +573,8 @@ h6,
 	width: 0.5rem;
 	height: 0.5rem;
 	border-radius: 50%;
-	background: var(--warm);
-	box-shadow: 0 0 0 0 rgba(226, 97, 63, 0.6);
+	background: var(--info);
+	box-shadow: 0 0 0 0 rgba(87, 223, 244, 0.6);
 	animation: breathe 2.4s var(--ease-paper) infinite;
 }
 
@@ -793,26 +750,26 @@ h6,
 
 @keyframes breathe {
 	0% {
-		box-shadow: 0 0 0 0 rgba(226, 97, 63, 0.55);
+		box-shadow: 0 0 0 0 rgba(87, 223, 244, 0.55);
 	}
 	70% {
-		box-shadow: 0 0 0 7px rgba(226, 97, 63, 0);
+		box-shadow: 0 0 0 7px rgba(87, 223, 244, 0);
 	}
 	100% {
-		box-shadow: 0 0 0 0 rgba(226, 97, 63, 0);
+		box-shadow: 0 0 0 0 rgba(87, 223, 244, 0);
 	}
 }
 
 /* deprecated alias */
 @keyframes ping {
 	0% {
-		box-shadow: 0 0 0 0 rgba(226, 97, 63, 0.55);
+		box-shadow: 0 0 0 0 rgba(87, 223, 244, 0.55);
 	}
 	70% {
-		box-shadow: 0 0 0 7px rgba(226, 97, 63, 0);
+		box-shadow: 0 0 0 7px rgba(87, 223, 244, 0);
 	}
 	100% {
-		box-shadow: 0 0 0 0 rgba(226, 97, 63, 0);
+		box-shadow: 0 0 0 0 rgba(87, 223, 244, 0);
 	}
 }
 
