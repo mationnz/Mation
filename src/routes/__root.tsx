@@ -2,6 +2,7 @@ import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import SpotlightFX from "../components/SpotlightFX";
 
 import appCss from "../styles.css?url";
 
@@ -100,6 +101,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
+				<div className="scroll-progress" aria-hidden />
+				<SpotlightFX />
 				<Header />
 				<main className="pt-16">{children}</main>
 				<Footer />

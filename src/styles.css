@@ -2,6 +2,7 @@
 @import "@fontsource-variable/geist";
 @import "@fontsource-variable/geist-mono";
 @import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/bricolage-grotesque";
 
 /*
   Mation - AI platform design system
@@ -14,7 +15,7 @@
 
 /* ---------- Design contract: static tokens emitted as CSS vars ---------- */
 @theme {
-	--font-display: "Geist Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+	--font-display: "Bricolage Grotesque Variable", "Geist Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
 	--font-sans: "Geist Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
 	--font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
 
@@ -183,10 +184,10 @@ h6,
 .font-heading,
 .font-display {
 	font-family: var(--font-display);
-	font-weight: 500;
+	font-weight: 600;
 	font-optical-sizing: auto;
-	letter-spacing: 0;
-	line-height: 1.1;
+	letter-spacing: -0.02em;
+	line-height: 1.06;
 	text-wrap: balance;
 }
 
@@ -227,10 +228,10 @@ h6,
 /* ---------- Typography helpers ---------- */
 .display {
 	font-family: var(--font-display);
-	font-weight: 500;
+	font-weight: 600;
 	font-optical-sizing: auto;
-	letter-spacing: 0;
-	line-height: 1.02;
+	letter-spacing: -0.03em;
+	line-height: 1.0;
 }
 
 .kicker {
@@ -270,12 +271,30 @@ h6,
 	color: var(--violet);
 }
 
-/* Inline headline emphasis — solid violet ink (no white→violet gradient) */
+/* Inline headline emphasis — a living gradient that slowly drifts across the ink */
 .gradient-ink {
-	background: linear-gradient(90deg, var(--violet-ink), var(--info));
+	background: linear-gradient(
+		90deg,
+		var(--violet-ink),
+		var(--info),
+		var(--violet),
+		var(--violet-ink)
+	);
+	background-size: 300% 100%;
 	background-clip: text;
 	-webkit-background-clip: text;
 	color: transparent;
+	animation: ink-drift 8s ease-in-out infinite;
+}
+
+@keyframes ink-drift {
+	0%,
+	100% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
 }
 
 .text-mute {
@@ -638,6 +657,146 @@ h6,
 .magnetic-target {
 	position: relative;
 	isolation: isolate;
+}
+
+/* ---------- Cursor-follow spotlight (premium card interaction) ---------- */
+/* A soft glow that tracks the pointer across any [data-spotlight] surface.
+   Coordinates are written to --spot-x / --spot-y by the SpotlightFX client. */
+[data-spotlight] {
+	--spot-x: 50%;
+	--spot-y: 0%;
+	--spot-opacity: 0;
+	position: relative;
+	isolation: isolate;
+}
+
+[data-spotlight]::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	opacity: var(--spot-opacity);
+	background: radial-gradient(
+		16rem 16rem at var(--spot-x) var(--spot-y),
+		rgba(109, 92, 255, 0.22),
+		rgba(87, 223, 244, 0.08) 40%,
+		transparent 68%
+	);
+	transition: opacity 320ms var(--ease-paper);
+}
+
+/* Keep real card content above the glow layer. */
+[data-spotlight] > * {
+	position: relative;
+	z-index: 1;
+}
+
+/* A crisper gradient hairline that lights up on hover, sitting on the border. */
+[data-spotlight]::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	padding: 1px;
+	background: radial-gradient(
+		12rem 12rem at var(--spot-x) var(--spot-y),
+		var(--violet),
+		transparent 70%
+	);
+	-webkit-mask:
+		linear-gradient(#000 0 0) content-box,
+		linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	opacity: var(--spot-opacity);
+	transition: opacity 320ms var(--ease-paper);
+}
+
+/* ---------- Scroll progress bar (top of viewport) ---------- */
+.scroll-progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	z-index: 60;
+	transform-origin: 0 50%;
+	transform: scaleX(0);
+	background: linear-gradient(90deg, var(--violet), var(--info), var(--warm));
+	box-shadow: 0 0 12px rgba(87, 223, 244, 0.6);
+}
+
+@supports (animation-timeline: scroll()) {
+	.scroll-progress {
+		animation: progress-grow linear both;
+		animation-timeline: scroll(root);
+	}
+}
+
+@keyframes progress-grow {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+/* ---------- Aurora hero backdrop (animated mesh bloom) ---------- */
+.aurora {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.aurora::before,
+.aurora::after {
+	content: "";
+	position: absolute;
+	width: 46rem;
+	height: 46rem;
+	border-radius: 50%;
+	filter: blur(72px);
+	opacity: 0.5;
+	mix-blend-mode: screen;
+}
+
+.aurora::before {
+	top: -18rem;
+	left: -10rem;
+	background: radial-gradient(circle, rgba(109, 92, 255, 0.55), transparent 62%);
+	animation: aurora-a 18s var(--ease-paper) infinite alternate;
+}
+
+.aurora::after {
+	top: -14rem;
+	right: -12rem;
+	background: radial-gradient(circle, rgba(87, 223, 244, 0.42), transparent 62%);
+	animation: aurora-b 22s var(--ease-paper) infinite alternate;
+}
+
+@keyframes aurora-a {
+	from {
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+	to {
+		transform: translate3d(8rem, 5rem, 0) scale(1.18);
+	}
+}
+
+@keyframes aurora-b {
+	from {
+		transform: translate3d(0, 0, 0) scale(1.05);
+	}
+	to {
+		transform: translate3d(-7rem, 6rem, 0) scale(0.9);
+	}
 }
 
 /* ---------- Entrance animation ---------- */
@@ -1006,7 +1165,15 @@ h6,
 
 	.live-dot,
 	.marquee-track,
-	.flow-line::after {
+	.flow-line::after,
+	.gradient-ink,
+	.aurora::before,
+	.aurora::after {
 		animation: none !important;
+	}
+
+	[data-spotlight]::before,
+	[data-spotlight]::after {
+		display: none !important;
 	}
 }

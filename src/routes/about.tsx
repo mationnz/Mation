@@ -16,6 +16,7 @@ import {
 	Users,
 } from "lucide-react";
 
+import CountUp from "../components/CountUp";
 import CTASection from "../components/CTASection";
 import InteractiveAura from "../components/InteractiveAura";
 import MagneticLink from "../components/MagneticLink";
@@ -124,26 +125,28 @@ const engagement: Engagement[] = [
 	},
 ];
 
-type Role = {
+type Person = {
+	name: string;
 	role: string;
-	focus: string;
+	initials: string;
+	/** Drop a portrait into /public/people and set the path here to replace the
+	 * monogram placeholder — e.g. "/people/cameron-russell.jpg". */
+	photo?: string;
+	bio: string;
 };
 
-const team: Role[] = [
+const people: Person[] = [
 	{
-		role: "Founder & Principal Engineer",
-		focus:
-			"System architecture, technical direction, and the value case behind every build.",
+		name: "Cameron Russell",
+		role: "Chief Executive Officer",
+		initials: "CR",
+		bio: "Cameron founded Mation on a simple conviction: ambitious organisations deserve technology built around them, not the other way around. He sets the company's vision and works alongside clients to turn operational complexity into systems that scale. [Placeholder bio — full version to come.]",
 	},
 	{
-		role: "Head of Delivery",
-		focus:
-			"Discovery, planning, and the rhythm that keeps each engagement transparent.",
-	},
-	{
-		role: "Lead Engineer",
-		focus:
-			"End-to-end delivery — applications, integrations, and the unified data layer.",
+		name: "Ben Humphries",
+		role: "Business Relations",
+		initials: "BH",
+		bio: "Ben leads how Mation partners with the organisations it serves — from the first conversation through to a long-term relationship. He keeps every engagement close, transparent, and focused on the outcomes that actually move the business. [Placeholder bio — full version to come.]",
 	},
 ];
 
@@ -202,7 +205,10 @@ function AboutPage() {
 
 			{/* Biography / manifesto */}
 			<section className="site-wide section-shell pt-0">
-				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12 lg:p-16">
+				<div
+					data-spotlight
+					className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12 lg:p-16"
+				>
 					<p className="kicker reveal-scroll mb-6">Who we are</p>
 					<h2 className="reveal-scroll max-w-3xl font-heading text-3xl font-semibold text-ink sm:text-[2.6rem] sm:leading-[1.1]">
 						The next generation of business{" "}
@@ -294,9 +300,10 @@ function AboutPage() {
 					<div className="reveal-stagger grid gap-10 sm:grid-cols-3">
 						{stats.map((stat, idx) => (
 							<div key={stat.label}>
-								<div className="font-heading text-[clamp(3.2rem,7vw,5rem)] font-semibold leading-none tracking-[-0.04em] text-ink">
-									{stat.value}
-								</div>
+								<CountUp
+									value={stat.value}
+									className="block font-heading text-[clamp(3.2rem,7vw,5rem)] font-semibold leading-none tracking-[-0.04em] text-ink"
+								/>
 								<span
 									aria-hidden
 									className={`mt-4 block h-[3px] w-12 rounded-full ${
@@ -352,6 +359,7 @@ function AboutPage() {
 					{engagement.map((item, idx) => (
 						<article
 							key={item.title}
+							data-spotlight
 							className="panel panel-hover group relative p-7"
 						>
 							<span
@@ -372,37 +380,58 @@ function AboutPage() {
 				</div>
 			</section>
 
-			{/* Team */}
+			{/* People */}
 			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll mb-8 flex flex-wrap items-end justify-between gap-4">
+				<div className="reveal-scroll mb-10 flex flex-wrap items-end justify-between gap-4">
 					<div>
-						<p className="kicker mb-4">The people who build it</p>
+						<p className="kicker mb-4">The people</p>
 						<h2 className="max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
 							Small, senior, and close to the work.
 						</h2>
 					</div>
-					<span className="tag">Bios to be added</span>
+					<span className="tag">Auckland, NZ</span>
 				</div>
-				<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border md:grid-cols-3">
-					{team.map((member) => (
-						<div key={member.role} className="bg-surface p-7">
-							<div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
-								<Users aria-hidden className="h-5 w-5" />
+				<div className="reveal-stagger mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
+					{people.map((person) => (
+						<article
+							key={person.name}
+							data-spotlight
+							className="panel panel-hover overflow-hidden p-5"
+						>
+							{/* Portrait — swap the monogram for an <img> once photos land */}
+							<div className="relative aspect-[4/5] overflow-hidden rounded-[12px] border border-border bg-[linear-gradient(150deg,var(--surface-violet),var(--surface-2)_70%)]">
+								{person.photo ? (
+									<img
+										src={person.photo}
+										alt={person.name}
+										className="h-full w-full object-cover"
+									/>
+								) : (
+									<div className="grid h-full w-full place-items-center">
+										<span className="font-heading text-6xl font-semibold text-violet/60">
+											{person.initials}
+										</span>
+										<span className="absolute bottom-3 left-3 rounded-full border border-border bg-canvas/70 px-2.5 py-1 text-[0.68rem] font-medium text-faint">
+											Photo coming soon
+										</span>
+									</div>
+								)}
 							</div>
-							<p className="text-sm font-semibold text-violet">{member.role}</p>
-							<p className="mt-2 font-heading text-lg font-semibold text-ink/70">
-								[Name — placeholder]
-							</p>
-							<p className="mt-3 text-sm leading-relaxed text-mute">
-								{member.focus}
-							</p>
-						</div>
+
+							<div className="px-1.5 pb-1.5 pt-5">
+								<p className="text-xs font-semibold uppercase tracking-wide text-violet">
+									{person.role}
+								</p>
+								<h3 className="mt-1.5 font-heading text-2xl font-semibold text-ink">
+									{person.name}
+								</h3>
+								<p className="mt-3 text-sm leading-relaxed text-mute">
+									{person.bio}
+								</p>
+							</div>
+						</article>
 					))}
 				</div>
-				<p className="mt-5 max-w-2xl text-sm leading-relaxed text-mute">
-					Placeholder roles shown above. Real names and bios for the team are to
-					be added.
-				</p>
 			</section>
 
 			{/* Security & data ownership */}

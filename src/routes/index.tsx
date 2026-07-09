@@ -15,6 +15,8 @@ import {
 	Workflow,
 } from "lucide-react";
 
+import CountUp from "../components/CountUp";
+
 export const Route = createFileRoute("/")({
 	component: HomePage,
 	head: () => ({
@@ -115,6 +117,7 @@ function HomePage() {
 		<>
 			<section className="relative overflow-hidden border-b border-border/70">
 				<div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(62,27,147,0.42),rgba(16,36,56,0.78)_52%,rgba(6,10,25,0.94))]" />
+				<div className="aurora" aria-hidden />
 				<div className="absolute inset-0 bg-[linear-gradient(rgba(145,197,240,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(145,197,240,0.045)_1px,transparent_1px)] bg-[size:84px_84px]" />
 
 				<div className="site-wide relative grid min-h-[720px] items-center gap-12 pb-20 pt-24 lg:grid-cols-[1fr_0.82fr] lg:pt-20">
@@ -160,13 +163,18 @@ function HomePage() {
 			<section className="site-wide section-tight">
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 					{metrics.map((metric) => (
-						<article key={metric.label} className="panel px-5 py-6">
+						<article
+							key={metric.label}
+							data-spotlight
+							className="panel panel-hover px-5 py-6"
+						>
 							<p className="max-w-40 text-[0.72rem] font-semibold uppercase leading-4 text-faint">
 								{metric.label}
 							</p>
-							<p className="mt-4 font-heading text-3xl font-semibold text-ink">
-								{metric.value}
-							</p>
+							<CountUp
+								value={metric.value}
+								className="mt-4 block font-heading text-3xl font-semibold text-ink"
+							/>
 						</article>
 					))}
 				</div>
@@ -233,7 +241,11 @@ function HomePage() {
 
 				<div className="grid gap-4 md:grid-cols-2">
 					{capabilities.map((capability) => (
-						<article key={capability.title} className="panel panel-hover p-6">
+						<article
+							key={capability.title}
+							data-spotlight
+							className="panel panel-hover p-6"
+						>
 							<div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface-2 text-info">
 								<capability.icon className="h-5 w-5" />
 							</div>
@@ -251,7 +263,11 @@ function HomePage() {
 			<section className="site-wide section-shell pt-8">
 				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 					{process.map((step) => (
-						<article key={step.title} className="panel p-6">
+						<article
+							key={step.title}
+							data-spotlight
+							className="panel panel-hover p-6"
+						>
 							<span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface-2 text-xs font-semibold text-faint">
 								{step.n}
 							</span>
