@@ -91,7 +91,7 @@ function HomePage() {
 						height={420}
 						className="reveal-up w-[min(78vw,26rem)] drop-shadow-[0_20px_60px_rgba(109,92,255,0.35)]"
 					/>
-					<div className="reveal-up delay-2 mt-8 inline-flex flex-col items-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.04] px-8 py-5 shadow-[0_10px_50px_-12px_rgba(0,0,0,0.65)] backdrop-blur-md sm:px-10">
+					<div className="reveal-up delay-2 mt-8 flex flex-col items-center gap-2.5">
 						<p className="font-heading text-2xl font-semibold text-white sm:text-[1.8rem]">
 							One size fits you.
 						</p>
