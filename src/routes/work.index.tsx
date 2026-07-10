@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, FlaskConical, Minus } from "lucide-react";
+import { ArrowRight, Minus } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import CTASection from "../components/CTASection";
-import InteractiveAura from "../components/InteractiveAura";
 import { caseStudies } from "../data/work";
 
 export const Route = createFileRoute("/work/")({
@@ -47,84 +46,29 @@ function WorkIndexPage() {
 
 	return (
 		<>
-			<InteractiveAura />
-
 			{/* Hero */}
-			<section className="glow section-shell">
-				<div className="site-wide">
-					<p className="kicker reveal-up mb-6">
-						Selected work · sample cases by sector
+			<section className="relative overflow-hidden">
+				<div className="aurora" aria-hidden />
+				<div className="site-wide relative flex min-h-[58vh] flex-col items-center justify-center py-24 text-center">
+					<p className="kicker reveal-up justify-center">Selected work</p>
+					<h1 className="reveal-up delay-1 display mt-6 text-[2.9rem] leading-[1.02] text-ink sm:text-7xl lg:text-[5rem]">
+						Systems we’ve <span className="gradient-ink">built</span>.
+					</h1>
+					<p className="reveal-up delay-2 mt-7 max-w-2xl text-lg leading-relaxed text-mute sm:text-xl">
+						How we’ve unified businesses into a single system — from the first
+						map of how they run to a system the whole team works on every day.
 					</p>
-					<div className="grid items-end gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-						<div className="max-w-3xl space-y-7">
-							<span className="pill reveal-up">
-								<FlaskConical className="h-3.5 w-3.5 text-violet" />
-								Selected work
-							</span>
-							<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4rem]">
-								Systems we've <span className="gradient-ink">built</span>.
-							</h1>
-							<p className="reveal-up delay-2 text-lg leading-relaxed text-mute sm:text-xl">
-								How we've unified businesses into a single system — from the
-								first map of how they run to a system the whole team works on
-								every day.
-							</p>
-						</div>
-
-						{/* At-a-glance proof — oversized, sourced from the cases shown */}
-						<dl className="reveal-up delay-3 grid grid-cols-3 gap-4 sm:gap-6">
-							<div>
-								<dt className="bp-coord">Cases</dt>
-								<dd className="mt-1 font-heading text-[clamp(2.4rem,5.5vw,4rem)] font-semibold leading-none tracking-[-0.04em]">
-									<span className="gradient-ink">{caseStudies.length}</span>
-								</dd>
-							</div>
-							<div>
-								<dt className="bp-coord">Sectors</dt>
-								<dd className="mt-1 font-heading text-[clamp(2.4rem,5.5vw,4rem)] font-semibold leading-none tracking-[-0.04em]">
-									<span className="gradient-ink">{industries.length - 1}</span>
-								</dd>
-							</div>
-							<div>
-								<dt className="bp-coord">Systems</dt>
-								<dd className="mt-1 font-heading text-[clamp(2.4rem,5.5vw,4rem)] font-semibold leading-none tracking-[-0.04em]">
-									<span className="gradient-ink">1</span>
-								</dd>
-							</div>
-						</dl>
-					</div>
-				</div>
-			</section>
-
-			{/* Sample-cases notice */}
-			<section className="site-wide section-shell pt-0">
-				<div className="reveal-up panel-line flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
-					<div className="flex items-start gap-4">
-						<div className="inline-flex rounded-xl border border-border bg-surface-2 p-3 text-violet">
-							<FlaskConical className="h-5 w-5" />
-						</div>
-						<div>
-							<h2 className="font-heading text-lg font-semibold text-ink">
-								Sample cases, pending client publication
-							</h2>
-							<p className="mt-1 max-w-2xl text-sm leading-relaxed text-mute">
-								These are representative examples of the systems we build, by
-								sector. Named client case studies — with their permission and
-								real figures — are on the way.
-							</p>
-						</div>
-					</div>
-					<span className="tag shrink-0 self-start sm:self-center">
-						Sample · not yet published
-					</span>
+					<p className="reveal-up delay-3 mt-6 text-xs text-faint">
+						Representative sample cases by sector · named client studies on the
+						way
+					</p>
 				</div>
 			</section>
 
 			{/* Filter + grid */}
 			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll mb-8 flex flex-wrap items-end justify-between gap-4">
-					<p className="kicker">Case studies</p>
-					<div className="flex flex-wrap gap-2">
+				<div className="reveal-scroll mb-8 flex flex-wrap items-center justify-center gap-2">
+					<div className="flex flex-wrap justify-center gap-2">
 						{industries.map((industry) => {
 							const active = industry === filter;
 							return (
@@ -155,6 +99,7 @@ function WorkIndexPage() {
 								key={study.slug}
 								to="/work/$slug"
 								params={{ slug: study.slug }}
+								data-spotlight
 								className={`panel panel-hover group relative flex flex-col p-6 sm:p-7 ${
 									featured ? "ticked md:col-span-2 lg:col-span-2" : ""
 								}`}

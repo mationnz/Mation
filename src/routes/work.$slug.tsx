@@ -273,6 +273,7 @@ function CaseStudyPage() {
 								key={other.slug}
 								to="/work/$slug"
 								params={{ slug: other.slug }}
+								data-spotlight
 								className="panel panel-hover group relative flex flex-col p-6 sm:p-7"
 							>
 								<span aria-hidden className="card-node" />
