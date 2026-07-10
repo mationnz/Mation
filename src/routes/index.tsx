@@ -1,42 +1,38 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import {
-	Activity,
 	ArrowRight,
 	ArrowUpRight,
-	Bot,
-	CircleGauge,
-	Cpu,
-	Database,
-	GitBranch,
-	LockKeyhole,
-	Network,
-	ShieldCheck,
+	Blocks,
+	Boxes,
 	Sparkles,
 	Workflow,
 } from "lucide-react";
 
 import CountUp from "../components/CountUp";
+import MagneticLink from "../components/MagneticLink";
+import ToolsMarquee from "../components/ToolsMarquee";
+import { mationMeta } from "../content/site";
 
 export const Route = createFileRoute("/")({
 	component: HomePage,
 	head: () => ({
 		meta: [
 			{
-				title: "Mation - AI operating systems for adaptive businesses",
+				title: "Mation — The operating system your business runs on",
 			},
 			{
 				name: "description",
 				content:
-					"Mation designs autonomous workflows, agentic systems, and decision intelligence that help ambitious teams scale without operational drag.",
+					"Mation designs and builds the bespoke software, automation, and AI that unify how your organisation works — so you can scale without the drag.",
 			},
 			{
 				property: "og:title",
-				content: "Mation - Build the operating system your future business runs on",
+				content: "Mation — The operating system your business runs on",
 			},
 			{
 				property: "og:description",
 				content:
-					"AI-native operating models, governed agent workflows, and enterprise automation built around how your organisation really works.",
+					"Bespoke software, intelligent automation, and decision intelligence, built around how your business really works.",
 			},
 			{
 				property: "og:type",
@@ -46,346 +42,199 @@ export const Route = createFileRoute("/")({
 	}),
 });
 
-const metrics = [
-	{ label: "Transformation programs launched", value: "120+" },
-	{ label: "Average automation coverage uplift", value: "67%" },
-	{ label: "Data sources unified per deployment", value: "18" },
-	{ label: "Median payback period", value: "6.4 months" },
-];
-
-const capabilities = [
+const pillars = [
+	{
+		icon: Blocks,
+		title: "Custom software",
+		desc: "Bespoke platforms built around how you actually operate — never an off-the-shelf compromise.",
+	},
 	{
 		icon: Workflow,
-		title: "Workflow Orchestration",
-		desc: "Cross-tool automations that connect CRM, ERP, support, finance, and field systems into a single adaptive control layer.",
+		title: "Intelligent automation",
+		desc: "Workflows and agents that quietly remove repetitive execution across every tool you run.",
 	},
 	{
-		icon: Cpu,
-		title: "Decision Intelligence",
-		desc: "AI reasoning pipelines that evaluate context, confidence, and policy before taking action.",
-	},
-	{
-		icon: Bot,
-		title: "Autonomous Agent Teams",
-		desc: "Role-specific agents that collaborate across execution, QA, reporting, and escalation in real time.",
-	},
-	{
-		icon: Database,
-		title: "Data Context Fabric",
-		desc: "A structured semantic layer that gives every model and automation dependable business context.",
+		icon: Sparkles,
+		title: "Decision intelligence",
+		desc: "AI that turns your data into context-aware decisions your team can actually trust.",
 	},
 ];
 
-const process = [
+const steps = [
 	{
 		n: "01",
 		title: "Discover",
-		desc: "Map process friction, data maturity, and high-leverage automation opportunities across teams.",
+		desc: "We learn how your business really works, and where the highest-leverage change lives.",
 	},
 	{
 		n: "02",
-		title: "Architect",
-		desc: "Design your AI operating blueprint with trust controls, governance, and measurable milestones.",
+		title: "Build",
+		desc: "We design and ship your system in transparent increments — you see it working as it grows.",
 	},
 	{
 		n: "03",
-		title: "Activate",
-		desc: "Launch production agents and workflows with parallel change enablement for your frontline teams.",
-	},
-	{
-		n: "04",
-		title: "Compound",
-		desc: "Continuously optimise from live telemetry to compound productivity, quality, and speed.",
+		title: "Scale",
+		desc: "We tune from live signal so the system compounds value quarter after quarter.",
 	},
 ];
 
-const modelBenefits = [
-	"Reduce repetitive execution load by up to 42%",
-	"Lift team throughput without adding headcount",
-	"Create consistent customer and internal response quality",
-];
-
-const trustControls = [
-	"Model and prompt version controls",
-	"Policy-aware action restrictions",
-	"Human approval gates for sensitive operations",
-	"Comprehensive execution and reasoning logs",
+const proof = [
+	{ value: "120+", label: "Transformation programs launched" },
+	{ value: "67%", label: "Average automation coverage uplift" },
+	{ value: "6.4 months", label: "Median payback period" },
 ];
 
 function HomePage() {
 	return (
 		<>
-			<section className="relative overflow-hidden border-b border-border/70">
-				<div className="absolute inset-0 bg-[linear-gradient(112deg,rgba(62,27,147,0.42),rgba(16,36,56,0.78)_52%,rgba(6,10,25,0.94))]" />
+			{/* ---------- Hero — type-forward, centered, lots of air ---------- */}
+			<section className="relative overflow-hidden">
 				<div className="aurora" aria-hidden />
-				<div className="absolute inset-0 bg-[linear-gradient(rgba(145,197,240,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(145,197,240,0.045)_1px,transparent_1px)] bg-[size:84px_84px]" />
+				<div className="site-wide relative flex min-h-[86vh] flex-col items-center justify-center py-24 text-center">
+					<span className="pill reveal-up">
+						<span className="live-dot" />
+						AI-native software studio · Auckland, NZ
+					</span>
 
-				<div className="site-wide relative grid min-h-[720px] items-center gap-12 pb-20 pt-24 lg:grid-cols-[1fr_0.82fr] lg:pt-20">
-					<div className="max-w-3xl">
-						<p className="kicker reveal-up">Business AI transformation + automation</p>
-						<h1 className="reveal-up delay-1 mt-5 max-w-4xl font-heading text-5xl font-semibold leading-[0.98] text-ink sm:text-6xl lg:text-7xl">
-							Build the operating{" "}
-							<span className="gradient-ink">system</span> your future business
-							runs on.
-						</h1>
-						<p className="reveal-up delay-2 mt-7 max-w-2xl text-base leading-8 text-mute sm:text-lg">
-							Mation transforms fragmented businesses into adaptive AI
-							enterprises. We design autonomous workflows, agentic systems, and
-							decision intelligence that accelerate growth without increasing
-							operational drag.
-						</p>
+					<h1 className="reveal-up delay-1 display mt-8 max-w-[16ch] text-[2.9rem] leading-[1.02] text-ink sm:text-7xl lg:text-[5.4rem]">
+						The <span className="gradient-ink">operating system</span> your
+						business runs on.
+					</h1>
 
-						<div className="reveal-up delay-3 mt-8 flex flex-col gap-3 sm:flex-row">
-							<Link to="/contact" className="button-primary">
-								Book a strategy sprint
-								<ArrowRight className="h-4 w-4" />
-							</Link>
-							<Link to="/what-we-build" className="button-secondary">
-								Explore outcomes
-							</Link>
-						</div>
+					<p className="reveal-up delay-2 mt-8 max-w-2xl text-lg leading-relaxed text-mute sm:text-xl">
+						We design and build the bespoke software, automation, and AI that
+						unify how your organisation works — so you can scale without the
+						drag.
+					</p>
 
-						<div className="reveal-up delay-4 mt-6 flex flex-wrap gap-2">
-							{["AI strategy", "Agentic workflows", "Enterprise automation"].map(
-								(item) => (
-									<span key={item} className="tag">
-										{item}
-									</span>
-								),
-							)}
-						</div>
-					</div>
-
-					<HeroTelemetry />
-				</div>
-			</section>
-
-			<section className="site-wide section-tight">
-				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-					{metrics.map((metric) => (
-						<article
-							key={metric.label}
-							data-spotlight
-							className="panel panel-hover px-5 py-6"
+					<div className="reveal-up delay-3 mt-10 flex flex-col gap-3 sm:flex-row">
+						<MagneticLink to="/contact" className="button-primary !px-6 !py-3">
+							Book a free call
+							<ArrowRight className="h-4 w-4" />
+						</MagneticLink>
+						<MagneticLink
+							to="/what-we-build"
+							className="button-secondary !px-6 !py-3"
 						>
-							<p className="max-w-40 text-[0.72rem] font-semibold uppercase leading-4 text-faint">
-								{metric.label}
-							</p>
-							<CountUp
-								value={metric.value}
-								className="mt-4 block font-heading text-3xl font-semibold text-ink"
-							/>
-						</article>
-					))}
+							See what we build
+						</MagneticLink>
+					</div>
+				</div>
+
+				{/* Tool logos — quiet social proof, not a section of its own */}
+				<div className="site-wide relative pb-16">
+					<p className="mb-5 text-center text-xs font-semibold uppercase tracking-[0.14em] text-faint">
+						Unifying the tools your teams already use
+					</p>
+					<ToolsMarquee />
 				</div>
 			</section>
 
-			<section className="site-wide section-shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-				<div>
-					<p className="kicker">Transformation modes</p>
-					<h2 className="mt-4 max-w-2xl font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-						Pick the operating model your growth stage needs now.
+			{/* ---------- What we do — three clear pillars ---------- */}
+			<section className="site-wide section-shell">
+				<div className="mx-auto mb-14 max-w-2xl text-center">
+					<p className="kicker reveal-scroll justify-center">What we do</p>
+					<h2 className="reveal-scroll mt-5 font-heading text-4xl font-semibold text-ink sm:text-5xl">
+						One partner for the whole system.
 					</h2>
-					<p className="mt-5 max-w-xl text-base leading-7 text-mute">
-						Most companies need a phased pathway, not a single implementation.
-						Mation structures AI transformation as modular operating modes that
-						stack into a long-term enterprise advantage.
+					<p className="reveal-scroll mx-auto mt-5 max-w-xl text-base leading-relaxed text-mute">
+						Most teams stitch together tools, contractors, and workarounds. We
+						build the single, coherent system underneath it all.
 					</p>
 				</div>
 
-				<article className="panel p-6 sm:p-7">
-					<div className="flex flex-wrap gap-2">
-						<span className="tag !border-violet/70 !bg-violet-tint !text-ink">
-							Copilot transformation
-						</span>
-						<span className="tag">Autopilot operations</span>
-						<span className="tag">Agentic enterprise layer</span>
-					</div>
-					<h3 className="mt-8 font-heading text-2xl font-semibold text-ink">
-						Copilot Transformation
-					</h3>
-					<p className="mt-3 max-w-2xl text-sm leading-7 text-mute">
-						Augment every team with contextual AI assistants that handle routine
-						execution and surface strategic recommendations.
-					</p>
-					<ul className="mt-6 space-y-3">
-						{modelBenefits.map((benefit) => (
-							<li
-								key={benefit}
-								className="flex items-start gap-3 text-sm leading-6 text-ink-soft"
-							>
-								<span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-info" />
-								<span>{benefit}</span>
-							</li>
-						))}
-					</ul>
-					<div className="mt-7 rounded-lg border border-border bg-surface-2 px-4 py-3 text-[0.72rem] font-semibold uppercase text-faint">
-						Typical delivery cadence: 12-week enablement
-					</div>
-				</article>
-			</section>
-
-			<section className="site-wide section-shell pt-8">
-				<div className="mb-9 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-					<div>
-						<p className="kicker">Core capabilities</p>
-						<h2 className="mt-4 font-heading text-4xl font-semibold text-ink sm:text-5xl">
-							Designed for enterprise complexity.
-						</h2>
-					</div>
-					<Link to="/what-we-build" className="button-ghost">
-						See every solution
-						<ArrowRight className="h-4 w-4" />
-					</Link>
-				</div>
-
-				<div className="grid gap-4 md:grid-cols-2">
-					{capabilities.map((capability) => (
+				<div className="reveal-stagger grid gap-5 md:grid-cols-3">
+					{pillars.map((pillar) => (
 						<article
-							key={capability.title}
+							key={pillar.title}
 							data-spotlight
-							className="panel panel-hover p-6"
+							className="panel panel-hover p-8"
 						>
-							<div className="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface-2 text-info">
-								<capability.icon className="h-5 w-5" />
+							<div className="mb-7 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
+								<pillar.icon className="h-5 w-5" />
 							</div>
-							<h3 className="font-heading text-2xl font-semibold text-ink">
-								{capability.title}
+							<h3 className="font-heading text-xl font-semibold text-ink">
+								{pillar.title}
 							</h3>
-							<p className="mt-3 text-sm leading-7 text-mute">
-								{capability.desc}
+							<p className="mt-3 text-[0.95rem] leading-relaxed text-mute">
+								{pillar.desc}
 							</p>
 						</article>
 					))}
 				</div>
 			</section>
 
-			<section className="site-wide section-shell pt-8">
-				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-					{process.map((step) => (
-						<article
-							key={step.title}
-							data-spotlight
-							className="panel panel-hover p-6"
-						>
-							<span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-surface-2 text-xs font-semibold text-faint">
+			{/* ---------- How we help — three steps ---------- */}
+			<section className="site-wide section-shell pt-0">
+				<div className="mx-auto mb-14 max-w-2xl text-center">
+					<p className="kicker reveal-scroll justify-center">How we help</p>
+					<h2 className="reveal-scroll mt-5 font-heading text-4xl font-semibold text-ink sm:text-5xl">
+						A calm, transparent path to live.
+					</h2>
+				</div>
+
+				<div className="reveal-stagger grid gap-10 md:grid-cols-3">
+					{steps.map((step) => (
+						<div key={step.title} className="relative">
+							<span className="font-heading text-5xl font-semibold text-violet/25">
 								{step.n}
 							</span>
-							<h3 className="mt-7 font-heading text-xl font-semibold text-ink">
+							<h3 className="mt-5 font-heading text-2xl font-semibold text-ink">
 								{step.title}
 							</h3>
-							<p className="mt-3 text-sm leading-7 text-mute">{step.desc}</p>
-						</article>
+							<p className="mt-3 text-[0.95rem] leading-relaxed text-mute">
+								{step.desc}
+							</p>
+						</div>
 					))}
 				</div>
 			</section>
 
-			<section className="site-wide section-shell pt-8">
-				<div className="panel grid gap-8 overflow-hidden p-7 sm:p-9 lg:grid-cols-[0.86fr_1.14fr] lg:p-12">
-					<div>
-						<p className="kicker">Deployment confidence</p>
-						<h2 className="mt-4 max-w-xl font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-							Built for enterprise trust from day zero.
-						</h2>
-						<p className="mt-5 max-w-xl text-base leading-7 text-mute">
-							Mation platform deployments include model governance, role-aware
-							controls, and traceable decision pathways so your teams can scale
-							AI without compromising security or compliance.
-						</p>
-					</div>
-					<div className="grid content-center gap-3">
-						{trustControls.map((control) => (
-							<div
-								key={control}
-								className="flex items-center gap-3 rounded-lg border border-border bg-surface-2 px-4 py-3 text-sm text-ink-soft"
-							>
-								<ShieldCheck className="h-4 w-4 text-info" />
-								<span>{control}</span>
-							</div>
-						))}
-					</div>
+			{/* ---------- Proof — one quiet strip of numbers ---------- */}
+			<section className="site-wide section-shell pt-0">
+				<div className="grid gap-8 rounded-[20px] border border-border bg-surface-2/50 p-10 text-center sm:grid-cols-3 sm:p-14">
+					{proof.map((item) => (
+						<div key={item.label}>
+							<CountUp
+								value={item.value}
+								className="block font-heading text-[clamp(2.6rem,5vw,3.6rem)] font-semibold leading-none text-ink"
+							/>
+							<p className="mx-auto mt-4 max-w-[16rem] text-sm leading-snug text-mute">
+								{item.label}
+							</p>
+						</div>
+					))}
 				</div>
 			</section>
 
-			<section className="site-wide section-shell pt-8">
-				<div className="relative overflow-hidden rounded-[16px] border border-border bg-[linear-gradient(130deg,var(--surface),rgba(20,39,64,0.92))] p-7 shadow-[var(--shadow-lg)] sm:p-10 lg:p-12">
-					<div className="absolute right-8 top-8 hidden h-28 w-28 rounded-full border border-info/20 lg:block" />
-					<p className="kicker">Next move</p>
-					<h2 className="mt-4 max-w-2xl font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
-						Build your AI-native operating model with confidence.
+			{/* ---------- Contact — the single, unmissable CTA ---------- */}
+			<section className="site-wide section-shell pt-0">
+				<div
+					data-spotlight
+					className="panel ticked overflow-hidden rounded-[24px] p-10 text-center sm:p-16"
+				>
+					<p className="kicker reveal-scroll justify-center">Get in touch</p>
+					<h2 className="reveal-scroll mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-[1.05] text-ink sm:text-6xl">
+						Let’s build the system your business runs on.
 					</h2>
-					<p className="mt-5 max-w-2xl text-base leading-7 text-mute">
-						Engage Mation to design and deploy an automation architecture that
-						compounds operational edge every quarter.
+					<p className="reveal-scroll mx-auto mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
+						Start with a free, no-obligation call. We’ll learn how you work today
+						and show you what one unified system could change.
 					</p>
-					<div className="mt-8 flex flex-col gap-3 sm:flex-row">
-						<Link to="/contact" className="button-primary">
-							Book a transformation sprint
+					<div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+						<MagneticLink to="/contact" className="button-primary !px-6 !py-3">
+							Book a free call
 							<ArrowUpRight className="h-4 w-4" />
-						</Link>
-						<Link to="/approach" className="button-secondary">
-							See platform capabilities
-							<ArrowRight className="h-4 w-4" />
-						</Link>
+						</MagneticLink>
+						<a
+							href={`mailto:${mationMeta.email}`}
+							className="button-secondary !px-6 !py-3"
+						>
+							{mationMeta.email}
+						</a>
 					</div>
 				</div>
 			</section>
 		</>
-	);
-}
-
-function HeroTelemetry() {
-	return (
-		<article className="panel relative mx-auto w-full max-w-[430px] overflow-hidden p-5 shadow-[var(--shadow-lg)]">
-			<div className="flex items-center justify-between rounded-lg border border-border bg-canvas-2/80 px-4 py-3 text-sm text-ink-soft">
-				<span className="flex items-center gap-2">
-					<span className="live-dot" />
-					Live transformation telemetry
-				</span>
-				<CircleGauge className="h-4 w-4 text-info" />
-			</div>
-
-			<div className="relative mx-auto grid h-64 w-64 place-items-center">
-				<div className="absolute h-56 w-56 rounded-full border border-violet/20" />
-				<div className="absolute h-44 w-44 rounded-full border border-violet/25" />
-				<div className="absolute h-32 w-32 rounded-full border border-info/20" />
-				<div className="absolute h-20 w-20 rounded-full bg-canvas shadow-[0_0_60px_rgba(97,66,205,0.38)]" />
-				<Sparkles className="relative h-9 w-9 text-info" />
-				<span className="absolute left-12 top-12 h-3 w-3 rounded-full bg-[#8db8ff] shadow-[0_0_18px_rgba(141,184,255,0.95)]" />
-				<span className="absolute bottom-16 right-10 h-3 w-3 rounded-full bg-info shadow-[0_0_18px_rgba(87,223,244,0.95)]" />
-			</div>
-
-			<div className="grid gap-3 sm:grid-cols-2">
-				<div className="rounded-lg border border-border bg-surface-2 p-4">
-					<p className="text-[0.72rem] font-semibold uppercase text-faint">
-						Process velocity
-					</p>
-					<p className="mt-3 font-heading text-3xl font-semibold text-ink">
-						3.6x
-					</p>
-					<p className="mt-1 text-xs text-mute">Faster execution cycle</p>
-				</div>
-				<div className="rounded-lg border border-border bg-surface-2 p-4">
-					<p className="text-[0.72rem] font-semibold uppercase text-faint">
-						Margin impact
-					</p>
-					<p className="mt-3 font-heading text-3xl font-semibold text-ink">
-						+18%
-					</p>
-					<p className="mt-1 text-xs text-mute">Average within first year</p>
-				</div>
-			</div>
-
-			<div className="mt-5 grid grid-cols-4 gap-2">
-				{[Network, GitBranch, LockKeyhole, Activity].map((Icon, index) => (
-					<div
-						key={String(index)}
-						className="grid aspect-square place-items-center rounded-lg border border-border bg-surface-2 text-info/80"
-					>
-						<Icon className="h-4 w-4" />
-					</div>
-				))}
-			</div>
-		</article>
 	);
 }
