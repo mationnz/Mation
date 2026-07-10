@@ -87,35 +87,35 @@ export default function Header() {
 						: "border-border/70 bg-canvas/90 backdrop-blur-xl"
 				}`}
 			>
-				<div className="site-wide flex h-16 items-center justify-between gap-6">
+				<div className="site-wide flex h-[4.75rem] items-center justify-between gap-8">
 					<Link
 						to="/"
-						className="group inline-flex items-center gap-2.5"
+						className="group inline-flex shrink-0 items-center gap-2.5"
 						aria-label="Mation — home"
 					>
-						<BrandMark size={18} />
-						<span className="font-display text-sm font-semibold text-ink">
+						<BrandMark size={24} />
+						<span className="font-display text-lg font-semibold text-ink">
 							Mation
 						</span>
 					</Link>
 
-					<nav className="hidden items-center gap-8 lg:flex">
+					<nav className="hidden items-center gap-9 lg:flex">
 						{primaryNav.map((link) => (
 							<Link
 								key={link.to}
 								to={link.to}
-								className="text-xs font-semibold text-mute transition-colors duration-200 hover:text-ink"
-								activeProps={{ className: "!text-ink" }}
+								className="text-[0.95rem] font-medium text-mute transition-colors duration-200 hover:text-ink"
+								activeProps={{ className: "!text-ink !font-semibold" }}
 							>
 								{link.label}
 							</Link>
 						))}
 					</nav>
 
-					<div className="flex items-center gap-3">
+					<div className="flex shrink-0 items-center gap-3">
 						<Link
 							to="/contact"
-							className="button-primary hidden !rounded-full !px-5 !py-2.5 !text-xs md:inline-flex"
+							className="button-primary hidden !rounded-full !px-5 !py-2.5 !text-sm md:inline-flex"
 						>
 							Start the build
 							<ArrowUpRight className="h-4 w-4" />

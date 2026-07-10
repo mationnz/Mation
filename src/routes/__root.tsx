@@ -104,7 +104,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<div className="scroll-progress" aria-hidden />
 				<SpotlightFX />
 				<Header />
-				<main className="pt-16">{children}</main>
+				<main className="pt-[4.75rem]">{children}</main>
 				<Footer />
 
 				<Scripts />
