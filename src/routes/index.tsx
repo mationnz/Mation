@@ -144,15 +144,15 @@ function HomePage() {
 						/>
 					</div>
 
-					<span className="live-badge reveal-up delay-1 mt-8">
-						<span className="ping" />6 businesses currently transforming
-					</span>
+					<div className="reveal-up delay-1 mt-6 flex items-center gap-3.5">
+						<span className="h-px w-8 bg-sun-ink/40" aria-hidden />
+						<span className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-sun-ink">
+							AI transformation partner
+						</span>
+						<span className="h-px w-8 bg-sun-ink/40" aria-hidden />
+					</div>
 
-					<p className="kicker reveal-up delay-1 mt-6 justify-center !text-sun-ink">
-						AI transformation partner
-					</p>
-
-					<h1 className="reveal-up delay-2 display mt-5 max-w-[15ch] text-[2.6rem] leading-[1.05] text-ink sm:text-5xl lg:text-[3.7rem]">
+					<h1 className="reveal-up delay-2 display mt-6 max-w-[15ch] text-[2.6rem] leading-[1.05] text-ink sm:text-5xl lg:text-[3.7rem]">
 						The intelligent systems your business{" "}
 						<span className="gradient-warm serif-em">runs on.</span>
 					</h1>
