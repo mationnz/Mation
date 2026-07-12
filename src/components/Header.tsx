@@ -99,13 +99,15 @@ export default function Header() {
 						</span>
 					</Link>
 
-					<nav className="hidden items-center gap-9 lg:flex">
+					<nav className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1.5 backdrop-blur-md lg:flex">
 						{primaryNav.map((link) => (
 							<Link
 								key={link.to}
 								to={link.to}
-								className="text-[0.95rem] font-medium text-mute transition-colors duration-200 hover:text-ink"
-								activeProps={{ className: "!text-ink !font-semibold" }}
+								className="rounded-full px-4 py-2 font-mono text-[0.72rem] font-medium uppercase tracking-[0.12em] text-mute transition-colors duration-200 hover:text-ink"
+								activeProps={{
+									className: "!bg-violet-tint !text-ink",
+								}}
 							>
 								{link.label}
 							</Link>
@@ -115,7 +117,7 @@ export default function Header() {
 					<div className="flex shrink-0 items-center gap-3">
 						<Link
 							to="/contact"
-							className="button-primary hidden !rounded-full !px-5 !py-2.5 !text-sm md:inline-flex"
+							className="button-primary hidden !rounded-full !px-5 !py-2.5 !font-mono !text-[0.72rem] !uppercase !tracking-[0.1em] md:inline-flex"
 						>
 							Start the build
 							<ArrowUpRight className="h-4 w-4" />
