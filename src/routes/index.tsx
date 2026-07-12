@@ -138,29 +138,28 @@ function HomePage() {
 						<img
 							src="/benji-mation-logo.png"
 							alt="Mation"
-							width={220}
-							height={210}
-							className="float-slow w-[min(38vw,10.5rem)] drop-shadow-[0_20px_70px_rgba(109,92,255,0.4)]"
+							width={460}
+							height={440}
+							className="float-slow w-[min(78vw,23rem)] drop-shadow-[0_28px_90px_rgba(109,92,255,0.45)]"
 						/>
 					</div>
 
-					<span className="live-badge reveal-up delay-1 mt-7">
+					<span className="live-badge reveal-up delay-1 mt-8">
 						<span className="ping" />6 businesses currently transforming
 					</span>
 
-					<p className="kicker reveal-up delay-1 mt-7 justify-center !text-sun-ink">
-						AI transformation partner · Auckland, NZ
+					<p className="kicker reveal-up delay-1 mt-6 justify-center !text-sun-ink">
+						AI transformation partner
 					</p>
 
-					<h1 className="reveal-up delay-2 display mt-5 max-w-[16ch] text-[2.9rem] leading-[1.03] text-ink sm:text-6xl lg:text-[4.6rem]">
-						We build the intelligent systems your business{" "}
+					<h1 className="reveal-up delay-2 display mt-5 max-w-[15ch] text-[2.6rem] leading-[1.05] text-ink sm:text-5xl lg:text-[3.7rem]">
+						The intelligent systems your business{" "}
 						<span className="gradient-warm serif-em">runs on.</span>
 					</h1>
 
-					<p className="reveal-up delay-3 mt-7 max-w-2xl text-lg leading-relaxed text-mute sm:text-xl">
-						Mation works alongside you to understand how you operate, remove the
-						busywork, and build intelligent software that automates work,
-						streamlines operations, and unlocks growth.
+					<p className="reveal-up delay-3 mt-6 max-w-xl text-lg leading-relaxed text-mute">
+						We work alongside you to build intelligent software that removes the
+						busywork and unlocks growth.
 					</p>
 
 					<div className="reveal-up delay-4 mt-10 flex flex-col gap-3 sm:flex-row">
