@@ -88,7 +88,15 @@ function HomePage() {
 						/>
 					</div>
 
-					<h1 className="reveal-up delay-2 display mt-8 max-w-[16ch] text-[2.2rem] leading-[1.08] text-ink sm:text-4xl lg:text-5xl">
+					<div className="reveal-up delay-1 mt-5 flex items-center gap-3.5">
+						<span className="h-px w-8 bg-sun-ink/40" aria-hidden />
+						<span className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-sun-ink">
+							AI transformation partner
+						</span>
+						<span className="h-px w-8 bg-sun-ink/40" aria-hidden />
+					</div>
+
+					<h1 className="reveal-up delay-2 display mt-7 max-w-[16ch] text-[2.2rem] leading-[1.08] text-ink sm:text-4xl lg:text-5xl">
 						Your entire business,{" "}
 						<span className="gradient-warm serif-em">one intelligent system.</span>
 					</h1>
