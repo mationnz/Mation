@@ -1,11 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-	ArrowRight,
-	ArrowUpRight,
-	Blocks,
-	Sparkles,
-	Workflow,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import MagneticLink from "../components/MagneticLink";
 import TrustedBy from "../components/TrustedBy";
@@ -37,24 +31,6 @@ export const Route = createFileRoute("/")({
 		],
 	}),
 });
-
-const pillars = [
-	{
-		icon: Blocks,
-		title: "Custom software",
-		desc: "Bespoke platforms built around how you actually operate.",
-	},
-	{
-		icon: Workflow,
-		title: "Intelligent automation",
-		desc: "AI agents and workflows that remove the repetitive busywork.",
-	},
-	{
-		icon: Sparkles,
-		title: "Decision intelligence",
-		desc: "Your data turned into decisions your team can trust.",
-	},
-];
 
 const team = [
 	{
@@ -109,37 +85,53 @@ function HomePage() {
 
 			{/* ============ WHAT WE DO ============ */}
 			<section className="site-wide section-shell">
-				<div className="mx-auto mb-14 max-w-2xl text-center">
+				<div className="mx-auto max-w-3xl text-center">
 					<p className="kicker reveal-scroll justify-center">What we do</p>
-					<h2 className="reveal-scroll mt-5 display text-4xl leading-[1.08] text-ink sm:text-5xl">
-						We bring your whole business into{" "}
-						<span className="serif-em">one system.</span>
+					<h2 className="reveal-scroll mt-5 display text-4xl leading-[1.08] text-ink sm:text-[3.3rem]">
+						The next generation of business{" "}
+						<span className="gradient-warm serif-em">starts here.</span>
 					</h2>
-					<p className="reveal-scroll mx-auto mt-5 max-w-xl text-base leading-relaxed text-mute">
-						AI, custom software, and automation — combined into a single
-						intelligent system, built around exactly how you operate.
+					<p className="reveal-scroll mx-auto mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
+						At Mation, we’re building the operating system for modern
+						organisations.
 					</p>
 				</div>
 
-				<div className="reveal-stagger grid gap-5 md:grid-cols-3">
-					{pillars.map((pillar) => (
-						<article
-							key={pillar.title}
-							data-spotlight
-							className="panel panel-hover p-8"
-						>
-							<div className="mb-7 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
-								<pillar.icon className="h-5 w-5" />
-							</div>
-							<h3 className="font-heading text-xl font-semibold text-ink">
-								{pillar.title}
-							</h3>
-							<p className="mt-3 text-[0.95rem] leading-relaxed text-mute">
-								{pillar.desc}
-							</p>
-						</article>
-					))}
+				<div className="reveal-scroll mx-auto mt-10 max-w-2xl space-y-6 text-lg leading-relaxed text-mute">
+					<p>
+						We believe technology should adapt to the way people work — not the
+						other way around. That’s why we partner with ambitious teams to
+						design intelligent ecosystems that bring people, processes, data, and
+						technology together into one connected environment.
+					</p>
+					<p>
+						By combining AI, custom software, and intelligent automation, we
+						eliminate complexity, streamline operations, and create the capacity
+						for organisations to innovate, grow, and scale with confidence.
+					</p>
+					<p className="text-ink-soft">
+						Our mission is to create the{" "}
+						<span className="text-ink">digital home where modern work happens</span>{" "}
+						— a place where every workflow, every project, every customer, and
+						every decision is seamlessly connected through systems designed
+						around the way your organisation operates.
+					</p>
+					<p>
+						We don’t believe in one-size-fits-all solutions. We believe every
+						organisation deserves technology that is purpose-built to unlock its
+						full potential.
+					</p>
 				</div>
+
+				<p className="reveal-scroll mx-auto mt-14 max-w-3xl text-center display text-3xl leading-[1.12] text-ink sm:text-[2.6rem]">
+					We don’t just improve the way organisations work. We{" "}
+					<span className="serif-em">transform</span> the way they operate. We{" "}
+					<span className="gradient-warm serif-em">redefine what’s possible.</span>
+				</p>
+				<p className="reveal-scroll mx-auto mt-7 text-center font-serif text-xl italic text-ink-soft sm:text-2xl">
+					Welcome to the future of work.{" "}
+					<span className="gradient-warm not-italic">Welcome to Mation.</span>
+				</p>
 			</section>
 
 			{/* ============ PROJECTS ============ */}
@@ -194,31 +186,6 @@ function HomePage() {
 						Partnering with ambitious businesses
 					</p>
 					<TrustedBy />
-				</div>
-			</section>
-
-			{/* ============ MISSION ============ */}
-			<section className="site-wide section-shell pt-0">
-				<div
-					data-spotlight
-					className="panel ticked relative overflow-hidden rounded-[24px] p-10 text-center sm:p-16"
-				>
-					<div className="aura-warm opacity-50" aria-hidden />
-					<div className="relative z-10 mx-auto max-w-3xl">
-						<p className="kicker reveal-scroll justify-center">Our mission</p>
-						<p className="reveal-scroll mt-6 font-serif text-2xl italic leading-snug text-ink-soft sm:text-[1.9rem]">
-							Technology should adapt to how people work — not the other way
-							around. We bring people, process, data, and technology together
-							into one connected home, so businesses can{" "}
-							<span className="gradient-warm not-italic">
-								grow with confidence.
-							</span>
-						</p>
-						<MagneticLink to="/about" className="button-ghost reveal-scroll mt-8">
-							Read our story
-							<ArrowRight className="h-4 w-4" />
-						</MagneticLink>
-					</div>
 				</div>
 			</section>
 
