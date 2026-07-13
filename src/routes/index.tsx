@@ -88,28 +88,10 @@ function HomePage() {
 						/>
 					</div>
 
-					<div className="reveal-up delay-1 mt-5 flex items-center gap-3.5">
-						<span className="h-px w-8 bg-sun-ink/40" aria-hidden />
-						<span className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-sun-ink">
-							AI transformation partner
-						</span>
-						<span className="h-px w-8 bg-sun-ink/40" aria-hidden />
-					</div>
-
-					<h1 className="reveal-up delay-2 display mt-7 max-w-[16ch] text-[2.2rem] leading-[1.08] text-ink sm:text-4xl lg:text-5xl">
+					<h1 className="reveal-up delay-2 display mt-8 max-w-[16ch] text-[2.2rem] leading-[1.08] text-ink sm:text-4xl lg:text-5xl">
 						Your entire business,{" "}
 						<span className="gradient-warm serif-em">one intelligent system.</span>
 					</h1>
-
-					<div className="reveal-up delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-						<MagneticLink to="/contact" className="button-primary !px-7 !py-3.5">
-							Book a free call
-							<ArrowRight className="h-4 w-4" />
-						</MagneticLink>
-						<MagneticLink to="/work" className="button-secondary !px-7 !py-3.5">
-							See our work
-						</MagneticLink>
-					</div>
 				</div>
 
 				<div className="absolute bottom-8 left-1/2 -translate-x-1/2">
