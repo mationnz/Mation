@@ -130,11 +130,11 @@ function ArticlePage() {
 						<span className="text-sm text-mute">{article.readTime}</span>
 					</div>
 
-					<h1 className="reveal-up font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+					<h1 className="reveal-up display text-4xl leading-[1.08] text-ink sm:text-5xl">
 						{article.title}
 					</h1>
 
-					<p className="reveal-up delay-1 border-l-2 border-[var(--color-violet)] pl-5 text-xl leading-relaxed text-ink-soft">
+					<p className="reveal-up delay-1 border-l-2 border-[var(--color-violet)] pl-5 font-serif text-xl italic leading-relaxed text-ink-soft">
 						{article.excerpt}
 					</p>
 
