@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "bun --bun vite dev --port 6969",
+    "prebuild": "bun run scripts/generate-sitemap.ts",
     "build": "bun --bun vite build",
     "preview": "bun --bun vite preview",
     "start": "bun run .output/server/index.mjs",

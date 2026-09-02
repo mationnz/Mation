@@ -1,5 +1,4 @@
-import { LockKeyhole, ShieldCheck } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 type ControlKey =
 	| "humanApproval"
@@ -18,102 +17,106 @@ const initialControls: Controls = {
 	auditTrail: true,
 };
 
-const controlLabels: Record<ControlKey, string> = {
-	humanApproval: "Approval gates on sensitive actions",
-	policyRestrictions: "Policy rules on what can run",
-	leastPrivilege: "Least-privilege access by role",
-	scopedReach: "Scoped reach to approved systems",
-	auditTrail: "Full audit trail of every action",
-};
+const controls: Record<ControlKey, { label: string; on: string; off: string }> =
+	{
+		humanApproval: {
+			label: "Approval gates on sensitive actions",
+			on: "Irreversible actions wait for a person to say yes.",
+			off: "Sensitive actions would run without a human in the loop.",
+		},
+		policyRestrictions: {
+			label: "Policy rules on what can run",
+			on: "Only the workflows and tools your policy allows can execute.",
+			off: "Anything the system can reach, it could run.",
+		},
+		leastPrivilege: {
+			label: "Least-privilege access by role",
+			on: "Each person and process sees only what their role needs.",
+			off: "Every user would see and do more than their job requires.",
+		},
+		scopedReach: {
+			label: "Scoped reach to approved systems",
+			on: "Integrations connect only to the systems you’ve approved.",
+			off: "Connections could extend to systems nobody signed off.",
+		},
+		auditTrail: {
+			label: "Full audit trail of every action",
+			on: "Every action is recorded against who ran it and when.",
+			off: "You’d have no record of what ran, or who asked for it.",
+		},
+	};
 
+/**
+ * Interactive illustration of the safeguards a tenant runs with. Toggling a
+ * control changes what the panel says is protected — in words, deliberately.
+ * There is no percentage here because no honest one exists.
+ */
 export default function TrustControlPanel() {
-	const [controls, setControls] = useState<Controls>(initialControls);
-
-	const protection = useMemo(() => {
-		let score = 0.29;
-		if (controls.humanApproval) score += 0.17;
-		if (controls.policyRestrictions) score += 0.15;
-		if (controls.leastPrivilege) score += 0.11;
-		if (controls.scopedReach) score += 0.13;
-		if (controls.auditTrail) score += 0.1;
-		return Math.min(0.95, score);
-	}, [controls]);
-
-	const activeCount = Object.values(controls).filter(Boolean).length;
-	const allOn = activeCount === 5;
+	const [state, setState] = useState<Controls>(initialControls);
+	const keys = Object.keys(controls) as ControlKey[];
+	const activeCount = keys.filter((key) => state[key]).length;
 
 	return (
-		<div className="grid gap-4 text-left lg:grid-cols-[0.57fr_0.43fr]">
-			<div className="panel rounded-[18px] p-6 sm:p-7">
+		<div className="grid gap-5 lg:grid-cols-[0.55fr_0.45fr]">
+			<div className="panel p-6 sm:p-7">
 				<div className="mb-5 flex items-center justify-between gap-3">
-					<p className="kicker">Safeguards we build in</p>
-					<div
-						className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold ${
-							allOn
-								? "border-[var(--color-success)] text-[var(--color-success)]"
-								: "border-border text-mute"
-						}`}
-					>
-						<ShieldCheck className="h-3.5 w-3.5" />
-						{activeCount}/5 on
-					</div>
+					<p className="label">Safeguards</p>
+					<span className="font-mono text-sm text-mute">
+						{activeCount} of {keys.length} on
+					</span>
 				</div>
-
-				<div className="flex flex-col gap-px overflow-hidden rounded-[12px] border border-border bg-border">
-					{(Object.keys(controls) as ControlKey[]).map((key) => (
-						<div
+				<ul className="m-0 list-none divide-y divide-border p-0">
+					{keys.map((key) => (
+						<li
 							key={key}
-							className="flex items-center justify-between gap-4 bg-surface p-4"
+							className="flex items-center justify-between gap-4 py-3.5"
 						>
-							<p className="text-sm text-ink-soft">{controlLabels[key]}</p>
+							<span className="text-[0.95rem] text-ink-soft">
+								{controls[key].label}
+							</span>
 							<button
 								type="button"
 								onClick={() =>
-									setControls((previous) => ({
+									setState((previous) => ({
 										...previous,
 										[key]: !previous[key],
 									}))
 								}
-								className={`trust-toggle ${controls[key] ? "is-on" : ""}`}
-								aria-pressed={controls[key]}
-								aria-label={`Toggle ${controlLabels[key]}`}
+								className={`trust-toggle ${state[key] ? "is-on" : ""}`}
+								aria-pressed={state[key]}
+								aria-label={controls[key].label}
 							>
 								<span />
 							</button>
-						</div>
+						</li>
 					))}
-				</div>
+				</ul>
 			</div>
 
-			<div className="panel rounded-[18px] p-6 sm:p-7">
-				<p className="kicker">More safeguards, less risk</p>
-				<p className="mt-4 metric-value">{(protection * 100).toFixed(0)}%</p>
-				<p className="mt-2 text-sm text-mute">
-					A live read on how protected you are — every safeguard you turn on
-					closes off more risk.
+			<div className="panel bg-surface-2 p-6 sm:p-7" aria-live="polite">
+				<p className="label">What that means</p>
+				<ul className="mt-4 m-0 list-none space-y-3 p-0">
+					{keys.map((key) => (
+						<li
+							key={key}
+							className={`flex items-start gap-3 text-[0.95rem] leading-relaxed ${
+								state[key] ? "text-ink-soft" : "text-warm-ink"
+							}`}
+						>
+							<span
+								aria-hidden
+								className={`mt-[0.55em] h-2 w-2 flex-none rounded-[2px] ${
+									state[key] ? "bg-violet" : "bg-warm"
+								}`}
+							/>
+							{state[key] ? controls[key].on : controls[key].off}
+						</li>
+					))}
+				</ul>
+				<p className="mt-5 border-t border-border pt-4 text-sm text-mute">
+					In a real tenant these are configured to your policy and enforced in
+					code, not in a toggle on a web page.
 				</p>
-
-				<div className="trust-meter mt-5">
-					<div style={{ width: `${protection * 100}%` }} />
-				</div>
-
-				<div className="mt-6 rounded-[12px] border border-border bg-canvas-2 p-4">
-					<p className="kicker">Audit stream</p>
-					<div className="mt-3 space-y-2 text-sm text-ink-soft">
-						<p className="flex items-start gap-2">
-							<LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-success)]" />
-							Policy check passed before the action ran
-						</p>
-						<p className="flex items-start gap-2">
-							<LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-success)]" />
-							Approval requested for a change above threshold
-						</p>
-						<p className="flex items-start gap-2">
-							<LockKeyhole className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-success)]" />
-							Every step recorded against the user who ran it
-						</p>
-					</div>
-				</div>
 			</div>
 		</div>
 	);

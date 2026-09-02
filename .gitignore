@@ -14,3 +14,6 @@ todos.json
 
 # Playwright MCP QA artifacts
 .playwright-mcp/
+
+# Contact-form submissions (system of record; never commit)
+data/

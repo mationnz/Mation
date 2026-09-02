@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 
 import CTASection from "@/components/CTASection";
-import InteractiveAura from "@/components/InteractiveAura";
 import { getArticleBySlug, getRelatedArticles } from "@/data/articles";
 
 export const Route = createFileRoute("/insights/$slug")({
@@ -41,25 +40,20 @@ function ArticlePage() {
 
 	if (!article) {
 		return (
-			<>
-				<InteractiveAura />
-				<section className="section-shell">
-					<div className="site-shell mx-auto max-w-3xl space-y-6 text-center">
-						<h1 className="font-heading text-4xl font-semibold text-ink">
-							Article not found
-						</h1>
-						<p className="text-lg text-mute">
-							The article you’re looking for doesn’t exist.
-						</p>
-						<Link
-							to="/insights"
-							className="button-secondary inline-flex items-center gap-2"
-						>
-							<ArrowLeft className="h-4 w-4" /> Back to Insights
-						</Link>
-					</div>
-				</section>
-			</>
+			<section className="section">
+				<div className="site-shell mx-auto max-w-3xl space-y-6 text-center">
+					<h1 className="h2">Article not found</h1>
+					<p className="text-lg text-mute">
+						The article you’re looking for doesn’t exist.
+					</p>
+					<Link
+						to="/insights"
+						className="button-secondary inline-flex items-center gap-2"
+					>
+						<ArrowLeft className="h-4 w-4" /> Back to Insights
+					</Link>
+				</div>
+			</section>
 		);
 	}
 
@@ -80,8 +74,6 @@ function ArticlePage() {
 
 	return (
 		<>
-			<InteractiveAura />
-
 			{/* JSON-LD Structured Data */}
 			<script
 				type="application/ld+json"
@@ -112,7 +104,7 @@ function ArticlePage() {
 			/>
 
 			{/* Breadcrumb */}
-			<section className="site-shell pt-28">
+			<section className="site-shell pt-6">
 				<nav className="flex items-center gap-2 text-sm text-mute">
 					<Link to="/insights" className="link-underline">
 						Insights
@@ -125,20 +117,20 @@ function ArticlePage() {
 			{/* Article hero */}
 			<section className="section-tight">
 				<div className="site-shell mx-auto max-w-3xl space-y-6">
-					<div className="reveal-up flex items-center justify-between gap-3">
+					<div className="flex items-center justify-between gap-3">
 						<span className="tag">{article.category}</span>
 						<span className="text-sm text-mute">{article.readTime}</span>
 					</div>
 
-					<h1 className="reveal-up font-heading text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+					<h1 className="display !text-[clamp(2.2rem,4.5vw,3.4rem)]">
 						{article.title}
 					</h1>
 
-					<p className="reveal-up delay-1 border-l-2 border-[var(--color-violet)] pl-5 text-xl leading-relaxed text-ink-soft">
+					<p className="lede border-l-2 border-violet pl-5">
 						{article.excerpt}
 					</p>
 
-					<div className="reveal-up delay-2 flex flex-wrap items-center gap-6 border-t border-border pt-4 text-sm text-mute">
+					<div className="flex flex-wrap items-center gap-6 border-t border-border pt-4 text-sm text-mute">
 						<span className="inline-flex items-center gap-1.5">
 							<User className="h-3.5 w-3.5" />
 							{article.author}
@@ -156,7 +148,7 @@ function ArticlePage() {
 			</section>
 
 			{/* Article body */}
-			<section className="section-shell pt-0">
+			<section className="section pt-0">
 				<article className="site-shell mx-auto max-w-3xl">
 					{renderArticle(lines)}
 				</article>
@@ -164,27 +156,21 @@ function ArticlePage() {
 
 			{/* Related articles */}
 			{related.length > 0 && (
-				<section className="site-wide section-shell pt-0">
-					<div className="site-shell mx-auto mb-12 max-w-3xl">
-						<p className="kicker">End of article · keep reading</p>
-					</div>
-					<p className="section-index reveal-scroll mb-6">
-						<b>{String(related.length).padStart(2, "0")}</b> &nbsp;/&nbsp;
-						Related reading
-					</p>
-					<div className="reveal-stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+				<section className="site-wide section border-t border-border pt-10">
+					<p className="label mb-6">Related reading</p>
+					<div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 						{related.map((rel) => (
 							<Link
 								key={rel.slug}
 								to="/insights/$slug"
 								params={{ slug: rel.slug }}
-								className="panel panel-hover group relative flex flex-col p-6"
+								className="panel group relative flex flex-col p-6 transition-colors hover:border-violet"
 							>
 								<div className="mb-4 flex items-center justify-between gap-3">
 									<span className="tag">{rel.category}</span>
 									<ArrowUpRight className="h-4 w-4 shrink-0 text-mute transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-violet" />
 								</div>
-								<h3 className="font-heading text-base font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-violet">
+								<h3 className="h3 !text-[1.1rem] transition-colors duration-200 group-hover:text-violet-ink">
 									{rel.title}
 								</h3>
 								<span className="mt-auto pt-4 text-sm text-mute">
@@ -208,9 +194,8 @@ function ArticlePage() {
 
 			<CTASection
 				title="Want to see this in your business?"
-				description="Start with a conversation. We’ll learn how you work today and show you what one unified system could change."
-				primaryLabel="Book a free exploration meeting"
-				secondaryLabel="See our approach"
+				description="Tell us how you run today. We’ll tell you what a system on our platform would change, what it would cost, and what you’d own."
+				secondary={{ label: "How it works", to: "/how-it-works" }}
 			/>
 		</>
 	);
@@ -276,7 +261,7 @@ function renderArticle(lines: string[]) {
 function Block({ line }: { line: string }) {
 	if (line.startsWith("## ")) {
 		return (
-			<h2 className="mb-5 mt-12 font-heading text-2xl font-semibold text-ink sm:text-3xl">
+			<h2 className="mb-5 mt-12 font-display text-2xl text-ink sm:text-3xl">
 				{line.slice(3)}
 			</h2>
 		);
@@ -284,7 +269,7 @@ function Block({ line }: { line: string }) {
 
 	if (line.startsWith("### ")) {
 		return (
-			<h3 className="mb-4 mt-10 font-heading text-xl font-semibold text-ink sm:text-2xl">
+			<h3 className="mb-4 mt-10 font-display text-xl text-ink sm:text-2xl">
 				{line.slice(4)}
 			</h3>
 		);
@@ -293,7 +278,7 @@ function Block({ line }: { line: string }) {
 	if (line.startsWith('"')) {
 		return (
 			<blockquote
-				className="my-5 border-l-2 border-[var(--color-violet)] pl-5 text-base italic leading-relaxed text-mute sm:text-lg"
+				className="my-5 border-l-2 border-violet pl-5 text-base italic leading-relaxed text-mute sm:text-lg"
 				// biome-ignore lint: rendered article content
 				dangerouslySetInnerHTML={{ __html: formatInlineMarkdown(line) }}
 			/>

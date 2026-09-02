@@ -1,106 +1,60 @@
-import { createFileRoute } from "@tanstack/react-router";
-import {
-	ArrowRight,
-	Check,
-	Database,
-	Eye,
-	EyeOff,
-	GitPullRequestArrow,
-	Key,
-	type LucideIcon,
-	Network,
-	Radar,
-	Scale,
-	ScrollText,
-	ShieldCheck,
-	Users,
-} from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { EyeOff, GitPullRequestArrow, Radar, Users } from "lucide-react";
 
 import CTASection from "../components/CTASection";
-import InteractiveAura from "../components/InteractiveAura";
-import MagneticLink from "../components/MagneticLink";
-import ProcessFlow from "../components/ProcessFlow";
+import ProcessFlow, { type Step } from "../components/ProcessFlow";
+import Section from "../components/Section";
 import TrustControlPanel from "../components/TrustControlPanel";
 
 export const Route = createFileRoute("/security")({
 	component: SecurityPage,
 	head: () => ({
 		meta: [
-			{
-				title:
-					"Security & governance — Protect your business while moving faster",
-			},
+			{ title: "Security and governance — Mation" },
 			{
 				name: "description",
 				content:
-					"Mation builds security and governance into the system we ship for you — least-privilege access, data ownership, full audit trails, secure integrations, and approvals on sensitive actions.",
+					"Every Mation tenant runs with least-privilege access by role, approval gates on sensitive actions, a full audit trail, and tenant isolation enforced in the database. Built to ISO 27001-aligned practices; not certified, no third-party audit performed.",
 			},
-			{
-				property: "og:title",
-				content: "Security & governance — Built in, not bolted on",
-			},
+			{ property: "og:title", content: "Security and governance — Mation" },
 			{
 				property: "og:description",
 				content:
-					"Least-privilege access, your data and code stay yours, complete audit trails, secure integrations, and approval gates — engineered into the system we build for you.",
+					"Least-privilege access, approval gates, full audit trails and database-enforced tenant isolation — and a plain statement of what has and hasn’t been audited.",
 			},
+			{ property: "og:type", content: "website" },
 		],
 	}),
 });
 
-type Pillar = {
-	n: string;
-	icon: LucideIcon;
-	title: string;
-	description: string;
-};
-
-const pillars: Pillar[] = [
+const pillars = [
 	{
-		n: "01",
-		icon: Key,
 		title: "Least-privilege access",
-		description:
-			"Every person and process gets the minimum access the job needs — scoped by role, never more.",
+		desc: "Every person and process gets the minimum access the job needs — scoped by role, never more.",
 	},
 	{
-		n: "02",
-		icon: Database,
-		title: "You own your data and code",
-		description:
-			"Your data stays yours and the code is yours to keep. No lock-in — you can take it anywhere, anytime.",
+		title: "Your data is yours",
+		desc: "Every row exportable in full, in open formats, at any time. Isolation between tenants is enforced by row-level security in the database.",
 	},
 	{
-		n: "03",
-		icon: ScrollText,
 		title: "Complete audit trails",
-		description:
-			"Every action is recorded against the user who took it — evidence ready whenever you need it.",
+		desc: "Every action is recorded against the user or process that took it — evidence ready whenever you need it.",
 	},
 	{
-		n: "04",
-		icon: Network,
-		title: "Secure integrations",
-		description:
-			"Connections to your existing tools are scoped, encrypted, and reachable only where you allow.",
+		title: "Scoped integrations",
+		desc: "Connections to your other tools reach only the systems you approve, with credentials held by the platform, not in the code.",
 	},
 	{
-		n: "05",
-		icon: ShieldCheck,
-		title: "Built-in safety",
-		description:
-			"Sensitive actions wait for approval, so nothing irreversible happens without a human saying yes.",
+		title: "Approval gates",
+		desc: "Sensitive actions wait for a person to say yes, so nothing irreversible happens without a human decision.",
+	},
+	{
+		title: "A governed AI gate",
+		desc: "Every AI call goes through one gate that applies your policy and records the call, so AI assistance is as accountable as any other action.",
 	},
 ];
 
-type Stage = {
-	n: string;
-	title: string;
-	desc: string;
-	icon: LucideIcon;
-};
-
-const rollout: Stage[] = [
+const rollout: Step[] = [
 	{
 		n: "01",
 		title: "Read-only first",
@@ -110,248 +64,132 @@ const rollout: Stage[] = [
 	{
 		n: "02",
 		title: "Approval gates",
-		desc: "When the system starts taking action, sensitive steps pause for a human to approve.",
+		desc: "When the system starts taking action, sensitive steps pause for a person to approve.",
 		icon: GitPullRequestArrow,
 	},
 	{
 		n: "03",
 		title: "Observability",
-		desc: "We harden logging and audit coverage so every action is visible and accountable.",
+		desc: "We confirm logging and audit coverage, so every action is visible and accountable.",
 		icon: Radar,
 	},
 	{
 		n: "04",
-		title: "Scale across teams",
-		desc: "Once it's proven and trusted, we widen access to more workflows and more of your team.",
+		title: "Wider access",
+		desc: "Once it’s proven and trusted, we widen access to more workflows and more of your team.",
 		icon: Users,
 	},
 ];
 
-const faqs = [
+const answers = [
 	{ q: "Can we run read-only first?", a: "Yes." },
 	{ q: "Can actions require approval?", a: "Yes." },
 	{ q: "Can we restrict which systems are reachable?", a: "Yes." },
-	{ q: "Do we own the code and data?", a: "Yes." },
+	{ q: "Do we own our data?", a: "Yes, unconditionally." },
+	{
+		q: "Are you ISO 27001 certified?",
+		a: "No. We build to ISO 27001-aligned practices. No third-party audit has been performed.",
+	},
+	{
+		q: "Who owns the code?",
+		a: "Your solution pack and any domain module are yours under a perpetual licence. The platform is ours.",
+	},
 ];
 
 function SecurityPage() {
 	return (
 		<>
-			<InteractiveAura />
-
-			{/* Hero */}
-			<section className="glow section-shell">
-				<div className="site-wide">
-					<p className="kicker reveal-up mb-8">Security &amp; governance</p>
-					<div className="grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
-						<div className="space-y-7">
-							<span className="pill reveal-up">
-								<ShieldCheck className="h-3.5 w-3.5 text-violet" />
-								Built in, not bolted on
-							</span>
-							<h1 className="reveal-up delay-1 display text-[2.6rem] text-ink sm:text-6xl lg:text-[3.9rem]">
-								Protect your business while{" "}
-								<span className="gradient-ink">moving faster.</span>
-							</h1>
-							<p className="reveal-up delay-2 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
-								You shouldn't have to trade speed for control. We build security
-								and governance into the system we ship for you — so you move
-								fast without putting compliance, your data, or your business at
-								risk.
-							</p>
-							<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
-								<MagneticLink to="/contact" className="button-primary">
-									Book a free exploration meeting
-									<ArrowRight className="h-4 w-4" />
-								</MagneticLink>
-								<MagneticLink to="/approach" className="button-secondary">
-									See how we work
-								</MagneticLink>
-							</div>
-							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-mute">
-								<li className="flex items-center gap-2">
-									<Check className="h-4 w-4 text-violet" /> Your data stays
-									yours
-								</li>
-								<li className="flex items-center gap-2">
-									<Check className="h-4 w-4 text-violet" /> You own the code
-								</li>
-								<li className="flex items-center gap-2">
-									<Check className="h-4 w-4 text-violet" /> No lock-in
-								</li>
-							</ul>
-						</div>
-
-						{/* Oversized protection stat — the signature security visual */}
-						<div className="reveal-up delay-2 relative">
-							<figure className="figure-plate ticked relative overflow-hidden">
-								<div className="card-node is-warm" aria-hidden />
-								<p className="kicker">How protected you are</p>
-								<div className="mt-4 metric-value text-[clamp(4rem,9vw,6.5rem)]">
-									95%
-								</div>
-								<p className="mt-4 max-w-[18rem] text-sm leading-relaxed text-mute">
-									Every guardrail on — least privilege, scoped reach,
-									approvals, and full audit. The more controls, the more
-									protected you are.
-								</p>
-								<div className="trust-meter mt-6">
-									<div style={{ width: "95%" }} />
-								</div>
-								<div className="mt-4 flex items-center gap-2 text-sm font-medium text-violet-ink">
-									<ShieldCheck className="h-4 w-4 text-violet" />5 / 5 controls
-									active
-								</div>
-							</figure>
-							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-border bg-surface px-3 py-2 shadow-[var(--shadow-sm)] sm:block">
-								<span className="text-sm font-semibold text-warm-ink">
-									Risk cut by 90%
-								</span>
-							</div>
-							<figcaption className="plate-caption">
-								More safeguards, less risk
-							</figcaption>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			{/* Pillars */}
-			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll chapter mb-10 max-w-2xl">
-					<span className="chapter-no">No. 01</span>
-					<p className="kicker mb-4 mt-2">What's built in</p>
-					<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-						Governance is part of the build, not a bolt-on.
-					</h2>
-					<p className="mt-4 text-pretty text-mute">
-						Because we build the system around how you operate, we build control
-						into it from day one. Five things we engineer into everything we
-						ship for you.
-					</p>
-				</div>
-
-				<div className="reveal-stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-					{pillars.map((pillar) => (
-						<article key={pillar.n} className="panel panel-hover group p-6">
-							<span className="card-node" aria-hidden />
-							<div className="flex items-center gap-4">
-								<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface-violet text-violet">
-									<pillar.icon className="h-5 w-5" />
-								</div>
-								<span className="font-display text-lg text-violet/60">
-									{pillar.n}
-								</span>
-							</div>
-							<h3 className="mt-5 font-heading text-lg font-semibold text-ink">
-								{pillar.title}
-							</h3>
-							<p className="mt-2 text-sm leading-relaxed text-mute">
-								{pillar.description}
-							</p>
-						</article>
-					))}
-					<article className="panel group flex flex-col justify-between bg-surface-violet p-6">
-						<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-surface text-warm-ink">
-							<Scale className="h-5 w-5" />
-						</div>
-						<div className="mt-8">
-							<h3 className="font-heading text-lg font-semibold text-ink">
-								Built to recognised standards
-							</h3>
-							<p className="mt-2 text-sm leading-relaxed text-mute">
-								We build to ISO 27001-aligned practices, so what we ship stands
-								up to the controls your auditors expect.
-							</p>
-						</div>
-					</article>
-				</div>
-			</section>
-
-			{/* Interactive governance illustration */}
-			<section className="glow site-wide section-shell pt-0">
-				<div className="figure-plate ticked overflow-hidden">
-					<div className="reveal-scroll mb-8 max-w-2xl">
-						<p className="kicker mb-4">Safety at every step</p>
-						<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
-							You decide what the system can do — and we can prove it did only
-							that.
-						</h2>
-						<p className="mt-4 text-pretty text-mute">
-							Toggle the guardrails to see how each one tightens what's
-							possible. In a real build, these are configured to your policy and
-							enforced in code.
+			<section className="site-wide section pt-8 sm:pt-14">
+				<div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+					<div>
+						<h1 className="display reveal-up">
+							Security is part of the platform, not a bolt-on.
+						</h1>
+						<p className="lede reveal-up delay-1 mt-7">
+							Every tenant runs with the same controls: least-privilege access,
+							approval gates on sensitive actions, a full audit trail, and
+							tenant isolation enforced in the database. Here is what that
+							means, and what it doesn’t.
 						</p>
 					</div>
+
+					<figure className="reveal-up delay-2 m-0 panel p-6 sm:p-7">
+						<p className="label">Built to recognised standards</p>
+						<p className="mt-3 text-[1.05rem] leading-relaxed text-ink">
+							We build to ISO 27001-aligned practices.{" "}
+							<span className="text-warm-ink">
+								Not certified. No third-party audit has been performed.
+							</span>
+						</p>
+						<p className="mt-4 border-t border-border pt-4 text-[0.95rem] leading-relaxed text-mute">
+							If your auditors require a specific control, tell us and we’ll
+							tell you honestly whether we meet it today.
+						</p>
+					</figure>
+				</div>
+			</section>
+
+			<Section label="What’s built in">
+				<h2 className="h2 max-w-3xl">Six controls every tenant runs with.</h2>
+				<dl className="m-0 mt-10 grid gap-px overflow-hidden rounded-[var(--radius)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+					{pillars.map((pillar) => (
+						<div key={pillar.title} className="bg-surface p-6">
+							<dt className="h3 !text-[1.15rem]">{pillar.title}</dt>
+							<dd className="m-0 mt-3 text-[0.95rem] leading-relaxed text-mute text-pretty">
+								{pillar.desc}
+							</dd>
+						</div>
+					))}
+				</dl>
+			</Section>
+
+			<Section label="Safety at every step">
+				<h2 className="h2 max-w-3xl">
+					You decide what the system can do, and the audit trail shows it did
+					only that.
+				</h2>
+				<p className="prose mt-6 text-ink-soft">
+					Turn a safeguard off to see what it was protecting. There is no score
+					here, because no honest one exists — the point is what each control
+					closes off.
+				</p>
+				<div className="mt-10">
 					<TrustControlPanel />
 				</div>
-			</section>
+			</Section>
 
-			{/* Rollout approach + FAQ */}
-			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll chapter mb-12 max-w-2xl">
-					<span className="chapter-no">No. 02</span>
-					<p className="kicker mb-4 mt-2">How we roll out safely</p>
-					<h2 className="font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
-						We earn trust before we widen access.
-					</h2>
-					<p className="mt-4 text-pretty text-mute">
-						Nothing goes straight to full access. We expand capability one
-						deliberate step at a time, with you in control at every gate.
-					</p>
-				</div>
-
-				<div className="reveal-scroll mb-6">
-					<p className="dimline">Read-only → approvals → observed → scaled</p>
-				</div>
-				<div className="reveal-scroll">
+			<Section label="How we roll out" index="Sequence">
+				<h2 className="h2 max-w-3xl">We earn trust before we widen access.</h2>
+				<div className="mt-10">
 					<ProcessFlow steps={rollout} />
 				</div>
+			</Section>
 
-				<hr className="hairline my-12" />
-
-				<div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-					<div className="reveal-scroll">
-						<p className="kicker mb-4">Straight answers</p>
-						<h3 className="font-heading text-3xl font-semibold text-ink sm:text-[2.2rem]">
-							The questions we get asked first.
-						</h3>
-						<p className="mt-4 max-w-md text-pretty text-mute">
-							Short answers to the controls most teams ask about before they
-							start. Need one we haven't listed?
-						</p>
-						<p className="mt-6 flex items-start gap-3 text-sm leading-relaxed text-mute">
-							<GitPullRequestArrow className="mt-0.5 h-4 w-4 shrink-0 text-violet" />
-							Have a control your auditors require? Tell us and we'll build to
-							it.
-						</p>
-					</div>
-
-					<dl className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border sm:grid-cols-2">
-						{faqs.map((faq) => (
-							<div key={faq.q} className="bg-surface p-6">
-								<div className="flex items-center gap-3">
-									<span className="inline-flex rounded-lg border border-border bg-surface-violet p-2 text-violet">
-										<Eye className="h-4 w-4" />
-									</span>
-									<dt className="text-[0.95rem] font-medium text-ink">
-										{faq.q}
-									</dt>
-								</div>
-								<dd className="mt-4 flex items-center gap-2 text-sm font-medium text-violet-ink">
-									<Check className="h-4 w-4 text-violet" /> {faq.a}
-								</dd>
-							</div>
-						))}
-					</dl>
-				</div>
-			</section>
+			<Section label="Straight answers">
+				<dl className="m-0 grid gap-px overflow-hidden rounded-[var(--radius)] border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+					{answers.map((item) => (
+						<div key={item.q} className="bg-surface p-6">
+							<dt className="text-[1rem] font-medium text-ink">{item.q}</dt>
+							<dd className="m-0 mt-3 text-[0.95rem] leading-relaxed text-violet-ink">
+								{item.a}
+							</dd>
+						</div>
+					))}
+				</dl>
+				<p className="mt-6 text-[0.95rem] text-mute">
+					The full ownership split, including what happens if we’re not here, is
+					on{" "}
+					<Link to="/what-you-own" className="link-underline">
+						what you own
+					</Link>
+					.
+				</p>
+			</Section>
 
 			<CTASection
-				title="Move fast on a system you can actually trust."
-				description="Start with a discovery call. We'll learn how you operate and show you how security and governance get built into what we ship for you."
-				primaryLabel="Book a free exploration meeting"
-				secondaryLabel="See our approach"
+				title="Have a control your auditors require?"
+				description="Tell us what it is. We’ll say whether we meet it today, and if we don’t, what it would take."
+				secondary={{ label: "What you own", to: "/what-you-own" }}
 			/>
 		</>
 	);

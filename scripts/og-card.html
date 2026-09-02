@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mation — Open Graph card (1200×630)</title>
+<style>
+  /*
+   * Source for public/og-card.png. Render at exactly 1200×630 and screenshot
+   * the viewport (see the sibling task notes). Fonts come straight from the
+   * local fontsource packages so the card matches the site's Field Journal
+   * typography without a network round-trip.
+   * Each face lists the absolute file:// path first, then a root-relative
+   * path so the same file also renders when served over HTTP from the repo
+   * root (e.g. `python3 -m http.server --directory .`), which is how the
+   * screenshot is taken since Playwright blocks file:// navigation.
+   */
+  @font-face {
+    font-family: "Fraunces Variable";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: block;
+    src: url("file:///Users/cameronrussell/Mation/node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2") format("woff2"),
+         url("/node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Geist Variable";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: block;
+    src: url("file:///Users/cameronrussell/Mation/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2") format("woff2"),
+         url("/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Geist Mono Variable";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: block;
+    src: url("file:///Users/cameronrussell/Mation/node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2") format("woff2"),
+         url("/node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2") format("woff2");
+  }
+
+  html, body {
+    margin: 0;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+  }
+  body {
+    background: #f5f4f0;
+    color: #1e1c24;
+    font-family: "Geist Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .card {
+    box-sizing: border-box;
+    width: 1200px;
+    height: 630px;
+    padding: 96px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Brand row: mark + wordmark */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .brand svg {
+    display: block;
+    height: 56px;
+    width: auto;
+  }
+  .wordmark {
+    font-family: "Fraunces Variable", Georgia, "Times New Roman", serif;
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: #1e1c24;
+  }
+
+  /* Headline + subline sit in the vertical middle */
+  .copy {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 28px 0;
+  }
+  h1 {
+    margin: 0;
+    max-width: 900px;
+    font-family: "Fraunces Variable", Georgia, "Times New Roman", serif;
+    font-size: 76px;
+    font-weight: 500;
+    letter-spacing: -0.018em;
+    line-height: 1.02;
+    color: #1e1c24;
+    text-wrap: balance;
+  }
+  .sub {
+    margin: 26px 0 0;
+    max-width: 900px;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: #5f5b6b;
+  }
+
+  /* Footer: hairline + mono meta */
+  .foot {
+    margin-top: auto;
+  }
+  .rule {
+    height: 1px;
+    background: #c9c5bb;
+  }
+  .meta {
+    margin-top: 22px;
+    font-family: "Geist Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: #5f5b6b;
+    white-space: pre;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">
+      <svg viewBox="72 110 368 308" width="67" height="56" aria-hidden="true">
+        <path d="M72 118L248 224L215 251L72 162V118Z" fill="#5b45c9"/>
+        <path d="M248 224L440 110V162L281 253L248 224Z" fill="#5b45c9"/>
+        <path d="M72 214L194 287V418L72 358V214Z" fill="#5b45c9"/>
+        <path d="M318 287L440 214V358L318 418V287Z" fill="#5b45c9"/>
+        <path d="M215 251L248 224L281 253L248 275L215 251Z" fill="#d4522f"/>
+      </svg>
+      <span class="wordmark">Mation</span>
+    </div>
+
+    <div class="copy">
+      <h1>Operational software your business runs on.</h1>
+      <p class="sub">Built on our platform, owned where it matters.</p>
+    </div>
+
+    <div class="foot">
+      <div class="rule"></div>
+      <div class="meta">mation.nz  ·  Auckland, New Zealand</div>
+    </div>
+  </div>
+
+  <script>
+    // Flag on <html> once all three faces are resolved so the screenshot step
+    // can wait for it rather than guessing at a timeout.
+    document.fonts.ready.then(function () {
+      document.documentElement.setAttribute("data-fonts", "ready");
+    });
+  </script>
+</body>
+</html>

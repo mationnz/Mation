@@ -1,6 +1,6 @@
 {
   "short_name": "Mation",
-  "name": "Mation - Business AI Transformation + Automation",
+  "name": "Mation — Operational software your business runs on",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#070a1d",
-  "background_color": "#050714"
+  "theme_color": "#f5f4f0",
+  "background_color": "#f5f4f0"
 }

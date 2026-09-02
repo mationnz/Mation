@@ -1,492 +1,242 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-	AppWindow,
-	ArrowRight,
-	ArrowUpRight,
-	Blocks,
-	Check,
-	Database,
-	LayoutDashboard,
-	Minus,
-	Network,
-	PenTool,
-	RefreshCw,
-	Search,
-	ShieldCheck,
-	Workflow,
-} from "lucide-react";
 
+import Boundary from "../components/Boundary";
 import CTASection from "../components/CTASection";
-import InteractiveAura from "../components/InteractiveAura";
-import MagneticLink from "../components/MagneticLink";
-import ProcessFlow from "../components/ProcessFlow";
-import SystemMap from "../components/SystemMap";
-import ToolsMarquee from "../components/ToolsMarquee";
-import VelocityTimeline from "../components/VelocityTimeline";
-import { offer } from "../content/site";
+import OwnershipLedger, { OwnershipSplit } from "../components/OwnershipLedger";
+import PlatformFacts from "../components/PlatformFacts";
+import PriceLadder from "../components/PriceLadder";
+import Section from "../components/Section";
+import Tiers from "../components/Tiers";
+import { cta, mationMeta, ownershipProse, pricing } from "../content/site";
+import { getArticleBySlug } from "../data/articles";
 
 export const Route = createFileRoute("/")({
 	component: HomePage,
 	head: () => ({
 		meta: [
-			{
-				title: "Mation — The operating system your business runs on",
-			},
-			{
-				name: "description",
-				content:
-					"Mation builds bespoke software that unifies your tools, data, and workflows into one operating system — engineered around exactly how you operate, powered by AI.",
-			},
-			{
-				property: "og:title",
-				content: "Mation — The operating system your business runs on",
-			},
-			{
-				property: "og:description",
-				content:
-					"Bespoke software that unifies your tools, data, and workflows into one system — engineered around exactly how you operate, powered by AI.",
-			},
-			{
-				property: "og:type",
-				content: "website",
-			},
+			{ title: `Mation — ${mationMeta.tagline}` },
+			{ name: "description", content: mationMeta.description },
+			{ property: "og:title", content: `Mation — ${mationMeta.tagline}` },
+			{ property: "og:description", content: mationMeta.description },
+			{ property: "og:type", content: "website" },
 		],
 	}),
 });
 
-const problems = [
+const pains = [
 	{
-		k: "01",
-		t: "Disconnected tools",
-		d: "Your data is trapped across a dozen apps that were never meant to talk.",
+		who: "Operations and project managers",
+		what: "Your week disappears into status updates, re-keying, and chasing people.",
 	},
 	{
-		k: "02",
-		t: "Manual admin",
-		d: "Hours every week lost to re-keying, reconciling, and chasing updates.",
+		who: "Owners and executives",
+		what: "You’re making calls on data that’s days old and scattered across reports.",
 	},
 	{
-		k: "03",
-		t: "Fragile hand-offs",
-		d: "Every gap between systems is a chance for delay, error, and lost context.",
+		who: "Compliance and quality",
+		what: "Audit prep means weeks of stitching evidence together from a dozen places.",
 	},
 	{
-		k: "04",
-		t: "Pilots that don't stick",
-		d: "AI experiments stall because they live outside how you actually work.",
+		who: "Field and frontline teams",
+		what: "Reporting from the field is slow, and what gets captured often goes missing.",
 	},
 ];
 
-const steps = [
-	{
-		n: "01",
-		title: "Learn",
-		desc: "We map how your business actually runs — every process and hand-off.",
-		icon: Search,
-	},
-	{
-		n: "02",
-		title: "Blueprint",
-		desc: "We design the system and the value case before a line is built.",
-		icon: PenTool,
-	},
-	{
-		n: "03",
-		title: "Build",
-		desc: "We ship in increments. You see it working early — not at the end.",
-		icon: Blocks,
-	},
-	{
-		n: "04",
-		title: "Run & evolve",
-		desc: "We support, refine, and extend the system as you grow.",
-		icon: RefreshCw,
-	},
-];
-
-const capabilities = [
-	{
-		icon: AppWindow,
-		title: "Bespoke applications",
-		desc: "Software built to your exact workflow — not a template you bend to fit.",
-	},
-	{
-		icon: Workflow,
-		title: "Automation & AI agents",
-		desc: "Automate the manual admin and hand-offs that quietly eat your week.",
-	},
-	{
-		icon: Network,
-		title: "Systems integration",
-		desc: "Connect the tools you already run into one reliable source of truth.",
-	},
-	{
-		icon: LayoutDashboard,
-		title: "Internal tools & dashboards",
-		desc: "The control surfaces your team needs to run operations clearly.",
-	},
-	{
-		icon: Database,
-		title: "The unified data layer",
-		desc: "One model of your business — every system speaking the same language.",
-	},
-];
-
-const metrics = [
-	{ value: "1", label: "system your business runs on" },
-	{ value: "100%", label: "yours — the code, the data, the system" },
-	{ value: "0", label: "off-the-shelf templates, ever" },
-];
-
-const weAre = [
-	"A senior product-engineering partner",
-	"Builders of bespoke systems, end-to-end",
-	"AI-native in how we build and what we ship",
-	"A partner who learns your operations first",
-	"Accountable for outcomes you can measure",
-];
-
-const weArent = [
-	"A staff-augmentation body shop",
-	"A one-size-fits-all SaaS product to adopt",
-	"An “AI services” vendor selling chatbots",
-	"A team that ships a generic template faster",
-	"Owners of tickets and hourly output",
-];
+const reading = [
+	"measuring-ai-roi",
+	"read-only-first",
+	"auditability-ai-deployable",
+]
+	.map((slug) => getArticleBySlug(slug))
+	.filter((article) => article !== undefined);
 
 function HomePage() {
+	const setup = pricing.lines[0];
+	const platform = pricing.lines[1];
+
 	return (
 		<>
-			<InteractiveAura />
-
 			{/* Hero */}
-			<section className="glow section-shell pt-10 sm:pt-14">
-				<div className="site-wide">
-					<div className="dimline reveal-up mb-10">
-						Bespoke systems · Auckland, NZ
-					</div>
-					<div className="grid items-center gap-12 lg:grid-cols-[1.04fr_0.96fr]">
-						<div className="space-y-7">
-							<span className="pill reveal-up">
-								<span className="live-dot" /> The operating system your business
-								runs on
-							</span>
-							<h1 className="reveal-up delay-1 display text-[2.7rem] text-ink sm:text-6xl lg:text-[4.15rem]">
-								We build the{" "}
-								<span className="gradient-ink">operating system</span> your
-								business runs on.
-							</h1>
-							<p className="reveal-up delay-2 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
-								Bespoke software that unifies your tools, data, and workflows
-								into one system — engineered around exactly how you operate,
-								powered by AI.
-							</p>
-							<div className="reveal-up delay-3 flex flex-col gap-3 sm:flex-row">
-								<MagneticLink to="/contact" className="button-primary">
-									Map your operating system
-									<ArrowRight className="h-4 w-4" />
-								</MagneticLink>
-								<MagneticLink to="/approach" className="button-secondary">
-									See how we work
-								</MagneticLink>
-							</div>
-							<ul className="reveal-up delay-4 flex flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-mute">
-								<li className="flex items-center gap-2">
-									<Check className="h-4 w-4 text-violet" /> No off-the-shelf
-									product
-								</li>
-								<li className="flex items-center gap-2">
-									<Check className="h-4 w-4 text-violet" /> Senior engineers,
-									end-to-end
-								</li>
-								<li className="flex items-center gap-2">
-									<Check className="h-4 w-4 text-violet" /> Serious security,
-									built in
-								</li>
-							</ul>
+			<section className="site-wide section pt-8 sm:pt-14">
+				<div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+					<div>
+						<h1 className="display reveal-up">
+							Operational software your business runs on.
+						</h1>
+						<p className="lede reveal-up delay-1 mt-7">
+							Built on our platform, owned where it matters. Your system arrives
+							in weeks, not quarters. You own your data, your configuration, and
+							the domain code we write for you. We own and run the platform
+							underneath it.
+						</p>
+						<div className="reveal-up delay-2 mt-9 flex flex-col gap-3 sm:flex-row">
+							<Link to={cta.primary.to} className="button-primary">
+								{cta.primary.label}
+							</Link>
+							<Link to="/what-you-own" className="button-secondary">
+								What you own
+							</Link>
 						</div>
-
-						<figure className="reveal-up delay-2 relative m-0">
-							<div className="figure-plate">
-								<SystemMap />
-							</div>
-							<div className="absolute -left-3 -top-3 hidden rounded-lg border border-border bg-surface px-3 py-2 text-sm font-medium text-ink-soft shadow-[var(--shadow-xs)] sm:block">
-								12 tools, 1 system
-							</div>
-							<figcaption className="plate-caption">
-								From scattered tools to one system.
-							</figcaption>
-						</figure>
+						<p className="reveal-up delay-3 mt-7 font-mono text-sm text-mute">
+							Managed tier: {pricing.currency} {setup.amount} setup, then{" "}
+							{pricing.currency} {platform.amount} a month. Both + GST.
+						</p>
 					</div>
+
+					<figure className="reveal-up delay-2 m-0">
+						<OwnershipSplit />
+						<figcaption className="mt-3 text-sm text-mute">
+							Where ownership divides. Same split in both tiers.
+						</figcaption>
+					</figure>
 				</div>
 			</section>
 
-			{/* Tools marquee */}
-			<section className="section-tight">
-				<div className="site-wide">
-					<p className="dimline mb-6">Connects the tools you already run</p>
-					<ToolsMarquee />
-				</div>
-			</section>
-
-			{/* Problem */}
-			<section className="site-wide section-shell pt-10">
-				<div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
-					<div className="reveal-scroll chapter">
-						<span className="chapter-no">No. 01</span>
-						<p className="kicker mt-3">The problem</p>
-						<h2 className="mt-4 font-heading text-3xl font-semibold text-ink sm:text-[2.7rem] sm:leading-[1.06]">
-							Most businesses don’t need more software. They need it to{" "}
-							<span className="gradient-ink">work as one.</span>
-						</h2>
-					</div>
-					<div className="reveal-stagger grid gap-px overflow-hidden rounded-[14px] border border-border bg-border sm:grid-cols-2">
-						{problems.map((p) => (
-							<div key={p.k} className="bg-surface p-6">
-								<div className="flex items-center gap-3">
-									<span className="font-heading text-lg font-semibold text-violet">
-										{p.k}
-									</span>
-									<Minus className="h-3 w-8 text-warm/50" />
-								</div>
-								<h3 className="mt-4 font-heading text-lg font-semibold text-ink">
-									{p.t}
-								</h3>
-								<p className="mt-2 text-sm leading-relaxed text-mute">{p.d}</p>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-
-			{/* Approach */}
-			<section className="site-wide section-shell pt-0">
-				<div className="reveal-scroll chapter mb-12 flex flex-wrap items-end justify-between gap-4">
-					<div>
-						<span className="chapter-no">No. 02</span>
-						<p className="kicker mt-3">How we work</p>
-						<h2 className="mt-4 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-							We learn how you run, then build the system that runs it.
-						</h2>
-					</div>
-					<Link to="/approach" className="button-ghost">
-						The full approach <ArrowRight className="h-4 w-4" />
-					</Link>
-				</div>
-				<div className="reveal-scroll">
-					<ProcessFlow steps={steps} />
-				</div>
-			</section>
-
-			{/* What we build */}
-			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll chapter mb-10 flex flex-wrap items-end justify-between gap-4">
-					<div>
-						<span className="chapter-no">No. 03</span>
-						<p className="kicker mt-3">What we build</p>
-						<h2 className="mt-4 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-							One partner for every layer of your operating system.
-						</h2>
-					</div>
-					<p className="dimline hidden max-w-xs md:flex">
-						Built to grow with you
-					</p>
-				</div>
-				<div className="reveal-stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-					{capabilities.map((cap) => (
-						<article key={cap.title} className="panel panel-hover group p-6">
-							<span className="card-node" aria-hidden />
-							<div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-violet text-violet">
-								<cap.icon className="h-5 w-5" />
-							</div>
-							<h3 className="font-heading text-lg font-semibold text-ink">
-								{cap.title}
-							</h3>
-							<p className="mt-2 text-sm leading-relaxed text-mute">
-								{cap.desc}
-							</p>
-						</article>
+			{/* The problem */}
+			<Section label="The problem">
+				<h2 className="h2 max-w-3xl">
+					Most businesses don’t need more software. They need the software they
+					have to work as one system, and someone accountable for running it.
+				</h2>
+				<dl className="mt-10 grid gap-px overflow-hidden rounded-[var(--radius)] border border-border bg-border sm:grid-cols-2">
+					{pains.map((pain) => (
+						<div key={pain.who} className="bg-surface p-6">
+							<dt className="label">{pain.who}</dt>
+							<dd className="m-0 mt-2 text-[1.05rem] leading-snug text-ink text-pretty">
+								{pain.what}
+							</dd>
+						</div>
 					))}
-					<Link
-						to="/what-we-build"
-						className="panel panel-hover group flex flex-col justify-between bg-surface-violet p-6"
-					>
-						<span className="card-node" aria-hidden />
-						<ArrowUpRight className="h-6 w-6 text-violet transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-						<span className="mt-8 font-heading text-lg font-semibold text-ink">
-							Explore everything we build
-						</span>
-					</Link>
-				</div>
-			</section>
-
-			{/* Velocity */}
-			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll chapter mb-12">
-					<span className="chapter-no">No. 04</span>
-					<p className="kicker mt-3">Velocity</p>
-					<h2 className="mt-4 max-w-3xl font-heading text-3xl font-semibold text-ink sm:text-[2.5rem] sm:leading-[1.08]">
-						Prototype in days. Launch in weeks. Results in months.{" "}
-						<span className="gradient-ink">Profit for years.</span>
-					</h2>
-				</div>
-				<div className="reveal-scroll">
-					<VelocityTimeline />
-				</div>
-			</section>
-
-			{/* Plans & guarantee */}
-			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll chapter mb-10">
-					<span className="chapter-no">No. 05</span>
-					<p className="kicker mt-3">Flexible by design</p>
-				</div>
-				<div className="reveal-stagger grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-					<article className="panel p-7 sm:p-8">
-						<p className="kicker">Plans</p>
-						<h3 className="mt-3 font-heading text-2xl font-semibold text-ink sm:text-[1.8rem]">
-							Start small. Scale as it proves out.
-						</h3>
-						<p className="mt-3 text-mute">
-							Custom, pilotable software from{" "}
-							<span className="font-semibold gradient-ink">
-								{offer.priceLow}
-							</span>{" "}
-							to {offer.priceHigh} — on a SaaS, rent-to-buy, or purchase model.
-						</p>
-						<div className="mt-5 flex flex-wrap gap-2">
-							{offer.models.map((m) => (
-								<span key={m.name} className="tag">
-									{m.name}
-								</span>
-							))}
-						</div>
-						<Link to="/plans" className="button-secondary mt-7 inline-flex">
-							See plans & pricing <ArrowRight className="h-4 w-4" />
-						</Link>
-					</article>
-					<article className="panel-line ticked flex flex-col justify-center p-7 sm:p-8">
-						<div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-surface-violet text-violet">
-							<ShieldCheck className="h-6 w-6" />
-						</div>
-						<h3 className="mt-5 font-heading text-2xl font-semibold leading-tight text-ink">
-							Double your value in 60 days —{" "}
-							<span className="gradient-ink">or your money back.</span>
-						</h3>
-						<p className="mt-3 text-sm leading-relaxed text-mute">
-							{offer.guarantee}
-						</p>
-					</article>
-				</div>
-			</section>
-
-			{/* Proof — oversized stats */}
-			<section className="glow site-wide section-shell pt-4">
-				<div className="panel ticked overflow-hidden rounded-[22px] p-8 sm:p-12">
-					<div className="chapter mb-10">
-						<span className="chapter-no">No. 06</span>
-						<p className="kicker mt-3">What working with us means</p>
-					</div>
-					<div className="reveal-stagger grid gap-10 sm:grid-cols-3">
-						{metrics.map((m, i) => (
-							<div key={m.label}>
-								<div className="font-heading text-[clamp(3.2rem,7vw,5rem)] font-semibold leading-none tracking-[-0.04em] text-ink">
-									{m.value}
-								</div>
-								<span
-									aria-hidden
-									className={`mt-4 block h-[3px] w-12 rounded-full ${
-										i === 1 ? "bg-warm" : "bg-violet"
-									}`}
-								/>
-								<p className="mt-4 max-w-[16rem] text-sm leading-snug text-mute">
-									{m.label}
-								</p>
-							</div>
-						))}
-					</div>
-					<hr className="hairline my-10" />
-					<div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-						<p className="max-w-xl text-pretty text-ink/85">
-							See how we’ve unified businesses into a single system — from the
-							first map to a system the whole team runs on.
-						</p>
-						<Link to="/work" className="button-secondary shrink-0">
-							View our work <ArrowRight className="h-4 w-4" />
-						</Link>
-					</div>
-				</div>
-			</section>
-
-			{/* Positioning — we are / we aren't */}
-			<section className="site-wide section-shell pt-4">
-				<div className="reveal-scroll chapter mb-8">
-					<span className="chapter-no">No. 07</span>
-					<p className="kicker mt-3">What we are</p>
-					<h2 className="mt-4 max-w-2xl font-heading text-3xl font-semibold text-ink sm:text-[2.4rem]">
-						A different kind of software partner.
-					</h2>
-				</div>
-				<div className="reveal-stagger grid gap-5 md:grid-cols-2">
-					<div className="panel p-7">
-						<p className="kicker">We are</p>
-						<ul className="mt-5 space-y-3.5">
-							{weAre.map((item) => (
-								<li key={item} className="flex items-start gap-3 text-ink/90">
-									<Check className="mt-0.5 h-5 w-5 shrink-0 text-violet" />
-									<span>{item}</span>
-								</li>
-							))}
-						</ul>
-					</div>
-					<div className="panel-line p-7">
-						<p className="kicker !text-mute before:!bg-[var(--border-strong)]">
-							We are not
-						</p>
-						<ul className="mt-5 space-y-3.5">
-							{weArent.map((item) => (
-								<li key={item} className="flex items-start gap-3 text-mute">
-									<Minus className="mt-0.5 h-5 w-5 shrink-0 text-mute/60" />
-									<span>{item}</span>
-								</li>
-							))}
-						</ul>
-					</div>
-				</div>
-			</section>
-
-			{/* Security strip */}
-			<section className="site-wide section-shell pt-4">
-				<Link
-					to="/security"
-					className="panel panel-hover group flex flex-col items-start gap-5 p-7 sm:flex-row sm:items-center sm:justify-between"
-				>
-					<div className="flex items-start gap-4">
-						<div className="inline-flex rounded-xl bg-surface-violet p-3 text-violet">
-							<ShieldCheck className="h-5 w-5" />
-						</div>
-						<div>
-							<h3 className="font-heading text-lg font-semibold text-ink">
-								Security and oversight, built in
-							</h3>
-							<p className="mt-1 max-w-xl text-sm leading-relaxed text-mute">
-								Security, access control, auditability, and data ownership built
-								in from day one. Your data stays yours. No lock-in.
-							</p>
-						</div>
-					</div>
-					<span className="button-ghost shrink-0">
-						Security & governance
-						<ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-					</span>
+				</dl>
+				<Link to="/what-we-build" className="button-ghost mt-6">
+					What we build for each of them
 				</Link>
-			</section>
+			</Section>
+
+			{/* The platform */}
+			<Section label="The platform">
+				<h2 className="h2 max-w-3xl">
+					One tested platform. Your system on it.
+				</h2>
+				<p className="prose mt-6 text-ink-soft">
+					Every Mation client runs on the same spine: tenancy, identity,
+					permissions, audit, events, entitlements and an AI gate. Your business
+					gets a solution pack that describes how it runs — workflows, forms,
+					rules, reports, roles, brand — and, only where the platform lacks a
+					capability you need, a domain module written for you. A new system is
+					configuration, not a new codebase. That is why it arrives in weeks,
+					and why every client gets every fix.
+				</p>
+				<div className="mt-10">
+					<PlatformFacts />
+				</div>
+				<Link to="/how-it-works" className="button-ghost mt-6">
+					How it works, layer by layer
+				</Link>
+			</Section>
+
+			{/* What you own — the centrepiece */}
+			<Section label="What you own">
+				<h2 className="h2 max-w-3xl">{ownershipProse.title}</h2>
+				<p className="prose mt-6 text-ink-soft">{ownershipProse.intro}</p>
+				<div className="mt-10">
+					<OwnershipLedger />
+				</div>
+				<p className="prose mt-8 text-ink-soft">
+					<strong className="font-semibold text-ink">
+						The limit, out loud.
+					</strong>{" "}
+					{ownershipProse.limit} So we don’t make the usual claim about “the
+					code”. We say: you own your domain module’s source under a perpetual
+					licence, and it runs on the Mation platform.
+				</p>
+				<Link to="/what-you-own" className="button-ghost mt-6">
+					The full answer, including what happens if we’re not here
+				</Link>
+			</Section>
+
+			{/* Two tiers */}
+			<Section label="Two tiers">
+				<h2 className="h2 max-w-3xl">
+					One tier is priced. The other is a conversation.
+				</h2>
+				<p className="prose mt-6 text-ink-soft">
+					What you own is identical in both. The only thing that changes is who
+					operates the infrastructure.
+				</p>
+				<div className="mt-10">
+					<Tiers />
+				</div>
+			</Section>
+
+			{/* Pricing */}
+			<Section label="Pricing">
+				<h2 className="h2 max-w-3xl">The price, stated in full.</h2>
+				<p className="prose mt-6 text-ink-soft">
+					We don’t price per user, so the price does not move when you hire.
+					Usage is metered, visible, and capped.
+				</p>
+				<div className="mt-10">
+					<PriceLadder compact />
+				</div>
+				<Link to="/pricing" className="button-ghost mt-6">
+					What each line covers
+				</Link>
+			</Section>
+
+			<Boundary />
+
+			{/* Security */}
+			<Section label="Security">
+				<h2 className="h2 max-w-3xl">Part of the platform, not a bolt-on.</h2>
+				<p className="prose mt-6 text-ink-soft">
+					Least-privilege access by role, approval gates on sensitive actions, a
+					full audit trail of every action, and tenant isolation enforced in the
+					database. We start read-only and widen access one deliberate step at a
+					time.
+				</p>
+				<Link to="/security" className="button-ghost mt-6">
+					Security and governance, in detail
+				</Link>
+			</Section>
+
+			{/* Reading */}
+			{reading.length > 0 ? (
+				<Section label="Reading">
+					<h2 className="h2 max-w-3xl">Written from the work.</h2>
+					<ul className="m-0 mt-8 list-none divide-y divide-border border-y border-border-strong p-0">
+						{reading.map((article) => (
+							<li key={article.slug}>
+								<Link
+									to="/insights/$slug"
+									params={{ slug: article.slug }}
+									className="group grid gap-1 py-5 sm:grid-cols-[minmax(0,1fr)_8rem] sm:items-baseline"
+								>
+									<span>
+										<span className="h3 block !text-[1.25rem] transition-colors group-hover:text-violet-ink">
+											{article.title}
+										</span>
+										<span className="mt-1.5 block text-[0.95rem] leading-relaxed text-mute">
+											{article.excerpt}
+										</span>
+									</span>
+									<span className="font-mono text-sm text-mute sm:text-right">
+										{article.readTime}
+									</span>
+								</Link>
+							</li>
+						))}
+					</ul>
+					<Link to="/insights" className="button-ghost mt-6">
+						All insights
+					</Link>
+				</Section>
+			) : null}
 
 			<CTASection
-				title="Let’s map the operating system your business should run on."
-				description="Start with a conversation. We’ll learn how you work today and show you what one unified system could change."
-				primaryLabel="Book a free exploration meeting"
-				secondaryLabel="See our approach"
+				title="Tell us how your business runs."
+				description="We’ll tell you what a system on our platform would cost, what you’d own, and how long it would take. If we’re the wrong fit, we’ll say so and tell you who to call."
+				secondary={{ label: "See pricing", to: "/pricing" }}
 			/>
 		</>
 	);

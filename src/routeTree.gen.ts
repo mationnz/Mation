@@ -9,9 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhatYouOwnRouteImport } from './routes/what-you-own'
 import { Route as WhatWeBuildRouteImport } from './routes/what-we-build'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SecurityRouteImport } from './routes/security'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PlansRouteImport } from './routes/plans'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AboutRouteImport } from './routes/about'
@@ -21,9 +26,19 @@ import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 
+const WhatYouOwnRoute = WhatYouOwnRouteImport.update({
+  id: '/what-you-own',
+  path: '/what-you-own',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WhatWeBuildRoute = WhatWeBuildRouteImport.update({
   id: '/what-we-build',
   path: '/what-we-build',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SecurityRoute = SecurityRouteImport.update({
@@ -31,9 +46,24 @@ const SecurityRoute = SecurityRouteImport.update({
   path: '/security',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlansRoute = PlansRouteImport.update({
   id: '/plans',
   path: '/plans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -82,9 +112,14 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
   '/contact': typeof ContactRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/plans': typeof PlansRoute
+  '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/security': typeof SecurityRoute
+  '/terms': typeof TermsRoute
   '/what-we-build': typeof WhatWeBuildRoute
+  '/what-you-own': typeof WhatYouOwnRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/insights/': typeof InsightsIndexRoute
@@ -95,9 +130,14 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
   '/contact': typeof ContactRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/plans': typeof PlansRoute
+  '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/security': typeof SecurityRoute
+  '/terms': typeof TermsRoute
   '/what-we-build': typeof WhatWeBuildRoute
+  '/what-you-own': typeof WhatYouOwnRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/insights': typeof InsightsIndexRoute
@@ -109,9 +149,14 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/approach': typeof ApproachRoute
   '/contact': typeof ContactRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/plans': typeof PlansRoute
+  '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/security': typeof SecurityRoute
+  '/terms': typeof TermsRoute
   '/what-we-build': typeof WhatWeBuildRoute
+  '/what-you-own': typeof WhatYouOwnRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/insights/': typeof InsightsIndexRoute
@@ -124,9 +169,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/approach'
     | '/contact'
+    | '/how-it-works'
     | '/plans'
+    | '/pricing'
+    | '/privacy'
     | '/security'
+    | '/terms'
     | '/what-we-build'
+    | '/what-you-own'
     | '/insights/$slug'
     | '/work/$slug'
     | '/insights/'
@@ -137,9 +187,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/approach'
     | '/contact'
+    | '/how-it-works'
     | '/plans'
+    | '/pricing'
+    | '/privacy'
     | '/security'
+    | '/terms'
     | '/what-we-build'
+    | '/what-you-own'
     | '/insights/$slug'
     | '/work/$slug'
     | '/insights'
@@ -150,9 +205,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/approach'
     | '/contact'
+    | '/how-it-works'
     | '/plans'
+    | '/pricing'
+    | '/privacy'
     | '/security'
+    | '/terms'
     | '/what-we-build'
+    | '/what-you-own'
     | '/insights/$slug'
     | '/work/$slug'
     | '/insights/'
@@ -164,9 +224,14 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ApproachRoute: typeof ApproachRoute
   ContactRoute: typeof ContactRoute
+  HowItWorksRoute: typeof HowItWorksRoute
   PlansRoute: typeof PlansRoute
+  PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
   SecurityRoute: typeof SecurityRoute
+  TermsRoute: typeof TermsRoute
   WhatWeBuildRoute: typeof WhatWeBuildRoute
+  WhatYouOwnRoute: typeof WhatYouOwnRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   WorkSlugRoute: typeof WorkSlugRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
@@ -175,11 +240,25 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/what-you-own': {
+      id: '/what-you-own'
+      path: '/what-you-own'
+      fullPath: '/what-you-own'
+      preLoaderRoute: typeof WhatYouOwnRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/what-we-build': {
       id: '/what-we-build'
       path: '/what-we-build'
       fullPath: '/what-we-build'
       preLoaderRoute: typeof WhatWeBuildRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/security': {
@@ -189,11 +268,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SecurityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/plans': {
       id: '/plans'
       path: '/plans'
       fullPath: '/plans'
       preLoaderRoute: typeof PlansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -260,9 +360,14 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ApproachRoute: ApproachRoute,
   ContactRoute: ContactRoute,
+  HowItWorksRoute: HowItWorksRoute,
   PlansRoute: PlansRoute,
+  PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
   SecurityRoute: SecurityRoute,
+  TermsRoute: TermsRoute,
   WhatWeBuildRoute: WhatWeBuildRoute,
+  WhatYouOwnRoute: WhatYouOwnRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   WorkSlugRoute: WorkSlugRoute,
   InsightsIndexRoute: InsightsIndexRoute,

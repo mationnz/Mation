@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
-import { navLinks } from "../content/site";
+import { cta, navLinks } from "../content/site";
 import BrandMark from "./BrandMark";
 import ThemeToggle from "./ThemeToggle";
 
@@ -75,24 +75,23 @@ export default function Header() {
 		<>
 			<header
 				className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-					scrolled
-						? "border-border paper-glass"
-						: "border-transparent bg-transparent"
+					scrolled ? "border-border paper-glass" : "border-transparent"
 				}`}
 			>
 				<div className="site-wide flex h-20 items-center justify-between gap-6">
 					<Link
 						to="/"
-						className="group inline-flex items-center gap-2.5"
+						className="inline-flex items-center gap-2.5"
 						aria-label="Mation — home"
 					>
-						<BrandMark size={30} />
-						<span className="font-display text-[1.35rem] font-medium tracking-tight text-ink">
-							Mation
-						</span>
+						<BrandMark size={28} />
+						<span className="font-display text-[1.3rem] text-ink">Mation</span>
 					</Link>
 
-					<nav className="hidden items-center gap-7 lg:flex">
+					<nav
+						aria-label="Primary"
+						className="hidden items-center gap-7 lg:flex"
+					>
 						{navLinks.map((link) => (
 							<Link
 								key={link.to}
@@ -108,25 +107,24 @@ export default function Header() {
 					<div className="flex items-center gap-3">
 						<ThemeToggle />
 						<Link
-							to="/contact"
+							to={cta.short.to}
 							className="button-primary hidden md:inline-flex"
 						>
-							Book a free session
-							<ArrowUpRight className="h-4 w-4" />
+							{cta.short.label}
 						</Link>
 						<button
 							ref={toggleRef}
 							type="button"
 							onClick={() => setIsOpen((value) => !value)}
-							className="inline-flex rounded-lg border border-border bg-surface p-2 text-mute transition hover:border-violet hover:text-ink lg:hidden"
+							className="inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-sm)] border border-border bg-surface text-mute transition hover:border-violet hover:text-ink lg:hidden"
 							aria-label={isOpen ? "Close menu" : "Open menu"}
 							aria-expanded={isOpen}
 							aria-controls={menuId}
 						>
 							{isOpen ? (
-								<X className="h-5 w-5" />
+								<X className="h-5 w-5" aria-hidden />
 							) : (
-								<Menu className="h-5 w-5" />
+								<Menu className="h-5 w-5" aria-hidden />
 							)}
 						</button>
 					</div>
@@ -138,7 +136,7 @@ export default function Header() {
 				aria-hidden={!isOpen}
 				tabIndex={-1}
 				aria-label="Close menu"
-				className={`fixed inset-0 z-40 bg-[rgba(20,16,28,0.55)] backdrop-blur-sm transition lg:hidden ${
+				className={`fixed inset-0 z-40 bg-[rgba(20,18,26,0.55)] backdrop-blur-sm transition lg:hidden ${
 					isOpen
 						? "pointer-events-auto opacity-100"
 						: "pointer-events-none opacity-0"
@@ -157,32 +155,44 @@ export default function Header() {
 				}`}
 			>
 				<div className="mb-10 mt-16 flex items-center gap-2.5">
-					<BrandMark size={30} />
-					<span className="font-display text-xl font-medium text-ink">
-						Mation
-					</span>
+					<BrandMark size={28} />
+					<span className="font-display text-xl text-ink">Mation</span>
 				</div>
-				<nav className="space-y-2.5">
+				<nav aria-label="Mobile" className="space-y-2">
 					{navLinks.map((link) => (
 						<Link
 							key={link.to}
 							to={link.to}
 							onClick={() => setIsOpen(false)}
-							className="block rounded-xl border border-border bg-surface-2 px-4 py-3 text-sm font-medium text-ink-soft transition hover:border-violet hover:text-ink"
-							activeProps={{
-								className: "!border-violet !text-ink",
-							}}
+							className="block rounded-[var(--radius-sm)] border border-border bg-surface-2 px-4 py-3 text-[0.95rem] font-medium text-ink-soft transition hover:border-violet hover:text-ink"
+							activeProps={{ className: "!border-violet !text-ink" }}
 						>
 							{link.label}
 						</Link>
 					))}
+					<Link
+						to="/security"
+						onClick={() => setIsOpen(false)}
+						className="block rounded-[var(--radius-sm)] border border-border bg-surface-2 px-4 py-3 text-[0.95rem] font-medium text-ink-soft transition hover:border-violet hover:text-ink"
+						activeProps={{ className: "!border-violet !text-ink" }}
+					>
+						Security
+					</Link>
+					<Link
+						to="/insights"
+						onClick={() => setIsOpen(false)}
+						className="block rounded-[var(--radius-sm)] border border-border bg-surface-2 px-4 py-3 text-[0.95rem] font-medium text-ink-soft transition hover:border-violet hover:text-ink"
+						activeProps={{ className: "!border-violet !text-ink" }}
+					>
+						Insights
+					</Link>
 				</nav>
 				<Link
-					to="/contact"
+					to={cta.primary.to}
 					onClick={() => setIsOpen(false)}
 					className="button-primary mt-7 inline-flex w-full justify-center"
 				>
-					Book a free session
+					{cta.primary.label}
 				</Link>
 			</aside>
 		</>
